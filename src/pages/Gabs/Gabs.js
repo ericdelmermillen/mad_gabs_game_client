@@ -20,12 +20,12 @@ const Gabs = () => {
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
 
-  const [gabsArray, setGabsArray] = useState([]);
+  
   const [currentGab, setCurrentGab] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  
+  const alreadySaid = [];
 
-  const [comparisonTranscript, setComparisonTranscript] = useState("");
-  // const [comparisonTranscript, setComparisonTranscript] = useState([finalTranscript.split(" ")]);
 
   let currentGabAnswer =[];
 
@@ -33,7 +33,6 @@ const Gabs = () => {
 
   const handleStartListening = () => {
     SpeechRecognition.startListening({ continuous: true });
-    // setComparisonTranscript(...transcript.split(" "));
     console.log("start listening");
   }
 
@@ -47,27 +46,29 @@ const Gabs = () => {
       .get(`http://localhost:8080/${level}`)
       .then((res) => {
           let data = res.data;
-          setGabsArray(data);
           let randomIndex = Math.floor(Math.random() * data.length);
           setCurrentGab(data[randomIndex]); 
           setTimeout(() => setIsLoading(false), 250);
         })
       }, []);
 
+
   useEffect(() => {
-    // setComparisonTranscript(transcript.split(" "))
-    // setComparisonTranscript(new Set([...[transcript.split(" ")]]))
-    setComparisonTranscript([...[...new Set(...[transcript.split(" ")])]])
-    // const alreadySpoken = [...new Set(finalTranscript.split(" "))];
-    console.log("updates when transcript changes")
-    console.log(comparisonTranscript)
+
+    transcript.split(" ").forEach(word => {
+      alreadySaid.push(word)
+    })
+
+  console.log(currentGabAnswer.sort().join(" ") === [...new Set(alreadySaid.filter(word => currentGabAnswer.includes(word)
+  ))].sort().join(" "))
+
+    console.log(alreadySaid)
   }, [transcript]);
 
 
     
-
   if (!browserSupportsSpeechRecognition) {
-    return <span>Sorry, this browser doesn't support speech recognition.</span>;
+    return <span>Sorry, this browser does not support speech recognition.</span>
   }
       
     if (isLoading) {
@@ -75,11 +76,7 @@ const Gabs = () => {
   } 
 
   currentGabAnswer = [...currentGab[1]]
-
-// console.log(transcript)
-// console.log(comparisonTranscript)
-// console.log(interimTranscript)
-// console.log(finalTranscript)
+  // console.log(currentGabAnswer)
 
   return (
           <div>
@@ -93,11 +90,7 @@ const Gabs = () => {
               {currentGab &&
                 
                 currentGabAnswer.map((word, i) => {
-                  // const alreadySpoken = [...new Set(transcript.split(" "))];
-                  // const alreadySpoken = [...new Set(comparisonTranscript.split(" "))];
-                  const alreadySpoken = [...new Set(finalTranscript.split(" "))];
-                  // const alreadySpoken = comparisonTranscript;
-                  const isTranscriptWord = alreadySpoken.includes(word);
+                  const isTranscriptWord = alreadySaid.includes(word);
 
                   return isTranscriptWord 
                   ? 
