@@ -1,0 +1,43 @@
+
+.section__heading, 
+.section__sub-heading {
+  text-align: center;
+  border: 2px solid red;
+}
+
+.home {
+  // background: yellow;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 100vw;
+  height: calc(100vh - 9rem);
+}
+
+.level {
+
+  &__links {
+    margin: 0 auto;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__easy {
+    border: 2px solid blue;
+    margin-left: 1rem;
+  }
+
+  &__medium {
+    border: 2px solid green;
+    text-align: center;
+    margin-inline: 2rem;
+  }
+
+  &__hard {
+    border: 2px solid red;
+    text-align: end;
+  }
+}
