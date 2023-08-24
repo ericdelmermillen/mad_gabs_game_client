@@ -8,6 +8,8 @@ app-side to dos:
 
 3) make contact form to submit gab 
 
+4) investigate react-toastify
+
 
 
 

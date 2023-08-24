@@ -1,0 +1,32 @@
+.youWin {
+  position: relative; /* Make sure the parent has position:relative */
+
+  &__card {
+    border: 2px solid red;
+    background: #fff;
+    padding: 1rem;
+    text-align: center;
+    position: absolute;
+    height: 50%;
+    width: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__heading {
+    /* Styles for heading */
+  }
+
+  &__question {
+    margin-block: 1rem;
+  }
+
+  &__answer {
+    &--word {
+      & + &.youWin__answer--word {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+}
