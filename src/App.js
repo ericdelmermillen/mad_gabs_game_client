@@ -8,7 +8,6 @@ import Gabs from "./pages/Gabs/Gabs";
 
 function App() {
 
-
   return (
     <BrowserRouter>
         <Header />

@@ -9,10 +9,12 @@ import Loading from '../../components/Loading/Loading';
 
 
 const Gabs = () => {
-  
+
   const {
-    // finalTranscript,
     transcript,
+    interimTranscript,
+    finalTranscript,
+
     listening,
     resetTranscript,
     browserSupportsSpeechRecognition
@@ -21,13 +23,17 @@ const Gabs = () => {
   const [gabsArray, setGabsArray] = useState([]);
   const [currentGab, setCurrentGab] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [transcriptArr, setTranscriptArr] = useState([transcript.split(" ")]);
+
+  const [comparisonTranscript, setComparisonTranscript] = useState("");
+  // const [comparisonTranscript, setComparisonTranscript] = useState([finalTranscript.split(" ")]);
+
   let currentGabAnswer =[];
 
   const { level } = useParams();
 
   const handleStartListening = () => {
     SpeechRecognition.startListening({ continuous: true });
+    // setComparisonTranscript(...transcript.split(" "));
     console.log("start listening");
   }
 
@@ -47,6 +53,17 @@ const Gabs = () => {
           setTimeout(() => setIsLoading(false), 250);
         })
       }, []);
+
+  useEffect(() => {
+    // setComparisonTranscript(transcript.split(" "))
+    // setComparisonTranscript(new Set([...[transcript.split(" ")]]))
+    setComparisonTranscript([...[...new Set(...[transcript.split(" ")])]])
+    // const alreadySpoken = [...new Set(finalTranscript.split(" "))];
+    console.log("updates when transcript changes")
+    console.log(comparisonTranscript)
+  }, [transcript]);
+
+
     
 
   if (!browserSupportsSpeechRecognition) {
@@ -59,17 +76,27 @@ const Gabs = () => {
 
   currentGabAnswer = [...currentGab[1]]
 
-console.log(transcript)
+// console.log(transcript)
+// console.log(comparisonTranscript)
+// console.log(interimTranscript)
+// console.log(finalTranscript)
+
   return (
           <div>
             {/* {transcript} */}
+            {/* {interimTranscript} */}
+            {/* {finalTranscript} */}
+            
             <h2 className="current__gab">{currentGab[0]}</h2>
 
             <div className="gab__answer">
               {currentGab &&
                 
                 currentGabAnswer.map((word, i) => {
-                  const alreadySpoken = [...new Set(transcript.split(" "))];
+                  // const alreadySpoken = [...new Set(transcript.split(" "))];
+                  // const alreadySpoken = [...new Set(comparisonTranscript.split(" "))];
+                  const alreadySpoken = [...new Set(finalTranscript.split(" "))];
+                  // const alreadySpoken = comparisonTranscript;
                   const isTranscriptWord = alreadySpoken.includes(word);
 
                   return isTranscriptWord 
