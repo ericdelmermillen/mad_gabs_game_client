@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import Button from '../../components/Button/Button';
 import Loading from '../../components/Loading/Loading';
+import YouLose from '../../components/YouLose/YouLose';
 import YouWin from '../../components/YouWin/YouWin';
 
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
@@ -11,21 +12,17 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-
 const Gab = ({ duration, handleGabIsReady, isTimeElapsed }) => {
-
   const { level } = useParams();
   
   const msToSeconds = (ms) => Math.round(ms / 100) / 10;
   
-
   const {
     transcript,
     resetTranscript,
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
 
-    
   const [ currentGab, setCurrentGab ] = useState(null);
   const [ isLoading, setIsLoading ] = useState(true);
   const [ roundOver, setRoundOver ] = useState(false);
@@ -144,6 +141,9 @@ const Gab = ({ duration, handleGabIsReady, isTimeElapsed }) => {
                 duration={duration}
               />
           }
+
+          { !youWin && isTimeElapsed && <YouLose /> }
+
 
       </div>
     </div>
