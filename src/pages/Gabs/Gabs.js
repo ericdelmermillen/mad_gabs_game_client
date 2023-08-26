@@ -91,6 +91,8 @@ const Gabs = () => {
   return (
           <div>
 
+            <Timer duration={60000}/>
+
             <h2 className="current__gab">{currentGab[0]}</h2>
 
             <div className="gab__answer">

@@ -1,7 +1,7 @@
 import React from 'react';
 import Countdown from 'react-countdown';
 
-const Timer = () => {
+const Timer = ({duration}) => {
 
   const Completionist = () => <span>You ran out of time!</span>;
 
@@ -16,7 +16,7 @@ const Timer = () => {
       )};
   };
 
-  return <Countdown date={Date.now() + 60000} renderer={renderer} />;
+  return <Countdown date={Date.now() + duration} renderer={renderer} />;
 };
 
 export default Timer;
