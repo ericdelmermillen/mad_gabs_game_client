@@ -5,6 +5,7 @@ import axios from 'axios';
 import Button from '../../components/Button/Button';
 import Loading from '../../components/Loading/Loading';
 import YouLose from '../../components/YouLose/YouLose';
+import YouGiveUp from '../../components/YouGiveUp/YouGiveUp';
 import YouWin from '../../components/YouWin/YouWin';
 
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
@@ -26,9 +27,10 @@ const Gab = ({ duration, handleGabIsReady, isTimeElapsed }) => {
   const [ currentGab, setCurrentGab ] = useState(null);
   const [ isLoading, setIsLoading ] = useState(true);
   const [ roundOver, setRoundOver ] = useState(false);
-  const [ youWin, setYouWin ] = useState(false);
-  const [ startTime, setStartTime ] = useState(null);
   const [ roundTime, setRoundTime ] = useState(null);
+  const [ startTime, setStartTime ] = useState(null);
+  const [ youWin, setYouWin ] = useState(false);
+  const [ youGiveUp, setYouGiveUp ] = useState(false);
 
   const alreadySaid = [];
   
@@ -44,11 +46,23 @@ const Gab = ({ duration, handleGabIsReady, isTimeElapsed }) => {
 
   const handleYouWin = () => {
     setRoundOver(true);
+    console.log("You win")
 
     handleStopListening();  
 
     setTimeout(() => {
       setYouWin(true);
+      resetTranscript();
+    }, 750);
+  }
+
+  const handleGiveUp = () => {
+    setRoundOver(true);
+
+    handleStopListening();  
+
+    setTimeout(() => {
+      setYouGiveUp(true);
       resetTranscript();
     }, 750);
   }
@@ -74,7 +88,7 @@ const Gab = ({ duration, handleGabIsReady, isTimeElapsed }) => {
 
 
   useEffect(() => {
-    if(currentGab && !isTimeElapsed) {
+    if(currentGab && !isTimeElapsed && !youGiveUp) {
       
       const isWinningConditionMet =
       [...currentGab[1]].sort().join(" ") ===
@@ -128,9 +142,9 @@ const Gab = ({ duration, handleGabIsReady, isTimeElapsed }) => {
           }
 
           <Button 
-            className="stopListeningButton"
-            text={"Stop Listening"} 
-            onClick={handleStopListening}
+            className="giveUpButton"
+            text={"Give Up"} 
+            onClick={handleGiveUp}
           />
 
           {
@@ -142,7 +156,9 @@ const Gab = ({ duration, handleGabIsReady, isTimeElapsed }) => {
               />
           }
 
-          { !youWin && isTimeElapsed && <YouLose /> }
+          { !youWin && isTimeElapsed && !youGiveUp && <YouLose /> }
+          
+          { !youWin && youGiveUp && <YouGiveUp /> }
 
 
       </div>
