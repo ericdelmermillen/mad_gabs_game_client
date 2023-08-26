@@ -11,7 +11,7 @@ const Gabs = () => {
   
   const duration = 60000;
 
-  const handleGabsIsReady = () => setGabIsReady(true);
+  const handleGabIsReady = () => setGabIsReady(true);
 
   gabIsReady && setTimeout(() => setIsTimeElapsed(true), duration);
 
@@ -27,7 +27,7 @@ const Gabs = () => {
         }
 
         <Gab 
-          handleGabsIsReady={handleGabsIsReady}
+          handleGabIsReady={handleGabIsReady}
           isTimeElapsed={isTimeElapsed}
           duration={duration}
         />

@@ -12,12 +12,11 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 
-const Gab = ({ duration, handleGabsIsReady, isTimeElapsed }) => {
+const Gab = ({ duration, handleGabIsReady, isTimeElapsed }) => {
 
   const { level } = useParams();
   
   const msToSeconds = (ms) => Math.round(ms / 100) / 10;
-  
   
 
   const {
@@ -33,8 +32,6 @@ const Gab = ({ duration, handleGabsIsReady, isTimeElapsed }) => {
   const [ youWin, setYouWin ] = useState(false);
   const [ startTime, setStartTime ] = useState(null);
   const [ roundTime, setRoundTime ] = useState(null);
-  
-  let currentGabAnswer;
 
   const alreadySaid = [];
   
@@ -50,55 +47,50 @@ const Gab = ({ duration, handleGabsIsReady, isTimeElapsed }) => {
 
   const handleYouWin = () => {
     setRoundOver(true);
+
     handleStopListening();  
+
     setTimeout(() => {
       setYouWin(true);
       resetTranscript();
     }, 750);
   }
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/${level}`);
+        const data = response.data;
+  
+        setCurrentGab(data);
+        setIsLoading(false);
+        handleGabIsReady();
+        setStartTime(new Date().getTime());
+  
+        handleStartListening();
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
+
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8080/${level}`)
-      .then((res) => {
-          let data = res.data;
-          let randomIndex = Math.floor(Math.random() * data.length);
-          setCurrentGab(data[randomIndex]);
-          
-          setTimeout(() => {
-            setIsLoading(false);
-            handleGabsIsReady();
-            setStartTime(new Date().getTime())
-          }, 250);
-
-          handleStartListening();
-        })
-      }, []);
-
-
-      useEffect(() => {
-
-        if(currentGab && !isTimeElapsed) {
-          
-          const isWinningConditionMet =
-          [...currentGab[1]].sort().join(" ") ===
-          [...new Set(alreadySaid.filter(word => currentGab[1].includes(word)))].sort().join(" ") &&
-          !roundOver;
-          
-          if(isWinningConditionMet) {
-            
-            handleYouWin()
-            
-            const endTime = new Date().getTime(); 
-            
-            // console.log(`startTime: ${startTime}`)
-            // console.log(`endTime - startTime: ${endTime - startTime}`)
-            setRoundTime(endTime - startTime)
-          };
-          
-        }
-      }, [currentGab, alreadySaid, roundOver]);
+    if(currentGab && !isTimeElapsed) {
+      
+      const isWinningConditionMet =
+      [...currentGab[1]].sort().join(" ") ===
+      [...new Set(alreadySaid.filter(word => currentGab[1].includes(word)))].sort().join(" ") &&
+      !roundOver;
+      
+      if(isWinningConditionMet) {
+        handleYouWin()
+        const endTime = new Date().getTime(); 
+        setRoundTime(endTime - startTime)
+      };
+    }
+  }, [currentGab, alreadySaid, roundOver]);
     
     
     if (!browserSupportsSpeechRecognition) {
@@ -112,7 +104,6 @@ const Gab = ({ duration, handleGabsIsReady, isTimeElapsed }) => {
   return (
     <div className="gab">
       <h2 className="current__gab">{currentGab[0]}</h2>
-
 
       <div className="gab__answer">
         
