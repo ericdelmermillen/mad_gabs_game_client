@@ -3,13 +3,15 @@ import "./YouWin.scss";
 const YouWin = ({currentGab}) => {
   const [currentGabQuestion, currentGabAnswer] = currentGab;
 
-  console.log(currentGabQuestion)
-  console.log(currentGabAnswer)
   return (
     <div className="youWin__card">
 
       <h1 className="youWin__heading">You Win!</h1>
-      <p className="youWin__question">Gab: "{`${currentGabQuestion.join(" ")}`}"</p>
+      
+      <p className="youWin__question">Gab: 
+        "{`${currentGabQuestion.join(" ")}`}"
+      </p>
+
       <p className="youWin__answer">Answer: "
 
         {

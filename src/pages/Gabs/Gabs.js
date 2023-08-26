@@ -1,5 +1,6 @@
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import Button from '../../components/Button/Button';
+import Timer from '../../components/Timer/Timer';
 import "./Gabs.scss";
 
 import axios from 'axios';
@@ -23,6 +24,8 @@ const Gabs = () => {
   
   const [ currentGab, setCurrentGab ] = useState(null);
   const [ isLoading, setIsLoading ] = useState(true);
+  const [ youWin, setYouWin ] = useState(false);
+  const [ roundOver, setRoundOver ] = useState(false);
   
   let currentGabAnswer;
   const alreadySaid = [];
@@ -37,6 +40,15 @@ const Gabs = () => {
     console.log("stop listening");
   }
 
+  const handleYouWin = () => {
+    setRoundOver(true)
+    SpeechRecognition.stopListening();
+    setTimeout(() => {
+      setYouWin(true);
+      resetTranscript();
+    }, 750);
+  }
+
   useEffect(() => {
     axios
       .get(`http://localhost:8080/${level}`)
@@ -46,19 +58,25 @@ const Gabs = () => {
           setCurrentGab(data[randomIndex]);
           
           setTimeout(() => setIsLoading(false), 250);
+          handleStartListening()
         })
       }, []);
+
+
+  useEffect(() => {
+
+    if(currentGab) {
       
-
-  // useEffect(() => {
-  //   // console.log(currentGab[1])
-
-  //   // if(currentGab && alreadySaid) {
-  //   //   console.log(currentGab[1].sort().join(" ") === [...new Set(alreadySaid.filter(word => currentGab[1].includes(word)
-  //   //     ))].sort().join(" "))
-  //   // }
-  // }, [alreadySaid]);
-
+      const isWinningConditionMet =
+      [...currentGab[1]].sort().join(" ") ===
+      [...new Set(alreadySaid.filter(word => currentGab[1].includes(word)))].sort().join(" ") &&
+      !roundOver;
+        
+      if (isWinningConditionMet) {
+        handleYouWin();
+      }
+    }
+  }, [currentGab, alreadySaid, roundOver]);
 
     
   if (!browserSupportsSpeechRecognition) {
@@ -99,16 +117,13 @@ const Gabs = () => {
                   })}
             </div>
 
-            <Button text={"Start Listening"} onClick={handleStartListening}/>
-            <Button text={"Stop Listening"} onClick={handleStopListening} />
+            <Button 
+              className="stopListeningButton"
+              text={"Stop Listening"} 
+              onClick={handleStopListening}
+            />
 
-            {
-            
-            [...currentGab[1]].sort().join(" ") === [...new Set(alreadySaid.filter(word => currentGab[1].includes(word)))].sort().join(" ") &&
-
-              <YouWin currentGab={currentGab}/>
-
-            }
+          {youWin && <YouWin currentGab={currentGab}/>}
 
           </div>
     )};
