@@ -16,9 +16,9 @@ const Gab = ({ duration, handleGabsIsReady, isTimeElapsed }) => {
 
   const { level } = useParams();
   
-  const roundStartTime = []
-  const roundEndTime = []
-  const secondsRemaining = []
+  const msToSeconds = (ms) => Math.round(ms / 100) / 10;
+  
+  
 
   const {
     transcript,
@@ -31,15 +31,12 @@ const Gab = ({ duration, handleGabsIsReady, isTimeElapsed }) => {
   const [ isLoading, setIsLoading ] = useState(true);
   const [ roundOver, setRoundOver ] = useState(false);
   const [ youWin, setYouWin ] = useState(false);
+  const [ startTime, setStartTime ] = useState(null);
+  const [ roundTime, setRoundTime ] = useState(null);
   
   let currentGabAnswer;
 
   const alreadySaid = [];
-
-  const handleRoundStartTime = () => {
-    roundStartTime.push(new Date().getTime());
-    console.log(roundStartTime);
-  }
   
   const handleStartListening = () => {
     SpeechRecognition.startListening({ continuous: true });
@@ -53,17 +50,11 @@ const Gab = ({ duration, handleGabsIsReady, isTimeElapsed }) => {
 
   const handleYouWin = () => {
     setRoundOver(true);
-    handleStopListening()    
+    handleStopListening();  
     setTimeout(() => {
       setYouWin(true);
       resetTranscript();
     }, 750);
-
-    roundEndTime.push(new Date().getTime());
-    
-    secondsRemaining.push(roundEndTime[1] - roundStartTime[1])
-
-    console.log("secondsRemaining: ", secondsRemaining)
   }
 
 
@@ -78,7 +69,7 @@ const Gab = ({ duration, handleGabsIsReady, isTimeElapsed }) => {
           setTimeout(() => {
             setIsLoading(false);
             handleGabsIsReady();
-            handleRoundStartTime();
+            setStartTime(new Date().getTime())
           }, 250);
 
           handleStartListening();
@@ -94,8 +85,17 @@ const Gab = ({ duration, handleGabsIsReady, isTimeElapsed }) => {
           [...currentGab[1]].sort().join(" ") ===
           [...new Set(alreadySaid.filter(word => currentGab[1].includes(word)))].sort().join(" ") &&
           !roundOver;
+          
+          if(isWinningConditionMet) {
             
-          isWinningConditionMet && handleYouWin();
+            handleYouWin()
+            
+            const endTime = new Date().getTime(); 
+            
+            // console.log(`startTime: ${startTime}`)
+            // console.log(`endTime - startTime: ${endTime - startTime}`)
+            setRoundTime(endTime - startTime)
+          };
           
         }
       }, [currentGab, alreadySaid, roundOver]);
@@ -133,7 +133,7 @@ const Gab = ({ duration, handleGabsIsReady, isTimeElapsed }) => {
                 :
               <span className="answer-word__span" key={i}>
                 <p className="notAlreadySpoken" key={i}>
-                          {word}
+                  {word}
                 </p>
               </span>
             })
@@ -145,7 +145,14 @@ const Gab = ({ duration, handleGabsIsReady, isTimeElapsed }) => {
             onClick={handleStopListening}
           />
 
-          {youWin && <YouWin currentGab={currentGab}/>}
+          {
+            youWin && 
+              <YouWin 
+                currentGab={currentGab}
+                roundTime={msToSeconds(roundTime)}
+                duration={duration}
+              />
+          }
 
       </div>
     </div>
