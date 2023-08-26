@@ -1,4 +1,5 @@
 import './App.scss';
+import Timer from './components/Timer/Timer';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -10,11 +11,12 @@ function App() {
 
   return (
     <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />   
-          <Route path="/:level" element={<Gabs />}/>
-        </Routes>
+      <Header />
+      <Timer />
+      <Routes>
+        <Route path="/" element={<Home />} />   
+        <Route path="/:level" element={<Gabs />}/>
+      </Routes>
     </BrowserRouter>
   )};
 
