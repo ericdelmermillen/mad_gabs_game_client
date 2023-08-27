@@ -44,11 +44,11 @@
 
 .level__option--selected {
   display: inline-block;
-  border-radius: 15px;
+  border-radius: 20px;
   padding: 0.5rem 1.2rem;
-  box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.4), inset 0px -2px 8px rgba(0, 0, 0, 0.3);
+  // outline: 1px solid rgba(0, 0, 0, 0.7);
+  box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.3), inset 0px -2px 4px rgba(0, 0, 0, 0.2);
 }
-
 
 
 .button {
@@ -64,8 +64,9 @@
   
   &--play-disabled {
     @include btn;
-    // cursor: not-allowed!important;
-    // pointer-events: none;
-
   }
+}
+
+.not-selected__toast {
+  margin-bottom: 25%;
 }
