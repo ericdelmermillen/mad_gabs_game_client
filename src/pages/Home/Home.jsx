@@ -20,14 +20,68 @@ const Home = () => {
 
   return (
       <div className="home">
-        <h2 className="section__heading">"It’s Not What You Say… <br></br>It’s how you say it"</h2>
-        <h3 className="section__sub-heading">Choose your level</h3>
+        <h2 className="home__heading">"It’s Not What You Say… <br></br>...It’s how you say it"</h2>
+        <h3 className="home__sub-heading">Choose your level: </h3>
         <div className="level__links">
-          <Link className="level__easy" onClick={() => setLevelHandler("easy")}>Easy</Link>
-          <Link className="level__medium" onClick={() => setLevelHandler("medium")}>Medium</Link>
-          <Link className="level__hard" onClick={() => setLevelHandler("hard")}>Hard</Link>
+
+          {level === "easy" 
+            ?
+            <Link className="level__option--selected" 
+              onClick={() => setLevelHandler("easy")}>
+                <span className="">Easy</span>
+            </Link>
+            :
+            <Link className="level__option" 
+              onClick={() => setLevelHandler("easy")}>
+                <span className="">Easy</span>
+            </Link>
+          }
+
+          {level === "medium" 
+            ?
+            <Link className="level__option--selected" 
+              onClick={() => setLevelHandler("medium")}>
+                <span className="">Medium</span>
+            </Link>
+            :
+            <Link className="level__option" 
+              onClick={() => setLevelHandler("medium")}>
+                <span className="">Medium</span>
+            </Link>
+          }
+
+          {level === "hard" 
+            ?
+            <Link className="level__option--selected" 
+              onClick={() => setLevelHandler("hard")}>
+                <span className="">Hard</span>
+            </Link>
+            :
+            <Link className="level__option" 
+              onClick={() => setLevelHandler("hard")}>
+                <span className="">Hard</span>
+            </Link>
+          }
+
         </div>
-        <Button text={"Ready!"} path={`/${level}`} />
+
+        <div className="button__container">
+          {level !== "" ?
+
+            <Link className="button--play" 
+            to={`/${level}`}
+            >
+              Select
+            </Link>
+          :
+            <Link className="button--play-disabled" 
+            onClick={() => alert("Choose a level first!")}
+            >
+              Select
+            </Link>
+          }
+        </div>
+
       </div>
   )};
 

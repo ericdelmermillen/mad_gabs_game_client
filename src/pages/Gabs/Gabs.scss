@@ -14,11 +14,13 @@
 
 .gab__answer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     gap: 1rem;
     margin-top: 2rem;
     margin-bottom: 1rem;
     border: 2px solid red;
+    width: 70%;
 }
 
 .answer-word__span {
@@ -32,4 +34,10 @@
     border: 2px solid blue;
     text-align: center;
     margin: 0 auto;
+}
+
+.timer__container {
+    border: 2px solid red;
+    display: flex;
+    justify-content: center;;
 }

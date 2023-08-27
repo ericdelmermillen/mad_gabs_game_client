@@ -1,8 +1,8 @@
 import "./Gab.scss";
+import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 
-import Button from '../../components/Button/Button';
 import Loading from '../../components/Loading/Loading';
 import YouLose from '../../components/YouLose/YouLose';
 import YouGiveUp from '../../components/YouGiveUp/YouGiveUp';
@@ -46,7 +46,6 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
     setYouWin(false);
     setGabIsReady(false);
     navigate(`/${level}`, { replace: true });
-    // handleIsTimeElapsed();
     console.log("next")
   }
   
@@ -158,11 +157,13 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
             })
           }
 
-          <Button 
-            className="giveUpButton"
-            text={"Give Up"} 
-            onClick={handleGiveUp}
-          />
+          <div className="button__container">
+            <Link className="button--home" 
+              onClick={handleGiveUp}
+            >
+              Give Up
+            </Link>
+          </div>
 
           {
             youWin && 

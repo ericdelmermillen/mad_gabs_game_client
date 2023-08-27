@@ -1,3 +1,13 @@
-.gab {
-  color: red;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.button {
+  &__container {
+    display: flex;
+    margin-top: 30%;
+  }
+  
+  &--give-up {
+    @include btn;
+  }
 }

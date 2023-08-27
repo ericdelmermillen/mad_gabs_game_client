@@ -12,24 +12,30 @@ const Gabs = () => {
   const duration = 60000;
 
   return (
-    <div>
-      {gabIsReady ? 
-      (
-        <Timer 
+    <div className="gabs">
+
+      <div className="timer__container">
+
+        {gabIsReady ? (
+          <Timer 
           duration={duration} 
           setIsTimeElapsed={setIsTimeElapsed}
-        />
-      ) : (
-        ' 00:00'
-      )}
+          />
+          ) : (
+            ' 00:00'
+        )}
+      </div>
 
-      <Gab
-        setGabIsReady={setGabIsReady}
-        isTimeElapsed={isTimeElapsed}
-        duration={duration}
-        setIsTimeElapsed={setIsTimeElapsed}
-        gabIsReady={gabIsReady}
-      />
+      <div className="gabs__current-gab">
+        <Gab
+          setGabIsReady={setGabIsReady}
+          isTimeElapsed={isTimeElapsed}
+          duration={duration}
+          setIsTimeElapsed={setIsTimeElapsed}
+          gabIsReady={gabIsReady}
+        />
+      </div>
+      
     </div>
   )};
 

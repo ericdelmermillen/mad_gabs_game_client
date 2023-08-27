@@ -1,5 +1,5 @@
 import "./YouLose.scss";
-import Button from "../Button/Button";
+import { Link } from 'react-router-dom';
 
 const YouLose = ({ handleNext }) => {
   
@@ -15,15 +15,20 @@ const YouLose = ({ handleNext }) => {
 
       <p className="youLose__points">Points Earned: </p>
 
-      <Button 
-        text={"Home"}
-        path={"/"}
-        />
 
-      <Button 
-        text={"Next"}
-        onClick={handleNext}
-      />
+      <div className="button__container">
+
+        <Link className="button--home" 
+          to={"/"} >
+          Home
+        </Link>
+
+        <Link className="button--next"
+          onClick={handleNext} >
+          Next
+        </Link>
+
+      </div>
 
     </div>
 

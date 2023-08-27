@@ -1,5 +1,5 @@
 import "./YouWin.scss";
-import Button from "../Button/Button";
+import { Link } from 'react-router-dom';
 
 const YouWin = ({ currentGab, duration, handleNext, roundTime }) => {
   const [currentGabQuestion, currentGabAnswer] = currentGab;
@@ -34,15 +34,19 @@ const YouWin = ({ currentGab, duration, handleNext, roundTime }) => {
 
       <p className="youWin__points">Points Earned: {getPoints(secondsRemaining)}</p>
 
-      <Button 
-        text={"Home"}
-        path={"/"}
-        />
+      <div className="button__container">
 
-      <Button 
-        text={"Next"}
-        onClick={handleNext}
-      />
+        <Link className="button--home" 
+          to={"/"} >
+          Home
+        </Link>
+
+        <Link className="button--next"
+          onClick={handleNext} >
+          Next
+        </Link>
+
+      </div>
 
     </div>
   )};

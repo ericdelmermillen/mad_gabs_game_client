@@ -1,43 +1,71 @@
-
-.section__heading, 
-.section__sub-heading {
-  text-align: center;
-  border: 2px solid red;
-}
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
 
 .home {
+  align-items: center;
   // background: yellow;
+  border: 2px dashed #000;
+  width: 25rem;
+  padding-block: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 2rem;
+
+  &__heading {
+    // border: 2px solid red;
+    line-height: 2;
+    text-align: center;
+  }
+  
+  &__sub-heading {
+    // border: 2px solid blue;
+    line-height: 2;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.level__links {
   align-items: center;
-  gap: 1rem;
-  width: 100vw;
-  height: calc(100vh - 9rem);
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  width: 100%;
+  padding-inline: 1rem;
+  padding-block: 1rem;
 }
 
 .level {
 
-  &__links {
-    margin: 0 auto;
-    width: 50%;
+  &__option {
+    padding: 0.5rem 1.2rem;
+  }
+}
+
+.level__option--selected {
+  display: inline-block;
+  border-radius: 15px;
+  padding: 0.5rem 1.2rem;
+  box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.4), inset 0px -2px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+
+.button {
+
+  &__container {
     display: flex;
-    justify-content: center;
+    min-width: 8rem;
   }
-
-  &__easy {
-    border: 2px solid blue;
-    margin-left: 1rem;
+  
+  &--play {
+    @include btn;
   }
+  
+  &--play-disabled {
+    @include btn;
+    // cursor: not-allowed!important;
+    // pointer-events: none;
 
-  &__medium {
-    border: 2px solid green;
-    text-align: center;
-    margin-inline: 2rem;
-  }
-
-  &__hard {
-    border: 2px solid red;
-    text-align: end;
   }
 }
