@@ -1,6 +1,7 @@
 import "./YouWin.scss";
+import Button from "../Button/Button";
 
-const YouWin = ({ currentGab, duration, roundTime }) => {
+const YouWin = ({ currentGab, duration, handleNext, roundTime }) => {
   const [currentGabQuestion, currentGabAnswer] = currentGab;
   const msToSeconds = (ms) => Math.round(ms / 100) / 10;
 
@@ -32,6 +33,16 @@ const YouWin = ({ currentGab, duration, roundTime }) => {
       <p className="youWin__time">Time Elapsed: {roundTime} Seconds</p>
 
       <p className="youWin__points">Points Earned: {getPoints(secondsRemaining)}</p>
+
+      <Button 
+        text={"Home"}
+        path={"/"}
+        />
+
+      <Button 
+        text={"Next"}
+        onClick={handleNext}
+      />
 
     </div>
   )};

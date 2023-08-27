@@ -6,32 +6,31 @@ import Timer from '../../components/Timer/Timer';
 import { useState } from 'react';
 
 const Gabs = () => {
-  const [ gabIsReady, setGabIsReady ] = useState(false);
-  const [ isTimeElapsed, setIsTimeElapsed ] = useState(false);
-  
+  const [gabIsReady, setGabIsReady] = useState(false);
+  const [isTimeElapsed, setIsTimeElapsed] = useState(false);
+
   const duration = 60000;
 
-  const handleGabIsReady = () => setGabIsReady(true);
-
-  gabIsReady && setTimeout(() => setIsTimeElapsed(true), duration);
-
   return (
-      <div>
-
-        { gabIsReady && !isTimeElapsed 
-          ? <Timer 
-              duration={duration}
-            /> 
-
-          :' 00:00'
-        }
-
-        <Gab 
-          handleGabIsReady={handleGabIsReady}
-          isTimeElapsed={isTimeElapsed}
-          duration={duration}
+    <div>
+      {gabIsReady ? 
+      (
+        <Timer 
+          duration={duration} 
+          setIsTimeElapsed={setIsTimeElapsed}
         />
-      </div>
+      ) : (
+        ' 00:00'
+      )}
+
+      <Gab
+        setGabIsReady={setGabIsReady}
+        isTimeElapsed={isTimeElapsed}
+        duration={duration}
+        setIsTimeElapsed={setIsTimeElapsed}
+        gabIsReady={gabIsReady}
+      />
+    </div>
   )};
 
 export default Gabs;
