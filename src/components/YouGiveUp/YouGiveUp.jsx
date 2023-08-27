@@ -1,6 +1,7 @@
 import "./YouGiveUp.scss";
+import Button from "../Button/Button";
 
-const YouGiveUp = () => {
+const YouGiveUp = ({ handleNext }) => {
   return (
     <div className="youGiveUp__card">
 
@@ -11,6 +12,17 @@ const YouGiveUp = () => {
       <p className="youGiveUp__answer">Answer: </p>
 
       <p className="youGiveUp__points">Points Earned: </p>
+
+
+      <Button 
+        text={"Home"}
+        path={"/"}
+        />
+
+      <Button 
+        text={"Next"}
+        onClick={handleNext}
+      />
 
     </div>
   )};

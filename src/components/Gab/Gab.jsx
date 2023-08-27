@@ -11,12 +11,13 @@ import YouWin from '../../components/YouWin/YouWin';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const Gab = ({ duration, handleGabIsReady, isTimeElapsed }) => {
+const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setIsTimeElapsed, gabIsReady }) => {
   const { level } = useParams();
-  
+  const navigate = useNavigate();
   const msToSeconds = (ms) => Math.round(ms / 100) / 10;
+  const alreadySaid = [];
   
   const {
     transcript,
@@ -31,8 +32,23 @@ const Gab = ({ duration, handleGabIsReady, isTimeElapsed }) => {
   const [ startTime, setStartTime ] = useState(null);
   const [ youWin, setYouWin ] = useState(false);
   const [ youGiveUp, setYouGiveUp ] = useState(false);
-
-  const alreadySaid = [];
+  const [ readyForNext, setReadyForNext ] = useState(false);
+  
+  
+  const handleNext = () => {
+    setCurrentGab(null);
+    setIsLoading(true);
+    setReadyForNext(true);
+    setRoundOver(false);
+    setRoundTime(null);
+    setStartTime(null);
+    setYouGiveUp(false);
+    setYouWin(false);
+    setGabIsReady(false);
+    navigate(`/${level}`, { replace: true });
+    // handleIsTimeElapsed();
+    console.log("next")
+  }
   
   const handleStartListening = () => {
     SpeechRecognition.startListening({ continuous: true });
@@ -46,7 +62,6 @@ const Gab = ({ duration, handleGabIsReady, isTimeElapsed }) => {
 
   const handleYouWin = () => {
     setRoundOver(true);
-    console.log("You win")
 
     handleStopListening();  
 
@@ -75,16 +90,17 @@ const Gab = ({ duration, handleGabIsReady, isTimeElapsed }) => {
   
         setCurrentGab(data);
         setIsLoading(false);
-        handleGabIsReady();
+        setGabIsReady(true);
         setStartTime(new Date().getTime());
   
         handleStartListening();
+        setReadyForNext(false)
       } catch (error) {
         console.error(error);
       }
     };
     fetchData();
-  }, []);
+  }, [readyForNext]);
 
 
   useEffect(() => {
@@ -114,6 +130,7 @@ const Gab = ({ duration, handleGabIsReady, isTimeElapsed }) => {
 
   return (
     <div className="gab">
+
       <h2 className="current__gab">{currentGab[0]}</h2>
 
       <div className="gab__answer">
@@ -153,13 +170,23 @@ const Gab = ({ duration, handleGabIsReady, isTimeElapsed }) => {
                 currentGab={currentGab}
                 roundTime={msToSeconds(roundTime)}
                 duration={duration}
+                handleNext={handleNext}
               />
           }
 
-          { !youWin && isTimeElapsed && !youGiveUp && <YouLose /> }
+          { !youWin && isTimeElapsed && !youGiveUp && 
+              <YouLose 
+                currentGab={currentGab}
+                handleNext={handleNext}
+              /> 
+          }
           
-          { !youWin && youGiveUp && <YouGiveUp /> }
-
+          { !youWin && youGiveUp && 
+              <YouGiveUp 
+                currentGab={currentGab}
+                handleNext={handleNext}
+              /> 
+          }
 
       </div>
     </div>

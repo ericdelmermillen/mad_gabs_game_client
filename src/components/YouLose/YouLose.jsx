@@ -1,6 +1,8 @@
 import "./YouLose.scss";
+import Button from "../Button/Button";
 
-const YouLose = () => {
+const YouLose = ({ handleNext }) => {
+  
   return (
 
     <div className="youLose__card">
@@ -12,6 +14,16 @@ const YouLose = () => {
       <p className="youLose__answer">Answer: </p>
 
       <p className="youLose__points">Points Earned: </p>
+
+      <Button 
+        text={"Home"}
+        path={"/"}
+        />
+
+      <Button 
+        text={"Next"}
+        onClick={handleNext}
+      />
 
     </div>
 
