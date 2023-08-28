@@ -1,6 +1,6 @@
 import './App.scss';
 
-import { BrowserRouter, Redirect, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import Header from './components/Header/Header';
 import Home from './pages/Home/Home';
@@ -12,7 +12,8 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />   
+        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/home" element={<Home />} />   
         <Route path="/:level" element={<Gabs />}/>
       </Routes>
     </BrowserRouter>

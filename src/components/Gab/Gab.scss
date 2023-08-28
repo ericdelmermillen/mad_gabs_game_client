@@ -78,12 +78,12 @@
   0% {
     background: #84be33;
     opacity: 0.3;
-    transform: translate(-30%, -80%) scale(0.4);
+    transform: translate(-50%, -80%) scale(0.4);
   }
   5% {
     background: green;
     opacity: 0.5;
-    transform: translate(-40%, -100%) scale(0.5);
+    transform: translate(-50%, -100%) scale(0.5);
   }
   10% {
     background: #71d011;
@@ -108,7 +108,7 @@
   30% {
     background: #74d406;
     opacity: 0.7;
-    transform: translate(-40%, -100%) scale(0.4);
+    transform: translate(-50%, -100%) scale(0.4);
   }
   40% {
     background: #00FF00;
@@ -118,7 +118,7 @@
   45% {
     background: #17dd09;
     opacity: 0.7;
-    transform: translate(-40%, -100%) scale(1);
+    transform: translate(-50%, -100%) scale(1);
   }
   50% {
     background: #228B22;
@@ -128,12 +128,12 @@
   55% {
     background: #00FF00;
     opacity: 0.4;
-    transform: translate(-35%, -85%) scale(0.5);
+    transform: translate(-50%, -85%) scale(0.5);
   }
   60% {
     background: #8eda0a;
     opacity: 1;
-    transform: translate(-45%, -100%) scale(1);
+    transform: translate(-50%, -100%) scale(1);
   }
   65% {
     background: #006400;
@@ -148,11 +148,11 @@
   75% {
     background: rgb(161, 217, 18);
     opacity: 0.5;
-    transform: translate(-70%, -80%) scale(0.7);
+    transform: translate(-50%, -80%) scale(0.7);
   }
   80% {
     background: green;
-    transform: translate(-60%, -95%) scale(0.8);
+    transform: translate(-50%, -95%) scale(0.8);
     opacity: 0.8;
   }
   85% {
@@ -168,12 +168,12 @@
   95% {
     background: #008b53;
     opacity: 0.8;
-    transform: translate(-40%, -100%) scale(0.9);
+    transform: translate(-50%, -100%) scale(0.9);
   }
   100% {
     background: green;
     opacity: 0.5;
-    transform: translate(-30%, -80%) scale(0.5);
+    transform: translate(-50%, -80%) scale(0.5);
   }
 }
 
@@ -197,5 +197,7 @@
 
   &__container {
     border: 2px solid red;
+    width: 8rem;
+
   }
 }
