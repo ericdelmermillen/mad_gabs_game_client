@@ -14,7 +14,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<Home />} />   
-        <Route path="/:level" element={<Gabs />}/>
+        <Route path="/gabs" element={<Navigate to="/home" />} />
+        <Route path="/gabs/:level" element={<Gabs />}/>
       </Routes>
     </BrowserRouter>
   )};

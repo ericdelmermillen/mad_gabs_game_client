@@ -78,7 +78,7 @@ const Home = () => {
           {level !== "" ?
 
             <Link className="button--play" 
-            to={`/${level}`}
+            to={`/gabs/${level}`}
             >
               Play
             </Link>
