@@ -1,4 +1,7 @@
 import "./Gab.scss";
+import micOn from "../../assets/icons/mic_on.svg"
+
+
 import { Link } from 'react-router-dom';
 
 import axios from 'axios';
@@ -26,6 +29,7 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
   } = useSpeechRecognition();
 
   const [ currentGab, setCurrentGab ] = useState(null);
+  const [ isListening, setIsListening ] = useState(false);
   const [ isLoading, setIsLoading ] = useState(true);
   const [ roundOver, setRoundOver ] = useState(false);
   const [ roundTime, setRoundTime ] = useState(null);
@@ -51,11 +55,13 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
   
   const handleStartListening = () => {
     SpeechRecognition.startListening({ continuous: true });
+    setTimeout(() => setIsListening(true), 500);
     console.log("start listening");
   }
 
   const handleStopListening = () => {
     SpeechRecognition.stopListening();
+    setTimeout(() => setIsListening(false), 500);
     console.log("stop listening");
   }
 
@@ -130,66 +136,75 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
   return (
     <div className="gab">
 
-      <h2 className="current__gab">{currentGab[0]}</h2>
+      <h2 className="gab__current-gab">"{currentGab[0]}"</h2>
 
       <div className="gab__answer">
+
+        <div className="answer-word__container">
+          
+          {currentGab &&
+          
+            currentGab[1].map((word, i) => {
+              transcript.split(" ").forEach(word => alreadySaid.push(word));
+          
+              const isTranscriptWord = alreadySaid.includes(word);
+              return isTranscriptWord && !isTimeElapsed ?
+          
+                <span className="answer-word__span" key={i}>
+                  <p className="alreadySpoken" key={i}>
+                    {word.slice(0, 1).toUpperCase() + word.slice(1)}
+                  </p>
+                </span>
+                  :
+                <span className="answer-word__span" key={i}>
+                  <p className="notAlreadySpoken" key={i}>
+                    {word}
+                  </p>
+                </span>
+              })
+            }
+          
+        </div>
         
-        {currentGab && 
-                 
-          currentGab[1].map((word, i) => {
-            transcript.split(" ").forEach(word => alreadySaid.push(word));
-              
-            const isTranscriptWord = alreadySaid.includes(word);
+          <div className="microphone">
+            {isListening ?
+            
+                <img className="microphone--on" src={micOn} alt="microphone listening icon" />
+              :
+                <img className="microphone--off" src={micOn} alt="microphone listening icon" />
+            }
+          </div>
 
-            return isTranscriptWord && !isTimeElapsed ? 
-              
-              <span className="answer-word__span" key={i}>
-                <p className="alreadySpoken" key={i}>
-                  {word.slice(0, 1).toUpperCase() + word.slice(1)}
-                </p>
-              </span>
-                :
-              <span className="answer-word__span" key={i}>
-                <p className="notAlreadySpoken" key={i}>
-                  {word}
-                </p>
-              </span>
-            })
-          }
 
-          <div className="button__container">
-            <Link className="button--home" 
-              onClick={handleGiveUp}
-            >
+          <div className="giveUp__container">
+            <Link className="giveUp" 
+              onClick={handleGiveUp} >
               Give Up
             </Link>
           </div>
 
-          {
-            youWin && 
-              <YouWin 
-                currentGab={currentGab}
-                roundTime={msToSeconds(roundTime)}
-                duration={duration}
-                handleNext={handleNext}
-              />
-          }
-
-          { !youWin && isTimeElapsed && !youGiveUp && 
-              <YouLose 
-                currentGab={currentGab}
-                handleNext={handleNext}
-              /> 
-          }
-          
-          { !youWin && youGiveUp && 
-              <YouGiveUp 
-                currentGab={currentGab}
-                handleNext={handleNext}
-              /> 
-          }
-
       </div>
+
+      { youWin && 
+        <YouWin 
+          currentGab={currentGab}
+          roundTime={msToSeconds(roundTime)}
+          duration={duration}
+          handleNext={handleNext} />
+      }
+
+      { !youWin && isTimeElapsed && !youGiveUp && 
+        <YouLose 
+          currentGab={currentGab}
+          handleNext={handleNext} /> 
+      }
+          
+      { !youWin && youGiveUp && 
+        <YouGiveUp 
+          currentGab={currentGab}
+          handleNext={handleNext} /> 
+      }
+
     </div>
   )};
 

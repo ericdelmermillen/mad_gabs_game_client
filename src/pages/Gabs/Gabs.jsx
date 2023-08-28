@@ -15,15 +15,22 @@ const Gabs = () => {
     <div className="gabs">
 
       <div className="timer__container">
+        <h2 className="timer__header">
+          Time Remaining:
+        </h2>
 
-        {gabIsReady ? (
-          <Timer 
-          duration={duration} 
-          setIsTimeElapsed={setIsTimeElapsed}
-          />
-          ) : (
-            ' 00:00'
-        )}
+        <div className="timer__countdown">
+          {gabIsReady ? (
+
+            <Timer 
+            duration={duration} 
+            setIsTimeElapsed={setIsTimeElapsed}
+            className="timer__countdown"
+            />
+            ) : (
+              ' 00:00'
+          )}
+        </div>
       </div>
 
       <div className="gabs__current-gab">

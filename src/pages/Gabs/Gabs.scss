@@ -1,43 +1,35 @@
-.notAlreadySpoken {
-    color: transparent;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-}
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
 
-.alreadySpoken {
-    color: green;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.gab__answer {
+.timer {
+  
+  &__container {
+    align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1rem;
-    margin-top: 2rem;
+  }
+  
+  &__header {
     margin-bottom: 1rem;
+  }
+
+  &__countdown {
     border: 2px solid red;
-    width: 70%;
+    margin-bottom: 2rem;
+  }
 }
 
-.answer-word__span {
-    border-bottom: 2px solid red;
-    min-width: 4rem;
+.gabs {
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  width: 80vw;
+
+  &__current-gab {
+    align-items: center;
+    border: 2px dashed #000;
     display: flex;
-    justify-content: center;
-}
-
-.current__gab {
-    border: 2px solid blue;
-    text-align: center;
-    margin: 0 auto;
-}
-
-.timer__container {
-    border: 2px solid red;
-    display: flex;
-    justify-content: center;
+    flex-direction: column;
+  }
 }
