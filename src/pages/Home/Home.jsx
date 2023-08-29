@@ -2,19 +2,18 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSpeechRecognition } from 'react-speech-recognition';
 import "./Home.scss";
+import SubmitGab from "../../components/SubmitGab/SubmitGab"
 
-
-import { Flip, Slide, ToastContainer, Zoom, toast } from 'react-toastify';
+import { Flip, ToastContainer, Zoom, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 
 const Home = () => {
   const { browserSupportsSpeechRecognition } = useSpeechRecognition();
 
   const [level, setLevel] = useState("");
+  const [showSubmitGab, setShowSubmitGab] = useState(true);
 
   const showToast = () => {
-    // toast("😒 Please select a Level first buddy...")
     toast("🙄 Please select a Level first...")
   }
 
@@ -28,6 +27,12 @@ const Home = () => {
 
   return (
       <div className="home">
+
+        {showSubmitGab &&
+          <SubmitGab
+            setShowSubmitGab={setShowSubmitGab}
+          />
+        }
 
         <h2 className="home__heading">"It’s Not What You Say… <br></br>...It’s how you say it"</h2>
         <h3 className="home__sub-heading">Choose your level: </h3>
@@ -78,7 +83,7 @@ const Home = () => {
           {level !== "" ?
 
             <Link className="button--play" 
-            to={`/${level}`}
+            to={`/gabs/${level}`}
             >
               Play
             </Link>
