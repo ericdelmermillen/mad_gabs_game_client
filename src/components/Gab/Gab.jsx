@@ -3,7 +3,7 @@ import micOn from "../../assets/icons/mic_on.svg"
 
 import { Link } from 'react-router-dom';
 
-import axios from 'axios';
+import axios from 'axios'; 
 
 import Loading from '../../components/Loading/Loading';
 import YouLose from '../../components/YouLose/YouLose';
