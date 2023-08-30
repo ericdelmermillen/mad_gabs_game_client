@@ -11,7 +11,7 @@ const Home = () => {
   const { browserSupportsSpeechRecognition } = useSpeechRecognition();
 
   const [level, setLevel] = useState("");
-  const [showSubmitGab, setShowSubmitGab] = useState(true);
+  const [showSubmitGab, setShowSubmitGab] = useState(false);
 
   const showToast = () => {
     toast("🙄 Please select a Level first...")
@@ -106,7 +106,6 @@ const Home = () => {
             theme="light"
             className="not-selected__toast"
             bodyStyle={{color: "#333"}}
-            // transition={Zoom}
             transition={Flip}
           />
 

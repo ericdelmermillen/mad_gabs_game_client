@@ -1,7 +1,6 @@
 import "./Gab.scss";
 import micOn from "../../assets/icons/mic_on.svg"
 
-
 import { Link } from 'react-router-dom';
 
 import axios from 'axios';
@@ -90,10 +89,11 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/gabs/${level}`);
+        // const response = await axios.post(`http://localhost:8080/gabs`, {level: level});
+        const response = await axios.get(`http://localhost:8080/gabs`, {headers: {level: level}});
         const data = response.data;
-  
-        setCurrentGab(data);
+
+        setCurrentGab([[data.question], data.answer.split(" ")]);
         setIsLoading(false);
         setGabIsReady(true);
         setStartTime(new Date().getTime());
@@ -142,7 +142,7 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
 
         <div className="answer-word__container">
           
-          {currentGab &&
+          {currentGab && 
           
             currentGab[1].map((word, i) => {
               transcript.split(" ").forEach(word => alreadySaid.push(word));
