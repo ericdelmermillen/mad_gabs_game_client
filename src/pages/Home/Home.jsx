@@ -11,7 +11,7 @@ const Home = () => {
   const { browserSupportsSpeechRecognition } = useSpeechRecognition();
 
   const [level, setLevel] = useState("");
-  const [showSubmitGab, setShowSubmitGab] = useState(false);
+  const [showSubmitGab, setShowSubmitGab] = useState(true);
 
   const showToast = () => {
     toast("🙄 Please select a Level first...")

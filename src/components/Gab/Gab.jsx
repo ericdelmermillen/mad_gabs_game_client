@@ -89,7 +89,6 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // const response = await axios.post(`http://localhost:8080/gabs`, {level: level});
         const response = await axios.get(`http://localhost:8080/gabs`, {headers: {level: level}});
         const data = response.data;
 
