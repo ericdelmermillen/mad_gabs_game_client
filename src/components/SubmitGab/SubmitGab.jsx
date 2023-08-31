@@ -82,7 +82,6 @@ const SubmitGab = ({ setShowSubmitGab }) => {
         transition={Flip}
       />
     </div>
-  );
-};
+  )};
 
 export default SubmitGab;
