@@ -6,12 +6,14 @@ import Loading from "../src/components/Loading/Loading";
 import Login from "./pages/Login/Login";
 import NotFound from "../src/pages/NotFound/NotFound";
 import Submit from "./pages/Submit/Submit";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Navigate, Routes, Route, useLocation  } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const App = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentUrl, setcurrentUrl] = useState(window.location.href);
+  
   
   useEffect(() => {
     const getUser = () => {
@@ -46,13 +48,10 @@ const App = () => {
       getUser();
   }, []);
 
-  // useEffect(() => {
-  //   if(!user && isUserFetchcComplete) {
-  //     setIsLoading(false)
-  //     // console.log(isUserFetchcComplete)
-  //   }
-  // }, [user, isUserFetchcComplete]);
 
+  useEffect(() => {
+    console.log(window.location.href)
+  }, [window.location.href]); 
 
   if(isLoading) {
     return <Loading />
