@@ -1,0 +1,17 @@
+.navBar {
+  border: 2px solid red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // width: 100vw;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  // padding: 1rem 0;
+
+  &__logo {
+    border: 2px solid green;
+    width: 100%;
+    // display: block;
+  }
+}

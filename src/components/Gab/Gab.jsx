@@ -89,7 +89,7 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/gabs`, {params: {level: level}});
+        const response = await axios.get(`http://localhost:5000/gabs`, {params: {level: level}});
         const data = response.data;
 
         setCurrentGab([[data.question], data.answer.split(" ")]);
@@ -134,6 +134,7 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
 
   return (
     <div className="gab">
+      {console.log(transcript)}
 
       <h2 className="gab__current-gab">"{currentGab[0]}"</h2>
 

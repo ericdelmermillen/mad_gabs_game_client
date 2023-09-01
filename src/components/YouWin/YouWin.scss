@@ -36,9 +36,12 @@
     margin-block: 1rem;
   }
   
-  &__points {
-    margin-block: 1rem;
-  }
+  // &__points {
+  //   margin-block: 1rem;
+  //   text-align: left;
+  //   border: 2px solid red;
+  //   width: 100%;
+  // }
 }
 
 
@@ -53,5 +56,31 @@
   }
   &--next {
     @include btn;
+  }
+}
+
+.youWin__points {
+  position: relative;
+
+  .loading-dots {
+    position: absolute;
+    left: 100%;
+    animation: loadingDots 1s infinite;
+    border: 2px solid red;
+  }
+}
+
+@keyframes loadingDots {
+  0%, 20% {
+    content: '.';
+  }
+  40% {
+    content: '..';
+  }
+  60% {
+    content: '...';
+  }
+  80% {
+    content: '';
   }
 }

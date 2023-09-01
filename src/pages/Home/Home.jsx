@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useSpeechRecognition } from 'react-speech-recognition';
 import "./Home.scss";
 import SubmitGab from "../../components/SubmitGab/SubmitGab"
-import LoginSignup from "../../components/LoginSignup/LoginSignup"
 
 import { Flip, ToastContainer, Zoom, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,16 +12,6 @@ const Home = () => {
 
   const [level, setLevel] = useState("");
   const [showSubmitGab, setShowSubmitGab] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
-  // const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  // 
-  
-  const google = () => {
-    window.open("http://localhost:8080/users/google", "_self")
-  }
-  
-  // 
 
   const showToast = () => {
     toast("🙄 Please select a Level first...")
@@ -38,10 +27,6 @@ const Home = () => {
 
   return (
       <div className="home">
-
-        {!isAuthenticated &&
-          <LoginSignup google={google}/>
-        }
 
         {showSubmitGab &&
           <SubmitGab

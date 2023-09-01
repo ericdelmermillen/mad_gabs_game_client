@@ -1,3 +1,4 @@
+import "./Timer.scss";
 import Countdown from 'react-countdown';
 import { useEffect } from 'react';
 
