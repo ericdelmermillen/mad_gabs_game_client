@@ -1,22 +1,96 @@
-import './App.scss';
-
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-
-import Header from './components/Header/Header';
-import Home from './pages/Home/Home';
+import Navbar from "./components/NavBar/Navbar";
+import "./app.scss";
 import Gabs from "./pages/Gabs/Gabs";
+import Home from "./pages/Home/Home";
+import Loading from "../src/components/Loading/Loading";
+import Login from "./pages/Login/Login";
+import NotFound from "../src/pages/NotFound/NotFound";
+import Submit from "./pages/Submit/Submit";
+import { BrowserRouter, Navigate, Routes, Route, useLocation  } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-function App() {
+const App = () => {
+  const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentUrl, setcurrentUrl] = useState(window.location.href);
+  
+  
+  useEffect(() => {
+    const getUser = () => {
+      fetch("http://localhost:5000/auth/login/success", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+        },
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json()
+        } else {
+          throw new Error("User not found"); 
+        }
+      })
+      .then((resObject) => {
+        setUser(resObject.user);
+        setIsLoading(false)
+      })
+        .catch((err) => {
+          console.log(err);
+          setIsLoading(false)
+        })
+        .finally(() => {
+          setIsLoading(false); 
+        });
+      };
+      getUser();
+  }, []);
+
+
+  useEffect(() => {
+    console.log(window.location.href)
+  }, [window.location.href]); 
+
+  if(isLoading) {
+    return <Loading />
+  }
 
   return (
     <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Navigate to="/home" />} />
-        <Route path="/home" element={<Home />} />   
-        <Route path="/gabs" element={<Navigate to="/home" />} />
-        <Route path="/gabs/:level" element={<Gabs />}/>
-      </Routes>
+
+        <Navbar 
+          user={user} 
+          setIsLoading={setIsLoading} 
+        />
+        <Routes>
+        
+          {user
+            ?
+            <>
+              <Route path="/" element={<Navigate to="/home" />} />
+
+              <Route path="/home" element={<Home />} />
+
+              <Route path="/gabs" element={<Navigate to="/home" />} />
+
+              <Route path="/gabs/:level" element={<Gabs />}/>
+
+              <Route path="/submit/" element={<Submit />}/>
+
+              <Route path="/login" element={<Navigate to="/home" />} />
+            </>
+              :
+            <>
+              <Route path="/" element={<Navigate to="/login" />} />
+              <Route path="/home" element={<Navigate to="/login" />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/*" element={<Navigate to="/login"/>} />
+            </>
+          }
+
+        </Routes>
     </BrowserRouter>
   )};
 

@@ -22,7 +22,8 @@ const YouGiveUp = ({ handleNext }) => {
         </Link>
 
         <Link className="button--next"
-          onClick={handleNext} >
+          onClick={handleNext} 
+          >
           Next
         </Link>
 
