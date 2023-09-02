@@ -1,8 +1,19 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useSpeechRecognition } from 'react-speech-recognition';
 import "./Home.scss";
-import SubmitGab from "../../components/SubmitGab/SubmitGab"
+import SubmitGab from "../../components/SubmitGab/SubmitGab";
+// import hamburger from "../../assets/icons/burger-1.svg"
+// import hamburger from "../../assets/icons/burger-2.svg"
+import hamburger from "../../assets/icons/burger-3.svg"
+
+import logo from "../../assets/logo/1.svg";
+// import logo from "../../assets/logo/3.svg";
+// import logo from "../../assets/logo/4.svg";
+// import logo from "../../assets/logo/5.svg";
+// import logo from "../../assets/logo/7.svg";
+// import logo from "../../assets/logo/8.svg";
+// import logo from "../../assets/logo/10.svg";
 
 import { Flip, ToastContainer, Zoom, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,6 +23,9 @@ const Home = () => {
 
   const [level, setLevel] = useState("");
   const [showSubmitGab, setShowSubmitGab] = useState(false);
+
+  // const location = useLocation();
+  // console.log(location)
 
   const showToast = () => {
     toast("🙄 Please select a Level first...")
@@ -27,6 +41,19 @@ const Home = () => {
 
   return (
       <div className="home">
+
+        <img 
+          className="home__logo" 
+          src={logo} 
+          alt="Logo"
+        />
+        
+
+        {/* <img 
+          className="hamburgerMenu" 
+          src={hamburger} 
+          alt="Logo"
+        /> */}
 
         {showSubmitGab &&
           <SubmitGab
@@ -78,6 +105,12 @@ const Home = () => {
           }
 
         </div>
+
+        <span 
+          className="howToPlay" 
+          onClick={console.log("How To Play")}>
+            How To Play
+        </span>
 
         <div className="button__container">
           {level !== "" ?

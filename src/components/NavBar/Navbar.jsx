@@ -15,17 +15,20 @@ import logo from "../../assets/logo/1.svg";
 import x from "../../assets/icons/x-2.svg"
 // import x from "../../assets/icons/x-3.svg"
 
-const Navbar = ({ user, setIsLoading }) => {
+const Navbar = ({ user }) => {
 
   const logout = () => {
     window.open("http://localhost:5000/auth/logout", "_self");
-    setIsLoading(false)
   };
 
   return (
     <div className="navBar">
 
-      <img className="navBar__close" src={x} alt="Logo"/>
+      <img 
+        className="navBar__close" 
+        src={x} 
+        alt="Logo"
+      />
 
       {user ? (
 

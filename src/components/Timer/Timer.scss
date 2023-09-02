@@ -1,2 +1,7 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
+
+.timer__countdown {
+  // display: none;
+  font-size: 2rem;
+}

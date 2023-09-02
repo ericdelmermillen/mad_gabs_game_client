@@ -2,6 +2,16 @@ import "./Gabs.scss";
 
 import Gab from '../../components/Gab/Gab';
 import Timer from '../../components/Timer/Timer';
+import { Link } from 'react-router-dom';
+
+
+import logo from "../../assets/logo/1.svg";
+// import logo from "../../assets/logo/3.svg";
+// import logo from "../../assets/logo/4.svg";
+// import logo from "../../assets/logo/5.svg";
+// import logo from "../../assets/logo/7.svg";
+// import logo from "../../assets/logo/8.svg";
+// import logo from "../../assets/logo/10.svg";
 
 import { useState } from 'react';
 
@@ -9,10 +19,18 @@ const Gabs = () => {
   const [gabIsReady, setGabIsReady] = useState(false);
   const [isTimeElapsed, setIsTimeElapsed] = useState(false);
 
-  const duration = 60000;
+  const duration = 600000;
 
   return (
     <div className="gabs">
+      
+      <Link to="/home">
+        <img 
+          className="gabs__logo" 
+          src={logo} 
+          alt="Logo"
+        />
+      </Link>
 
       <div className="timer__container">
         <h2 className="timer__header">
