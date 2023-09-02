@@ -12,9 +12,12 @@ import { useEffect, useState } from "react";
 const App = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [currentUrl, setcurrentUrl] = useState(window.location.href);
-  
-  
+  // const [hamburgerIsOpen, setHamburgerIsOpen] = useState(false);
+
+  // const handleHamburger = () => {
+  //   setHamburgerIsOpen(!hamburgerIsOpen)
+  // }
+
   useEffect(() => {
     const getUser = () => {
       fetch("http://localhost:5000/auth/login/success", {
@@ -49,21 +52,19 @@ const App = () => {
   }, []);
 
 
-  useEffect(() => {
-    console.log(window.location.href)
-  }, [window.location.href]); 
-
   if(isLoading) {
     return <Loading />
   }
 
   return (
     <BrowserRouter>
+        
 
-        <Navbar 
-          user={user} 
-          setIsLoading={setIsLoading} 
-        />
+            <Navbar 
+              className="home__navBar"
+              user={user} 
+            />
+
         <Routes>
         
           {user

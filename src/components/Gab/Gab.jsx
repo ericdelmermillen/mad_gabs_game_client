@@ -3,7 +3,8 @@ import micOn from "../../assets/icons/mic_on.svg"
 
 import { Link } from 'react-router-dom';
 
-import axios from 'axios'; 
+import axios from 'axios';
+import chevronRight from "../../assets/icons/chevron-right.svg"
 
 import Loading from '../../components/Loading/Loading';
 import YouLose from '../../components/YouLose/YouLose';
@@ -49,7 +50,6 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
     setYouWin(false);
     setGabIsReady(false);
     navigate(`/${level}`, { replace: true });
-    console.log("next")
   }
   
   const handleStartListening = () => {
@@ -175,6 +175,11 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
             }
           </div>
 
+          <span 
+            className="skip" 
+            onClick={() => console.log("Skip")}>
+              Skip<img className="skip__chevron" src={chevronRight} alt="skip icon"/> 
+          </span>
 
           <div className="giveUp__container">
             <Link className="giveUp" 
