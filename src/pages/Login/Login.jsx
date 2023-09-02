@@ -1,3 +1,5 @@
+import "./Login.scss";
+
 import Google from "../../assets/img/google.png";
 import Facebook from "../../assets/img/facebook.png";
 

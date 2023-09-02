@@ -24,8 +24,7 @@ const Home = () => {
   const [level, setLevel] = useState("");
   const [showSubmitGab, setShowSubmitGab] = useState(false);
 
-  // const location = useLocation();
-  // console.log(location)
+  const location = useLocation();
 
   const showToast = () => {
     toast("🙄 Please select a Level first...")

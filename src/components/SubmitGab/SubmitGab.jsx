@@ -4,7 +4,8 @@ import axios from 'axios';
 import { Flip, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const SubmitGab = ({ setShowSubmitGab }) => {
+const SubmitGab = ({ showSubmitGab, setShowSubmitGab }) => {
+
   const [gabQuestion, setGabQuestion] = useState("");
   const [gabAnswer, setGabAnswer] = useState("");
 
@@ -23,9 +24,9 @@ const SubmitGab = ({ setShowSubmitGab }) => {
     });
       
       console.log("Server response:", response.data);
-      setShowSubmitGab(false)
-      
+      setShowSubmitGab(!showSubmitGab)      
       toast.success("🤓 Thanks for the Gab!");
+      
     } catch (error) {
       console.error("Error:", error);
     }

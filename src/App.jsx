@@ -1,17 +1,23 @@
 import Navbar from "./components/NavBar/Navbar";
-import "./app.scss";
+import "./App.scss";
 import Gabs from "./pages/Gabs/Gabs";
 import Home from "./pages/Home/Home";
 import Loading from "../src/components/Loading/Loading";
 import Login from "./pages/Login/Login";
 import NotFound from "../src/pages/NotFound/NotFound";
-import Submit from "./pages/Submit/Submit";
-import { BrowserRouter, Navigate, Routes, Route, useLocation  } from "react-router-dom";
+// import Submit from "./pages/Submit/Submit";
+import Submit from "./pages/Gabs/Gabs";
+import SubmitGab from "../src/components/SubmitGab/SubmitGab";
+import Footer from "./components/Footer/Footer";
+
 import { useEffect, useState } from "react";
+import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 
 const App = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [showSubmitGab, setShowSubmitGab] = useState(false);
+
   // const [hamburgerIsOpen, setHamburgerIsOpen] = useState(false);
 
   // const handleHamburger = () => {
@@ -58,40 +64,50 @@ const App = () => {
 
   return (
     <BrowserRouter>
+      
+      {showSubmitGab && 
+
+        <SubmitGab 
+          setShowSubmitGab={setShowSubmitGab}
+          showSubmitGab={showSubmitGab}
+        />
+      }
+
+      <Navbar 
+        className="home__navBar"
+        user={user} 
+        setShowSubmitGab={setShowSubmitGab}
+        showSubmitGab={showSubmitGab}
+      />
+
+      <Routes>
         
+        {user
+          ?
+          <>
+            <Route path="/" element={<Navigate to="/home" />} />
 
-            <Navbar 
-              className="home__navBar"
-              user={user} 
-            />
+            <Route path="/home" element={<Home />} />
 
-        <Routes>
-        
-          {user
-            ?
-            <>
-              <Route path="/" element={<Navigate to="/home" />} />
+            <Route path="/gabs" element={<Navigate to="/home" />} />
 
-              <Route path="/home" element={<Home />} />
+            <Route path="/gabs/:level" element={<Gabs />}/>
 
-              <Route path="/gabs" element={<Navigate to="/home" />} />
+            <Route path="/submit/" element={<Submit />}/>
 
-              <Route path="/gabs/:level" element={<Gabs />}/>
+            <Route path="/login" element={<Navigate to="/home" />} />
+          </>
+            :
+          <>
+            <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="/home" element={<Navigate to="/login" />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/*" element={<Navigate to="/login"/>} />
+          </>
+        }
 
-              <Route path="/submit/" element={<Submit />}/>
-
-              <Route path="/login" element={<Navigate to="/home" />} />
-            </>
-              :
-            <>
-              <Route path="/" element={<Navigate to="/login" />} />
-              <Route path="/home" element={<Navigate to="/login" />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/*" element={<Navigate to="/login"/>} />
-            </>
-          }
-
-        </Routes>
+      </Routes>
+      <Footer user={user}/>
     </BrowserRouter>
   )};
 

@@ -1,21 +1,38 @@
-import { Link } from "react-router-dom";
-import "./NavBar.scss"
-import logo from "../../assets/logo/1.svg";
-// import logo from "../../assets/logo/2.svg";
-// import logo from "../../assets/logo/3.svg";
+import "./NavBar.scss";
+
+// import logo from "../../assets/logo/1.svg";
 // import logo from "../../assets/logo/4.svg";
-// import logo from "../../assets/logo/5.svg";
-// import logo from "../../assets/logo/6.svg";
-// import logo from "../../assets/logo/7.svg";
-// import logo from "../../assets/logo/8.svg";
-// import logo from "../../assets/logo/9.svg";
-// import logo from "../../assets/logo/10.svg";
+import logo from "../../assets/logo/8.svg";
 
-// import x from "../../assets/icons/x-1.svg"
-import x from "../../assets/icons/x-2.svg"
-// import x from "../../assets/icons/x-3.svg"
+import submit from "../../assets/icons/submit.svg";
+import power from "../../assets/icons/power.svg";
 
-const Navbar = ({ user }) => {
+import { Link, useLocation } from "react-router-dom";
+
+
+import { Flip, ToastContainer, Zoom, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
+
+  const location = useLocation();
+
+  console.log(location.pathname.includes("home"))
+
+  // const showPleaseLoginToast 
+  const showPleaseLoginToast = () => {
+    toast("🙄 Please Login to play...");
+    console.log("from home")
+  }
+  
+  const showAlreadyOnLoginToast = () => {
+    toast("🙄 Already on Login...");
+    console.log("from login")
+  }
+
+  const showAlreadyOnHomeToast = () => {
+    toast("🙄 Already on Home...");
+  }
 
   const logout = () => {
     window.open("http://localhost:5000/auth/logout", "_self");
@@ -24,65 +41,99 @@ const Navbar = ({ user }) => {
   return (
     <div className="navBar">
 
-      <img 
-        className="navBar__close" 
-        src={x} 
-        alt="Logo"
-      />
-
       {user ? (
 
-        <>
+      <>
+        <p className="navBar__userName">Username : {user.displayName}</p>
 
-          <p className="navBar__userName">Username : {user.displayName}</p>
+        {location.pathname.includes("home")
+          ?
+            <Link className="navBar__logo" 
+              onClick={showAlreadyOnHomeToast}>
+              <img className="navBar__logo-img" src={logo} alt="Logo"/>
+            </Link>
+          :
+            <Link className="navBar__logo" to="/home">
+              <img className="" src={logo} alt="Logo"/>
+            </Link>
+        }
 
-          <ul className="navBar__levels">
-            <li className="navBar__level--easy">Easy</li>
-            <li className="navBar__level--medium">Medium</li>
-            <li className="navBar__level--hard">Hard</li>
-          </ul>
+        <ul className="navBar__actions">
+          <li 
+            className="navBar__action--submit" 
+            onClick={() => setShowSubmitGab(!showSubmitGab)}>
 
-          <span className="navBar__submitGab">Submit A Gab</span>
-            
-          <Link className="navBar__logo" to="/"><img className="" src={logo} alt="Logo"/></Link>
+            <img className="navBar__submit-icon" 
+              src={submit} 
+              alt="submit icon"
+            />
+              Submit
+          </li>
 
-          <div className="navBar__dashboard">
-            <ul className="navBar__stats">
-              <li className="navBar__stat--points">Total Points: 0</li>
-              <li className="navBar__stat--rank"><span className="navBar__rank-span">Global Rank :</span> 0</li>
-            </ul>
-            <ul className="navBar__actions">
-              <li className="navBar__action--submit" onClick={logout}>Submit</li>
-              <li className="navBar__action--logout" onClick={logout}>Logout</li>
-            </ul>
-          </div>
-        
+          <li 
+            className="navBar__action--logout" onClick={logout}>
+                
+            <img className="navBar__logout-icon" 
+              src={power} 
+              alt="logout icon"
+            />
+              Logout
+          </li>
+        </ul>
         </>
 
           ) : (
 
-        <>
-          <p className="navBar__userName">Username : Logged Out</p>
+      <>
 
-          <ul className="navBar__levels">
-            <li className="navBar__level--easy">Easy</li>
-            <li className="navBar__level--medium">Medium</li>
-            <li className="navBar__level--hard" >Hard</li>
-          </ul>
+        <p className="navBar__userName">Username : Not Logged In</p>
           
-          <span className="navBar__submitGab">Submit A Gab</span>
+        <Link 
+          className="navBar__logo" 
+          onClick={showPleaseLoginToast}
+        >
+            
+            <img 
+              className="navBar__logo-img" 
+              src={logo} alt="Logo"/>
 
-          <Link className="navBar__logo" to="/"><img className="" src={logo} alt="Logo"/></Link>
+        </Link>
 
-          <ul className="navBar__stats">
-            <li className="navBar__stat">Total Points: 0</li>
-            <li className="navBar__stat"><span className="navBar__rank-span">Global Rank :</span> 0</li>
-            <Link className="link" to="login"><li className="navBar__stat">Login</li></Link>
-          </ul>
 
-        </>
+        <ul className="navBar__actions">
+
+          <li 
+            className="navBar__action--login" 
+            onClick={showAlreadyOnLoginToast}>
+                
+            <img 
+              className="navBar__login-icon" 
+              src={power} 
+              alt="logout icon"
+            />
+              Login
+          </li>
+        </ul>
+      </>
 
       )}
+
+      <div className="toastBox">
+        <ToastContainer
+          autoClose={2000}
+          closeOnClick
+          draggable
+          hideProgressBar={true}
+          newestOnTop={false}
+          pauseOnFocusLoss={false}
+          pauseOnHover={false}
+          position="bottom-center"
+          theme="light"
+          className="navBar__toast"
+          bodyStyle={{color: "#333"}}
+          transition={Flip}
+        />
+      </div>
       
     </div>
   )};
