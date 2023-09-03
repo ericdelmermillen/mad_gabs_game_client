@@ -5,7 +5,7 @@ import Timer from '../../components/Timer/Timer';
 import { Link } from 'react-router-dom';
 
 
-import logo from "../../assets/logo/1.svg";
+import logo from "../../assets/logo/logo.svg";
 // import logo from "../../assets/logo/3.svg";
 // import logo from "../../assets/logo/4.svg";
 // import logo from "../../assets/logo/5.svg";
