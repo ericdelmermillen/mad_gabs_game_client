@@ -14,15 +14,15 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
   const location = useLocation();
 
   const handleAlreadyOnHome = () => {
-      return toast("🙄 Already on Home...");
+    return toast("🙄 Already on Home...");
   }
   
   const handlePleaseLogin = () => {
-      return toast("🙄 Please Login to Play...");
+    return toast("🙄 Please Login to Continue...");
   }
   
   const handleAlreadyOnLogin = () => {
-      return toast("🙄 Already on Login Page...");
+    return toast("🙄 Already on Login Page...");
   }
   
 
@@ -36,7 +36,7 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
       {user ? (
 
       <>
-        <p className="navBar__userName">Username : {user.userName}</p>
+        {/* <p className="navBar__userName">Username : {user.userName}</p> */}
 
         {location.pathname.includes('home') 
 
