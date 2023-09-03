@@ -1,0 +1,57 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.howToPlay {
+  position: relative;
+  
+  &__card {
+    align-items: center;
+    border: 2px solid red;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 75%;
+    left: 50%;
+    padding: 1rem;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    z-index: 10;
+  }
+
+  &__question {
+    margin-block: 1rem;
+  }
+
+  &__answer {
+    &--word {
+      & + &.youWin__answer--word {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+
+  &__time {
+    margin-block: 1rem;
+  }
+  
+  &__points {
+    margin-block: 1rem;
+  }
+}
+
+.button {
+  &__container {
+    display: flex;
+    margin-top: 30%;
+  }
+  
+  &--home {
+    @include btn;
+  }
+  &--next {
+    @include btn;
+  }
+}

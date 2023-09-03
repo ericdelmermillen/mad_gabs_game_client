@@ -1,8 +1,6 @@
 import "./NavBar.scss";
 
-// import logo from "../../assets/logo/1.svg";
-// import logo from "../../assets/logo/4.svg";
-import logo from "../../assets/logo/8.svg";
+import logo from "../../assets/logo/logo.svg";
 
 import submit from "../../assets/icons/submit.svg";
 import power from "../../assets/icons/power.svg";
