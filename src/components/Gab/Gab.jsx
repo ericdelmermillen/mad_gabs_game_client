@@ -147,7 +147,6 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
 
   return (
     <div className="gab">
-      {console.log(transcript)}
 
       <h2 className="gab__current-gab">"{currentGab[0]}"</h2>
 
