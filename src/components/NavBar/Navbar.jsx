@@ -9,15 +9,12 @@ import power from "../../assets/icons/power.svg";
 
 import { Link, useLocation } from "react-router-dom";
 
-
 import { Flip, ToastContainer, Zoom, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
 
   const location = useLocation();
-
-  console.log(location.pathname.includes("home"))
 
   // const showPleaseLoginToast 
   const showPleaseLoginToast = () => {
@@ -44,7 +41,7 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
       {user ? (
 
       <>
-        <p className="navBar__userName">Username : {user.displayName}</p>
+        <p className="navBar__userName">Username : {user.userName}</p>
 
         {location.pathname.includes("home")
           ?

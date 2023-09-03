@@ -9,11 +9,11 @@ const Footer = ({user}) => {
 
         ? 
           <div className="footer">
-            <p className="footer__points">Total Points: 500, 000</p>
+            <p className="footer__points">Total Points: {user.totalPoints}</p>
           
             <p className="footer__copyright">&copy; Mad Gabs Game {currentYear}</p>
           
-            <p className="footer__rank">Rank: 100, 000 / 100,000 </p>
+            <p className="footer__rank">Rank: {user.ranking.userRank} / {user.ranking.totalPlayers} </p>
           
           </div>
 

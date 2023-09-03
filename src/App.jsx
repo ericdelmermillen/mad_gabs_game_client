@@ -37,6 +37,7 @@ const App = () => {
       })
       .then((response) => {
         if (response.status === 200) {
+          console.log("from auth path");
           return response.json()
         } else {
           throw new Error("User not found"); 
