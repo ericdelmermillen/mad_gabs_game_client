@@ -36,6 +36,8 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
   return (
     <div className="navBar">
 
+      {user && console.log(user)}
+
       {user ? (
 
       <>

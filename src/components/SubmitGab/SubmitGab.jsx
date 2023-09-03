@@ -62,13 +62,18 @@ const SubmitGab = ({ showSubmitGab, setShowSubmitGab }) => {
         />
 
         <div className="button__container">
+          
           <span 
             className="button--submit-cancel"
             onClick={() => setShowSubmitGab(!showSubmitGab)}
           >
             Cancel
           </span>
-          <button type="submit" className="button--submit-gab">
+          
+          <button 
+            type="submit"
+            className="button--submit-gab"
+          >
             Submit
           </button>
         </div>
