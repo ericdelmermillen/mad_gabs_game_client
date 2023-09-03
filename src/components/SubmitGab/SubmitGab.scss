@@ -73,6 +73,10 @@
     display: flex;
   }
   
+  &--submit-cancel {
+    @include btn;
+  }
+  
   &--submit-gab {
     @include btn;
   }
