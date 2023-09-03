@@ -37,7 +37,7 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
   const [ youWin, setYouWin ] = useState(false);
   const [ youGiveUp, setYouGiveUp ] = useState(false);
   const [ readyForNext, setReadyForNext ] = useState(false);
-  
+
   
   const handleNext = () => {
     setCurrentGab(null);
@@ -50,6 +50,19 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
     setYouWin(false);
     setGabIsReady(false);
     navigate(`/${level}`, { replace: true });
+  }  
+  
+  const handleSkip = () => {
+    setCurrentGab(null);
+    setIsLoading(true);
+    setReadyForNext(true);
+    setRoundOver(false);
+    setRoundTime(null);
+    setStartTime(null);
+    setYouGiveUp(false);
+    setYouWin(false);
+    setGabIsReady(false);
+    navigate(`/gabs/${level}`, { replace: true });
   }
   
   const handleStartListening = () => {
@@ -175,10 +188,9 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
             }
           </div>
 
-          <span 
-            className="skip" 
-            onClick={() => console.log("Skip")}>
-              Skip<img className="skip__chevron" src={chevronRight} alt="skip icon"/> 
+          <span className="skip" onClick={handleSkip}>
+              Skip
+              <img className="skip__chevron" src={chevronRight} alt="skip icon"/>
           </span>
 
           <div className="giveUp__container">

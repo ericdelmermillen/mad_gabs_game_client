@@ -10,6 +10,7 @@ const YouWin = ({ currentGab, duration, handleNext, roundTime }) => {
   const [points, setPoints] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  // need to attach the jwt, mgUserId (from state), secondsReamining (in headers?)
   const getPoints = async (secondsRemaining) => {
     try {
       const response = await fetch('http://localhost:5000/users/post-points', {
@@ -21,6 +22,7 @@ const YouWin = ({ currentGab, duration, handleNext, roundTime }) => {
       });
 
       const data = await response.json();
+      // needs to update user in state for dashboard to update)
       return data.points;
     } catch (error) {
       console.error('Error fetching points:', error);

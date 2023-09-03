@@ -1,0 +1,33 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.footer {
+  display: none;
+  
+  @media (min-width: 768px) {
+    display: flex;
+    border-top: 2px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0px -1px 10px rgba(0, 0, 0, 0.2);
+    justify-content: space-between;
+    padding: 1rem;
+
+    &__centered {
+      justify-content: center;
+    }
+  }
+  
+  &__points {
+    
+    @media (min-width: 768px) {
+      width: 30%;
+    }
+  }
+
+  &__rank {
+    
+    @media (min-width: 768px) {
+      text-align: right;
+      width: 30%;
+    }
+  }
+}
