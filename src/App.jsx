@@ -1,14 +1,15 @@
-import Navbar from "./components/NavBar/Navbar";
 import "./App.scss";
+
+import Footer from "./components/Footer/Footer";
 import Gabs from "./pages/Gabs/Gabs";
 import Home from "./pages/Home/Home";
 import Loading from "../src/components/Loading/Loading";
 import Login from "./pages/Login/Login";
+import Navbar from "./components/NavBar/Navbar";
 import NotFound from "../src/pages/NotFound/NotFound";
 // import Submit from "./pages/Submit/Submit";
 import Submit from "./pages/Gabs/Gabs";
 import SubmitGab from "../src/components/SubmitGab/SubmitGab";
-import Footer from "./components/Footer/Footer";
 
 import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
@@ -17,12 +18,6 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showSubmitGab, setShowSubmitGab] = useState(false);
-
-  // const [hamburgerIsOpen, setHamburgerIsOpen] = useState(false);
-
-  // const handleHamburger = () => {
-  //   setHamburgerIsOpen(!hamburgerIsOpen)
-  // }
 
   useEffect(() => {
     const getUser = () => {
@@ -37,7 +32,7 @@ const App = () => {
       })
       .then((response) => {
         if (response.status === 200) {
-          console.log("from auth path");
+          // console.log("from auth path");
           return response.json()
         } else {
           throw new Error("User not found"); 

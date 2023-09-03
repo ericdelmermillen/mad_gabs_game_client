@@ -34,7 +34,7 @@ const Login = ({ setUser, user }) => {
     });
       setUser(response.data.user);
       
-      console.log("Server response:", response.data.user);
+      // console.log("Server response:", response.data.user);
       // setShowSubmitGab(!showSubmitGab)      
       // toast.success("🤓 Thanks for the Gab!");
       

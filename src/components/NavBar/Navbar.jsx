@@ -1,9 +1,8 @@
 import "./NavBar.scss";
 
 import logo from "../../assets/logo/logo.svg";
-
-import submit from "../../assets/icons/submit.svg";
 import power from "../../assets/icons/power.svg";
+import submit from "../../assets/icons/submit.svg";
 
 import { Link, useLocation } from "react-router-dom";
 
@@ -14,20 +13,18 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
 
   const location = useLocation();
 
-  // const showPleaseLoginToast 
-  const showPleaseLoginToast = () => {
-    toast("🙄 Please Login to play...");
-    console.log("from home")
+  const handleAlreadyOnHome = () => {
+      return toast("🙄 Already on Home...");
   }
   
-  const showAlreadyOnLoginToast = () => {
-    toast("🙄 Already on Login...");
-    console.log("from login")
+  const handlePleaseLogin = () => {
+      return toast("🙄 Please Login to Play...");
   }
-
-  const showAlreadyOnHomeToast = () => {
-    toast("🙄 Already on Home...");
+  
+  const handleAlreadyOnLogin = () => {
+      return toast("🙄 Already on Login Page...");
   }
+  
 
   const logout = () => {
     window.open("http://localhost:5000/auth/logout", "_self");
@@ -36,23 +33,25 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
   return (
     <div className="navBar">
 
-      {user && console.log(user)}
-
       {user ? (
 
       <>
         <p className="navBar__userName">Username : {user.userName}</p>
 
-        {location.pathname.includes("home")
-          ?
-            <Link className="navBar__logo" 
-              onClick={showAlreadyOnHomeToast}>
-              <img className="navBar__logo-img" src={logo} alt="Logo"/>
-            </Link>
+        {location.pathname.includes('home') 
+
+          ? 
+
+          <Link className="navBar__logo" 
+            onClick={handleAlreadyOnHome}>
+            <img className="navBar__logo-img" src={logo} alt="Logo"/>
+          </Link>
+        
           :
-            <Link className="navBar__logo" to="/home">
-              <img className="" src={logo} alt="Logo"/>
-            </Link>
+        
+          <Link className="navBar__logo" to="/home">
+            <img className="navBar__logo-img" src={logo} alt="Logo"/>
+          </Link>
         }
 
         <ul className="navBar__actions">
@@ -87,8 +86,7 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
           
         <Link 
           className="navBar__logo" 
-          onClick={showPleaseLoginToast}
-        >
+          onClick={handlePleaseLogin}>
             
             <img 
               className="navBar__logo-img" 
@@ -101,7 +99,8 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
 
           <li 
             className="navBar__action--login" 
-            onClick={showAlreadyOnLoginToast}>
+            onClick={handleAlreadyOnLogin}
+          >
                 
             <img 
               className="navBar__login-icon" 

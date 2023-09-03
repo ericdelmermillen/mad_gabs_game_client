@@ -179,11 +179,11 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
         </div>
         
           <div className="microphone">
-            {isListening ?
-            
-                <img className="microphone--on" src={micOn} alt="microphone listening icon" />
-              :
-                <img className="microphone--off" src={micOn} alt="microphone listening icon" />
+            {isListening &&
+            <>
+                <img className="microphone" src={micOn} alt="microphone listening icon" />
+                <div className="microphone__blob"></div>
+            </>
             }
           </div>
 
