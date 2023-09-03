@@ -6,6 +6,21 @@
   display: flex;
   justify-content: center;
   height: calc(100vh - 50px);
+  position: relative;
+
+  &__outer-container {
+    border-radius: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    height: 90%;
+    padding-top: 4rem;
+    position: absolute;
+    top: 5%;
+    transition: box-shadow 0.3s ease-in-out; 
+    width: 60%;
+    -moz-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+
+  }
   
   @media (min-width: 768px) {
     height: calc(100vh - (4rem + 3.5rem));
@@ -14,8 +29,7 @@
   
   &__title {
     color:#333;
-    position: absolute;
-    top: 150px;
+    text-align: center;
     
     @media (min-width: 768px) {
 
@@ -24,14 +38,8 @@
 
   &__inner-container {
     align-items: center;
-    border: 2px solid red;
-    border-radius: 20px;
-    box-shadow: 0px 5px 33px -21px rgba(66, 68, 90, 1);
     display: flex;
-    height: 90%;
-    -moz-box-shadow: 0px 5px 33px -21px rgba(66, 68, 90, 1);
-    -webkit-box-shadow: 0px 5px 33px -21px rgba(66, 68, 90, 1);
-    width: 60%;
+    height: 70%;
 
     @media (min-width: 768px) {
 
@@ -82,8 +90,6 @@
   }
 } 
 
-
-// ***
 .inner-container {
 
   &__left {
@@ -91,7 +97,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2px solid orange;
 
     @media (min-width: 768px) {
 
@@ -103,18 +108,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    // border: 2px solid blue;
 
     @media (min-width: 768px) {
 
     }
   }
 }
-// ***
 
 .or {
   align-items: center;
-  border: 2px solid green;
   display: flex;
   height: 100%;
   justify-content: center;
@@ -141,7 +143,7 @@
   &__line {
     background-color: lightgray;
     bottom: 0;
-    height: 70%;
+    height: 60%;
     left: 0;
     margin: auto;
     position: absolute;
@@ -157,12 +159,19 @@
 }
 
 .login-form {
-  // border: 2px solid red;
   display: flex;
   flex-direction: column;
+
+  @media (min-width: 768px) {
+
+  }
   
   &__label {
     display: none;
+
+    @media (min-width: 768px) {
+
+    }
 
   }
   
@@ -170,6 +179,10 @@
     margin-bottom: 20px;
     padding: 15px 20px;
     width: 200px;
+
+    @media (min-width: 768px) {
+
+    }
   }
   
   &__submit{
@@ -180,13 +193,24 @@
     font-weight: bold;
     padding: 15px 20px;
     width: 200px;
+
+    @media (min-width: 768px) {
+
+    }
   }
 }
 
 .signup {
-  margin-top: 1rem;
-  cursor: pointer;
-  text-decoration: underline;
+  
+  &__link {
+    margin-top: 1rem;
+    cursor: pointer;
+    text-decoration: underline;
+    
+    @media (min-width: 768px) {
+      
+    }
+  }
 }
 
 
