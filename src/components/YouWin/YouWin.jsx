@@ -23,6 +23,7 @@ const YouWin = ({ currentGab, duration, handleNext, roundTime }) => {
 
       const data = await response.json();
       // needs to update user in state for dashboard to update)
+      console.log(data)
       return data.points;
     } catch (error) {
       console.error('Error fetching points:', error);

@@ -9,7 +9,7 @@ import Navbar from "./components/NavBar/Navbar";
 import NotFound from "../src/pages/NotFound/NotFound";
 // import Submit from "./pages/Submit/Submit";
 import Submit from "./pages/Submit/Submit";
-import SetUserName from "./pages/SetUserName/SetUserName";
+import Welcome from "./pages/Welcome/Welcome";
 import SubmitGab from "../src/components/SubmitGab/SubmitGab";
 
 import { useEffect, useState } from "react";
@@ -39,7 +39,6 @@ const App = () => {
       })
       .then((response) => {
         if (response.status === 200) {
-          // console.log("from auth path");
           return response.json()
         } else {
           throw new Error("User not found"); 
@@ -85,12 +84,12 @@ const App = () => {
 
       <Routes>
         
-        {user && !user.userName // user exists but has no userName
+        {user && !user.userName
 
           ?
             <>
-              <Route path="/*" element={<Navigate to="/setusername" />} />
-              <Route path="/setusername" element={<SetUserName />} />
+              <Route path="/*" element={<Navigate to="/welcome" />} />
+              <Route path="/welcome" element={<Welcome setUser={setUser} />} />
             </>
             
           : user ? // user exists and has a userName
