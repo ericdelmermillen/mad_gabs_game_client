@@ -145,6 +145,8 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
     return <Loading />
   } 
 
+  console.log(transcript)
+
   return (
     <div className="gab">
 

@@ -21,7 +21,6 @@
   &__card {
 @include card;
   }
-
 }
 
 .welcome-form {
@@ -38,7 +37,6 @@
   }
 
   &__userName-input {
-    background: yellow;
     border: 1px solid black;
     border-radius: 4px;
     margin-block: 1rem;

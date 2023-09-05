@@ -14,10 +14,12 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
   const location = useLocation();
 
   const handlePleaseFinishTutorial = () => {
-    return toast("🙄 Please finish the tutorial...");
+    const toastId = 'toast-finish-tutorial-id'; // Replace with your desired unique ID
+    return toast("🙄 Please finish the tutorial...", { toastId });
   }
   
   const handleAlreadyOnHome = () => {
+    const toastId = 'already-on-home-toast-id'; 
     return toast("🙄 Already on Home...");
   }
   
