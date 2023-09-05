@@ -5,32 +5,19 @@
   position: relative;
   
   &__card {
-    align-items: center;
-    border: 2px solid red;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    height: 75%;
-    left: 50%;
-    padding: 1rem;
-    position: absolute;
-    text-align: center;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-    z-index: 10;
+  @include card
   }
 
-  &__question {
-    margin-block: 1rem;
+  &__heading {
+    margin-bottom: 1.5rem;
   }
 
-  &__answer {
-    &--word {
-      & + &.youWin__answer--word {
-        margin-left: 0.5rem;
-      }
-    }
+  &__instructions {
+    text-align: left;
+    line-height: 1.75rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    width: 100%;
   }
 
   &__time {
@@ -40,18 +27,17 @@
   &__points {
     margin-block: 1rem;
   }
-}
-
-.button {
-  &__container {
-    display: flex;
-    margin-top: 30%;
-  }
   
-  &--home {
-    @include btn;
-  }
-  &--next {
-    @include btn;
+  .button {
+    &__container {
+      @include button-container;
+    }
+    
+    &--home {
+      @include btn;
+    }
+    &--next {
+      @include btn;
+    }
   }
 }

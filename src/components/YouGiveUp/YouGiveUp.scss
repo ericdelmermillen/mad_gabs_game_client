@@ -3,54 +3,38 @@
 
 .youGiveUp {
   position: relative;
-
+  display: flex;
+  
   &__card {
-    align-items: center;
-    border: 2px solid red;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    height: 75%;
-    left: 50%;
-    padding: 1rem;
-    position: absolute;
-    text-align: center;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
+@include card;
+  }
+  
+  &__heading {
+    margin-bottom: 1.5rem;
   }
 
-  &__question {
-    margin-block: 1rem;
+  &__instructions {
+    text-align: left;
+    line-height: 1.75rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    width: 100%;
   }
+  
+    
+  .button {
+    &__container {
+      @include button-container;
+      border: 2px solid red;
 
-  &__answer {
-    &--word {
-      & + &.youWin__answer--word {
-        margin-left: 0.5rem;
-      }
     }
-  }
-
-  &__time {
-    margin-block: 1rem;
-  }
-  
-  &__points {
-    margin-block: 1rem;
-  }
-}
-
-.button {
-  &__container {
-    display: flex;
-    margin-top: 30%;
-  }
-  
-  &--home {
-    @include btn;
-  }
-  &--next {
-    @include btn;
+    
+    &--submit-cancel {
+      @include btn;
+    }
+    
+    &--submit-gab {
+      @include btn;
+    }
   }
 }

@@ -4,11 +4,9 @@
 .gabs {
   align-items: center;
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding-block: 1rem;
+  justify-content: center;
+  height: calc(100vh - 8rem);
   position: relative;
-  height: 100vh;
 
 
   @media (min-width: 768px) {

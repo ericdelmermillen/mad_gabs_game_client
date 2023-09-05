@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Welcome = ({ setUser, user, mgUserId }) => {
   const [userName, setUserName] = useState("");
-  // const [showCard, setShowCard] = useState(1);
+
 
   const navigate = useNavigate();  
 
@@ -15,7 +15,11 @@ const Welcome = ({ setUser, user, mgUserId }) => {
     event.preventDefault();
 
     if (userName === "") {
-      toast.error("🙄 A Username is required...");
+      // toast.error("🙄 A Username is required...");
+      toast.error("🙄 A Username is required...", {
+        toastId: "usernameIncomplete-toast"
+      });
+
       return;
     } 
       
@@ -25,7 +29,14 @@ const Welcome = ({ setUser, user, mgUserId }) => {
         userName: userName,
     });
 
-      toast.success(`🤓 Welcome aboard ${userName}!`);
+      // toast.success(`🤓 Welcome aboard ${userName}!`);
+
+      toast.success(`🤓 Welcome aboard ${userName}!`, {
+        toastId: "welcome-toast"
+      });
+
+
+
       setUser(response.data.user);
       navigate("/home");
 
@@ -38,7 +49,7 @@ const Welcome = ({ setUser, user, mgUserId }) => {
     <div className="welcome">
       <div className="welcome__card">
 
-        <h1 className="welcome__heading">Yo</h1>
+        <h1 className="welcome__heading">Please choose a UserName</h1>
         <form onSubmit={handleSubmit} className="welcome-form">
           <label className="welcome-form__userNameLabel" htmlFor="welcome-form__userName">
             Username:

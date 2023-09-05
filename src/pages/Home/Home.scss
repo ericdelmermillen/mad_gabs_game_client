@@ -42,28 +42,28 @@
     margin-top: 1rem;
   }
 
-
-.button {
-
-  &__container {
-    display: flex;
-    margin-top: 3rem;
-    min-width: 8rem;
+  .button {
+  
+    &__container {
+      display: flex;
+      margin-top: 3rem;
+      min-width: 8rem;
+      
+      @media (min-width: 768px) {
+  
+      }
+    }
     
-    @media (min-width: 768px) {
-
+    &--play {
+      @include btn;
+    }
+    
+      &--play-disabled {
+        @include btn;
+      }
     }
   }
-  
-  &--play {
-    @include btn;
-  }
-  
-  &--play-disabled {
-    @include btn;
-  }
-}
-}
+
 
 .level__links {
   align-items: center;
@@ -87,7 +87,6 @@
   display: inline-block;
   padding: 0.5rem 1.2rem;
 }
-
 
 .not-selected__toast {
   margin-bottom: 25%;

@@ -55,6 +55,13 @@ const App = () => {
       getUser();
   }, []);
 
+
+  useEffect(() => {
+    if (user) {
+      setMgUserId(user.mgUserId)
+    }
+  }, [user]);
+
   if(isLoading) {
     return <Loading />
   }
@@ -109,7 +116,7 @@ const App = () => {
         }
 
       </Routes>
-      <Footer user={user} setUser={setUser}/>
+      <Footer user={user} setUser={setUser} mgUserId={mgUserId}/>
     </BrowserRouter>
   )};
 

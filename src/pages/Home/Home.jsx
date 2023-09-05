@@ -7,11 +7,6 @@ import { useSpeechRecognition } from 'react-speech-recognition';
 import SubmitGab from "../../components/SubmitGab/SubmitGab";
 import HowToPlay from "../../components/HowToPlay/HowToPlay";
 
-// import hamburger from "../../assets/icons/burger-1.svg"
-// import hamburger from "../../assets/icons/burger-2.svg"
-import hamburger from "../../assets/icons/burger-3.svg"
-
-
 import { Flip, ToastContainer, Zoom, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -38,6 +33,7 @@ const Home = () => {
 
   return (
       <div className="home">
+        
 
         <img 
           className="home__logo" 

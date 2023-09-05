@@ -3,32 +3,25 @@
 
 .submitGab {
   position: relative;
-
-  &__heading {
-    color: red;
-  }
   
   &__card {
-    align-items: center;
-    border: 2px solid red;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    height: 75%;
-    left: 50%;
-    padding: 1rem;
-    position: absolute;
-    text-align: center;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-    z-index: 10;
+    @include card;
   }
 
+  &__heading {
+    margin-bottom: 1.5rem;
+  }
+
+  &__instructions {
+    text-align: left;
+    line-height: 1.75rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    width: 100%;
+  }
 }
 
 .form {
-  border: 2px solid blue;
   width: 100%;
   height: 100%;
   display: flex;
@@ -36,12 +29,10 @@
   align-items: center;
 
   &__questionLabel {
-    border: 2px solid red;
     display: block;
   }
 
   &__questionInput {
-    background: yellow;
     border: 1px solid black;
     border-radius: 4px;
     margin-block: 1rem;
@@ -51,33 +42,33 @@
   }
   
   &__answerLabel {
-    border: 2px solid red;
     display: block;
   }
   
   &__answerInput {
-    background: yellow;
     border: 1px solid black;
     border-radius: 4px;
     margin-block: 1rem;
     padding: 0.5rem 1rem;
     width: 100%;
     font-family: inherit;
-  }
-}
-
-
-.button {
-
-  &__container {
-    display: flex;
+    margin-bottom: 2rem;
   }
   
-  &--submit-cancel {
-    @include btn;
-  }
+  .button {
   
-  &--submit-gab {
-    @include btn;
+    &__container {
+      @include button-container;
+      display: flex;
+      gap: 2rem;
+    }
+    
+    &--submit-cancel {
+      @include btn;
+    }
+    
+    &--submit-gab {
+      @include btn;
+    }
   }
 }

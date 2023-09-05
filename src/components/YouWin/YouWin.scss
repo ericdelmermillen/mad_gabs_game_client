@@ -5,19 +5,11 @@
   position: relative;
 
   &__card {
-    align-items: center;
-    border: 2px solid red;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    height: 75%;
-    left: 50%;
-    padding: 1rem;
-    position: absolute;
-    text-align: center;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
+    @include card;
+  }
+
+  &__heading {
+    margin-bottom: 1.5rem;
   }
 
   &__question {
@@ -36,28 +28,21 @@
     margin-block: 1rem;
   }
   
-  // &__points {
-  //   margin-block: 1rem;
-  //   text-align: left;
-  //   border: 2px solid red;
-  //   width: 100%;
-  // }
-}
-
-
-.button {
-  &__container {
-    display: flex;
-    margin-top: 30%;
-  }
-  
-  &--home {
-    @include btn;
-  }
-  &--next {
-    @include btn;
+  .button {
+    &__container {
+      @include button-container;
+      display: flex;
+    }
+    
+    &--home {
+      @include btn;
+    }
+    &--next {
+      @include btn;
+    }
   }
 }
+
 
 .youWin__points {
   position: relative;

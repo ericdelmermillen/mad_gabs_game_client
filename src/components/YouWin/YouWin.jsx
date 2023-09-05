@@ -73,7 +73,7 @@ const YouWin = ({ currentGab, duration, handleNext, roundTime, user, setUser, mg
         Points Earned: {isLoading ? 'Loading...' : user.points}
       </p>
 
-      <div className="button__container">
+      <div className="youWin button__container">
         <Link className="button--home" to={'/'}>
           Home
         </Link>

@@ -34,6 +34,7 @@ const SubmitGab = ({ showSubmitGab, setShowSubmitGab }) => {
 
   return (
     <div className="submitGab__card">
+      <h1 className="submitGab__heading">Submit a Gab</h1>
       <form onSubmit={handleSubmit} className="form">
         <label className="form__questionLabel" htmlFor="form__questionInput">
           Gab Question:
@@ -61,7 +62,15 @@ const SubmitGab = ({ showSubmitGab, setShowSubmitGab }) => {
           onChange={(e) => setGabAnswer(e.target.value)}
         />
 
-        <div className="button__container">
+        <p className="submitGab__instructions">
+          Think you've got a great Gab? Send it along. 
+        </p>
+
+        <p className="submitGab__instructions">
+          
+        </p>
+
+        <div className="submitGab button__container">
           
           <span 
             className="button--submit-cancel"

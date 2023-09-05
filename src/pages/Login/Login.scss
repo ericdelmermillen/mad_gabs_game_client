@@ -5,27 +5,13 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 8rem);
   position: relative;
 
   &__outer-container {
-    border-radius: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
-    height: 90%;
-    padding-top: 4rem;
-    position: absolute;
-    top: 5%;
-    transition: box-shadow 0.3s ease-in-out; 
-    width: 60%;
-    -moz-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
-    -webkit-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
-
+    @include card;
   }
   
-  @media (min-width: 768px) {
-    height: calc(100vh - (4rem + 3.5rem));
-    padding-top: 3rem;
-  }
   
   &__title {
     color:#333;
@@ -39,9 +25,13 @@
   &__inner-container {
     align-items: center;
     display: flex;
+    flex-direction: column;
     height: 70%;
-
+    
+    margin-top: 1rem;
     @media (min-width: 768px) {
+      flex-direction: row;
+      width: 100%;
 
     }
   }
@@ -215,3 +205,7 @@
 
 // ***
 
+
+.login__toast {
+  margin-bottom: 25%;
+}
