@@ -15,7 +15,7 @@ import logo from "../../assets/logo/logo.svg";
 
 import { useState } from 'react';
 
-const Gabs = () => {
+const Gabs = ({ user, setUser}) => {
   const [gabIsReady, setGabIsReady] = useState(false);
   const [isTimeElapsed, setIsTimeElapsed] = useState(false);
 
@@ -58,6 +58,8 @@ const Gabs = () => {
           duration={duration}
           setIsTimeElapsed={setIsTimeElapsed}
           gabIsReady={gabIsReady}
+          user={user}
+          setUser={setUser}
         />
       </div>
       

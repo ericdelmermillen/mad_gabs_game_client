@@ -1,11 +1,18 @@
-import "./Footer.scss"
+import "./Footer.scss";
+import { useEffect } from 'react';
 
-const Footer = ({user}) => {
+const Footer = ({user, setUser}) => {
   const currentYear = new Date().getFullYear();
+  
+      useEffect(() => {
+        setUser(user)
+        return () => {
+        };
+      }, [user]);
 
   return (
     <>
-      {user 
+      {user
 
         ? 
           <div className="footer">

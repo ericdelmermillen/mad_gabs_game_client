@@ -20,12 +20,6 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [showSubmitGab, setShowSubmitGab] = useState(false);
 
-  // const [hamburgerIsOpen, setHamburgerIsOpen] = useState(false);
-
-  // const handleHamburger = () => {
-  //   setHamburgerIsOpen(!hamburgerIsOpen)
-  // }
-
   useEffect(() => {
     const getUser = () => {
       fetch("http://localhost:5000/auth/login/success", {
@@ -58,7 +52,6 @@ const App = () => {
       };
       getUser();
   }, []);
-
 
   if(isLoading) {
     return <Loading />
@@ -98,7 +91,7 @@ const App = () => {
             <Route path="/" element={<Navigate to="/home" />} />
             <Route path="/home" element={<Home />} />
             <Route path="/gabs" element={<Navigate to="/home" />} />
-            <Route path="/gabs/:level" element={<Gabs />} />
+            <Route path="/gabs/:level" element={<Gabs setUser={setUser} user={user}/>} />
             <Route path="/submit/" element={<Submit />} />
             <Route path="/login" element={<Navigate to="/home" />} />
           </>
@@ -114,7 +107,7 @@ const App = () => {
         }
 
       </Routes>
-      <Footer user={user}/>
+      <Footer user={user} setUser={setUser}/>
     </BrowserRouter>
   )};
 

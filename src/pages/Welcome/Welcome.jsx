@@ -22,6 +22,7 @@ const Welcome = ({ setUser, user }) => {
       
     try {
       const response = await axios.post(`http://localhost:5000/users/username`, {
+        mgUserId: 11,
         userName: userName,
     });
 
