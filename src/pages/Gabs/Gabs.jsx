@@ -6,12 +6,6 @@ import { Link } from 'react-router-dom';
 
 
 import logo from "../../assets/logo/logo.svg";
-// import logo from "../../assets/logo/3.svg";
-// import logo from "../../assets/logo/4.svg";
-// import logo from "../../assets/logo/5.svg";
-// import logo from "../../assets/logo/7.svg";
-// import logo from "../../assets/logo/8.svg";
-// import logo from "../../assets/logo/10.svg";
 
 import { useState } from 'react';
 

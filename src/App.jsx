@@ -6,6 +6,7 @@ import Home from "./pages/Home/Home";
 import Loading from "../src/components/Loading/Loading";
 import Login from "./pages/Login/Login";
 import Navbar from "./components/NavBar/Navbar";
+import HamburgerMenu from "./components/HamburgerMenu/HamburgerMenu";
 import NotFound from "../src/pages/NotFound/NotFound";
 // import Submit from "./pages/Submit/Submit";
 import Submit from "./pages/Submit/Submit";
@@ -69,6 +70,8 @@ const App = () => {
   return (
     <BrowserRouter>
       
+      <HamburgerMenu />
+
       {showSubmitGab && 
 
         <SubmitGab 
@@ -76,6 +79,7 @@ const App = () => {
           showSubmitGab={showSubmitGab}
         />
       }
+
 
       <Navbar 
         className="home__navBar"

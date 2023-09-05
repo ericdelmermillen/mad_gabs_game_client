@@ -1,0 +1,57 @@
+// @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+.hamburgeMenu {
+  
+  &__menu-bars {
+    right: 2rem;
+    justify-content: flex-start;
+    align-items: center;
+    background: none;
+    border: 2px solid #fff;
+    color: #333;
+    display: flex;
+    font-size: 2rem;
+    position: absolute;
+    z-index: 1;
+    padding: 5px;
+    height: 40px;
+    width: 40px;
+    margin-top: 2rem;
+
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+  
+  &__slider {
+    background-color: orange;
+    border-left: 2px solid #333;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    left: 100%;
+    position: fixed;
+    top: 0;
+    margin-inline: auto;
+    transition: 850ms;
+    width: 60%;
+    z-index: 2;
+    
+    &--active {
+      left: 40%;
+      transition: 450ms;
+    }
+  }
+  
+  &__x {
+    background: none;
+    height: 40px;
+    width: 40px;
+    margin-top: 2rem;
+    padding: 5px;
+    display: block;
+    cursor: pointer;
+    margin-right: 1rem;
+  }
+}
+
