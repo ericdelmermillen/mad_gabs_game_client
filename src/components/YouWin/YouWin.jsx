@@ -3,15 +3,13 @@ import { Link } from 'react-router-dom';
 
 import './YouWin.scss';
 
-const YouWin = ({ currentGab, duration, handleNext, roundTime, user, setUser }) => {
+const YouWin = ({ currentGab, duration, handleNext, roundTime, user, setUser, mgUserId }) => {
   const [currentGabQuestion, currentGabAnswer] = currentGab;
   const msToSeconds = (ms) => Math.round(ms / 100) / 10;
 
   console.log(user)
-  console.log(user.mgUserId)
 
   const [isLoading, setIsLoading] = useState(true);
-  const [mgUserId, setMgUserId] = useState(user.mgUserId || null);
 
 
   const getPoints = async (secondsRemaining, user) => {

@@ -19,6 +19,7 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showSubmitGab, setShowSubmitGab] = useState(false);
+  const [mgUserId, setMgUserId] = useState(null);
 
   useEffect(() => {
     const getUser = () => {
@@ -40,6 +41,7 @@ const App = () => {
       })
       .then((resObject) => {
         setUser(resObject.user);
+        setMgUserId(resObject.user.mgUserId)
         setIsLoading(false)
       })
         .catch((err) => {
@@ -82,7 +84,7 @@ const App = () => {
           ?
             <>
               <Route path="/*" element={<Navigate to="/welcome" />} />
-              <Route path="/welcome" element={<Welcome setUser={setUser} />} />
+              <Route path="/welcome" element={<Welcome setUser={setUser} mgUserId={mgUserId} />} />
             </>
             
           : user ? // user exists and has a userName
@@ -91,7 +93,7 @@ const App = () => {
             <Route path="/" element={<Navigate to="/home" />} />
             <Route path="/home" element={<Home />} />
             <Route path="/gabs" element={<Navigate to="/home" />} />
-            <Route path="/gabs/:level" element={<Gabs setUser={setUser} user={user}/>} />
+            <Route path="/gabs/:level" element={<Gabs setUser={setUser} user={user} mgUserId={mgUserId}/>} />
             <Route path="/submit/" element={<Submit />} />
             <Route path="/login" element={<Navigate to="/home" />} />
           </>

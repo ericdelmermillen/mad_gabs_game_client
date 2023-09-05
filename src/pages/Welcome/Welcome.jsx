@@ -5,10 +5,9 @@ import { Flip, ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 
-const Welcome = ({ setUser, user }) => {
+const Welcome = ({ setUser, user, mgUserId }) => {
   const [userName, setUserName] = useState("");
-  const [showCard, setShowCard] = useState(1);
-  // const [dotUserName, setDotUserName] = useState("");
+  // const [showCard, setShowCard] = useState(1);
 
   const navigate = useNavigate();  
 
@@ -22,7 +21,7 @@ const Welcome = ({ setUser, user }) => {
       
     try {
       const response = await axios.post(`http://localhost:5000/users/username`, {
-        mgUserId: 11,
+        mgUserId: mgUserId,
         userName: userName,
     });
 

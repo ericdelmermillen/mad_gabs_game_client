@@ -16,7 +16,7 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setIsTimeElapsed, gabIsReady, user, setUser }) => {
+const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setIsTimeElapsed, gabIsReady, user, setUser, mgUserId }) => {
   const { level } = useParams();
   const navigate = useNavigate();
   const msToSeconds = (ms) => Math.round(ms / 100) / 10;
@@ -208,7 +208,9 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
           duration={duration}
           handleNext={handleNext} 
           setUser={setUser}
-          user={user} />
+          user={user} 
+          mgUserId={mgUserId} 
+          />
       }
 
       { !youWin && isTimeElapsed && !youGiveUp && 
