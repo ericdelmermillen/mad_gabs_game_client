@@ -12,6 +12,8 @@ const Login = ({ setUser, user }) => {
     window.open("http://localhost:5000/auth/google", "_self");
   };
 
+  console.log(user)
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,7 +21,7 @@ const Login = ({ setUser, user }) => {
     event.preventDefault();
 
     // console.log("from handleSubmit")
-    // console.log(email, " ", password)
+    console.log(email, " ", password)
 
     if (email === "" || password === "") {
       // toast.error("🙄 All fields are required...");
@@ -28,7 +30,8 @@ const Login = ({ setUser, user }) => {
     } 
       
     try {
-      const response = await axios.post(`http://localhost:5000/auth/user`, {
+      const response = await axios.post(`http://localhost:5000/auth/user/login`, {
+        
         email: email,
         password: password,
     });

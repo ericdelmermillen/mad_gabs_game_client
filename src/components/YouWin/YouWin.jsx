@@ -3,26 +3,29 @@ import { Link } from 'react-router-dom';
 
 import './YouWin.scss';
 
-const YouWin = ({ currentGab, duration, handleNext, roundTime }) => {
+const YouWin = ({ currentGab, duration, handleNext, roundTime, user, setUser, mgUserId }) => {
   const [currentGabQuestion, currentGabAnswer] = currentGab;
   const msToSeconds = (ms) => Math.round(ms / 100) / 10;
 
-  const [points, setPoints] = useState(null);
+  console.log(user)
+
   const [isLoading, setIsLoading] = useState(true);
 
-  // need to attach the jwt, mgUserId (from state), secondsReamining (in headers?)
-  const getPoints = async (secondsRemaining) => {
+
+  const getPoints = async (secondsRemaining, user) => {
     try {
       const response = await fetch('http://localhost:5000/users/post-points', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ secondsRemaining }),
+        body: JSON.stringify({ secondsRemaining, mgUserId: mgUserId }),
       });
 
       const data = await response.json();
       // needs to update user in state for dashboard to update)
+      console.log(data)
+      setUser(data.user)
       return data.points;
     } catch (error) {
       console.error('Error fetching points:', error);
@@ -35,7 +38,6 @@ const YouWin = ({ currentGab, duration, handleNext, roundTime }) => {
 
     getPoints(secondsRemaining)
       .then((result) => {
-        setPoints(result);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -68,7 +70,7 @@ const YouWin = ({ currentGab, duration, handleNext, roundTime }) => {
       <p className="youWin__time">Time Elapsed: {roundTime} Seconds</p>
 
       <p className="youWin__points">
-        Points Earned: {isLoading ? 'Loading...' : points}
+        Points Earned: {isLoading ? 'Loading...' : user.points}
       </p>
 
       <div className="button__container">

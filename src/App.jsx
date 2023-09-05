@@ -8,7 +8,8 @@ import Login from "./pages/Login/Login";
 import Navbar from "./components/NavBar/Navbar";
 import NotFound from "../src/pages/NotFound/NotFound";
 // import Submit from "./pages/Submit/Submit";
-import Submit from "./pages/Gabs/Gabs";
+import Submit from "./pages/Submit/Submit";
+import Welcome from "./pages/Welcome/Welcome";
 import SubmitGab from "../src/components/SubmitGab/SubmitGab";
 
 import { useEffect, useState } from "react";
@@ -18,6 +19,7 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showSubmitGab, setShowSubmitGab] = useState(false);
+  const [mgUserId, setMgUserId] = useState(null);
 
   useEffect(() => {
     const getUser = () => {
@@ -32,7 +34,6 @@ const App = () => {
       })
       .then((response) => {
         if (response.status === 200) {
-          // console.log("from auth path");
           return response.json()
         } else {
           throw new Error("User not found"); 
@@ -40,6 +41,7 @@ const App = () => {
       })
       .then((resObject) => {
         setUser(resObject.user);
+        setMgUserId(resObject.user.mgUserId)
         setIsLoading(false)
       })
         .catch((err) => {
@@ -52,7 +54,6 @@ const App = () => {
       };
       getUser();
   }, []);
-
 
   if(isLoading) {
     return <Loading />
@@ -78,32 +79,37 @@ const App = () => {
 
       <Routes>
         
-        {user
+        {user && !user.userName
+
           ?
+            <>
+              <Route path="/*" element={<Navigate to="/welcome" />} />
+              <Route path="/welcome" element={<Welcome setUser={setUser} mgUserId={mgUserId} />} />
+            </>
+            
+          : user ? // user exists and has a userName
+
           <>
             <Route path="/" element={<Navigate to="/home" />} />
-
             <Route path="/home" element={<Home />} />
-
             <Route path="/gabs" element={<Navigate to="/home" />} />
-
-            <Route path="/gabs/:level" element={<Gabs />}/>
-
-            <Route path="/submit/" element={<Submit />}/>
-
+            <Route path="/gabs/:level" element={<Gabs setUser={setUser} user={user} mgUserId={mgUserId}/>} />
+            <Route path="/submit/" element={<Submit />} />
             <Route path="/login" element={<Navigate to="/home" />} />
           </>
-            :
+
+          : // User doesn't exist
+
           <>
             <Route path="/" element={<Navigate to="/login" />} />
             <Route path="/home" element={<Navigate to="/login" />} />
-            <Route path="/login" element={<Login setUser={setUser} user={user}/>} />
-            <Route path="/*" element={<Navigate to="/login"/>} />
+            <Route path="/login" element={<Login setUser={setUser} user={user} />} />
+            <Route path="/*" element={<Navigate to="/login" />} />
           </>
         }
 
       </Routes>
-      <Footer user={user}/>
+      <Footer user={user} setUser={setUser}/>
     </BrowserRouter>
   )};
 

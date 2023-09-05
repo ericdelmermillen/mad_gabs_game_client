@@ -13,16 +13,20 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
 
   const location = useLocation();
 
+  const handlePleaseFinishTutorial = () => {
+    return toast("🙄 Please finish the tutorial...");
+  }
+  
   const handleAlreadyOnHome = () => {
-      return toast("🙄 Already on Home...");
+    return toast("🙄 Already on Home...");
   }
   
   const handlePleaseLogin = () => {
-      return toast("🙄 Please Login to Play...");
+    return toast("🙄 Please Login to Continue...");
   }
   
   const handleAlreadyOnLogin = () => {
-      return toast("🙄 Already on Login Page...");
+    return toast("🙄 Already on Login Page...");
   }
   
 
@@ -36,9 +40,20 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
       {user ? (
 
       <>
-        <p className="navBar__userName">Username : {user.userName}</p>
 
-        {location.pathname.includes('home') 
+        {user.userName 
+
+          ?
+
+          <p className="navBar__userName">Username : {user.userName}</p>
+          
+          :
+        
+          <p className="navBar__userName">Username : Not Set</p>
+          
+        }
+
+        {user.userName && location.pathname.includes('home')
 
           ? 
 
@@ -46,15 +61,29 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
             onClick={handleAlreadyOnHome}>
             <img className="navBar__logo-img" src={logo} alt="Logo"/>
           </Link>
-        
-          :
-        
+
+      
+          : location.pathname.includes('welcome')?
+              
+          <Link className="navBar__logo" 
+            onClick={handlePleaseFinishTutorial}>
+            <img className="navBar__logo-img" src={logo} alt="Logo"/>
+          </Link>
+          
+          : 
+
           <Link className="navBar__logo" to="/home">
             <img className="navBar__logo-img" src={logo} alt="Logo"/>
           </Link>
-        }
+    }
+
 
         <ul className="navBar__actions">
+        
+        {user.userName 
+
+          ?
+
           <li 
             className="navBar__action--submit" 
             onClick={() => setShowSubmitGab(!showSubmitGab)}>
@@ -65,6 +94,20 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
             />
               Submit
           </li>
+
+          :
+
+          <li 
+            className="navBar__action--submit" 
+            onClick={() => handlePleaseFinishTutorial(!showSubmitGab)}>
+
+            <img className="navBar__submit-icon" 
+              src={submit} 
+              alt="submit icon"
+            />
+              Submit!
+          </li>
+        }
 
           <li 
             className="navBar__action--logout" onClick={logout}>
@@ -105,7 +148,7 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
             <img 
               className="navBar__login-icon" 
               src={power} 
-              alt="logout icon"
+              alt="login icon"
             />
               Login
           </li>
