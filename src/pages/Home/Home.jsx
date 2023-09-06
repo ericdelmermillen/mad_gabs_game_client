@@ -1,7 +1,7 @@
 import "./Home.scss";
 import logo from "../../assets/logo/logo.svg";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSpeechRecognition } from 'react-speech-recognition';
 import SubmitGab from "../../components/SubmitGab/SubmitGab";
@@ -10,7 +10,7 @@ import HowToPlay from "../../components/HowToPlay/HowToPlay";
 import { Flip, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Home = () => {
+const Home = ({setHomePath}) => {
   const { browserSupportsSpeechRecognition } = useSpeechRecognition();
 
   const [level, setLevel] = useState("");
@@ -18,6 +18,18 @@ const Home = () => {
   const [showHowToPlay, setShowHowToPlay] = useState(false);
 
   const location = useLocation();
+
+  console.log(location.pathname)
+
+  // Empty useEffect
+  useEffect(() => {
+    setHomePath(location.pathname.includes("/home"))
+    console.log(location.pathname.includes("/home"))
+    
+    // Your code goes here
+  }, []);
+
+
 
   const showToast = () => {
     toast("🙄 Please select a Level first...")

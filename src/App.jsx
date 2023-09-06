@@ -21,6 +21,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [showSubmitGab, setShowSubmitGab] = useState(false);
   const [mgUserId, setMgUserId] = useState(null);
+  const [homePath, setHomePath] = useState(true);
 
   useEffect(() => {
     const getUser = () => {
@@ -80,6 +81,13 @@ const App = () => {
         />
       }
 
+      {user && user.userName && homePath &&
+        <HamburgerMenu 
+          homePath={homePath}
+          setHomePath={setHomePath}
+        />
+      }
+
 
       <Navbar 
         className="home__navBar"
@@ -101,12 +109,21 @@ const App = () => {
             
           : user ? // user exists and has a userName
 
+          
           <>
-
+            
             <Route path="/" element={<Navigate to="/home" />} />
-            <Route path="/home" element={<Home />} />
+            <Route 
+              path="/home" 
+              element={<Home homePath={homePath} setHomePath={setHomePath}/>} 
+            />
             <Route path="/gabs" element={<Navigate to="/home" />} />
-            <Route path="/gabs/:level" element={<Gabs setUser={setUser} user={user} mgUserId={mgUserId}/>} />
+            <Route path="/gabs/:level" element={<Gabs 
+              setUser={setUser}   
+              user={user} 
+              homePath={homePath}
+              setHomePath={setHomePath}
+              mgUserId={mgUserId}/>} />
             <Route path="/submit/" element={<Submit />} />
             <Route path="/login" element={<Navigate to="/home" />} />
           </>
