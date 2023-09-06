@@ -2,18 +2,26 @@ import "./Gabs.scss";
 
 import Gab from '../../components/Gab/Gab';
 import Timer from '../../components/Timer/Timer';
-import { Link } from 'react-router-dom';
+import { Link, useLocation  } from 'react-router-dom';
 
 
 import logo from "../../assets/logo/logo.svg";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const Gabs = ({ user, setUser, mgUserId }) => {
+
+const Gabs = ({ user, setUser, mgUserId, setHomePath}) => {
   const [gabIsReady, setGabIsReady] = useState(false);
   const [isTimeElapsed, setIsTimeElapsed] = useState(false);
 
+  const location = useLocation();
+
   const duration = 60000;
+
+  useEffect(() => {
+    setHomePath(location.pathname.includes("/home"))
+    
+  }, []);
 
   return (
     <div className="gabs">
