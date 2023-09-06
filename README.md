@@ -1,92 +1,122 @@
-# Getting Started with Create React App
+Mad Gabs Interactive Voice to Text Game
+Project Overview
+Description
+The "Mad Gabs Interactive Voice to Text Game" is a web application that brings a new twist to the classic word game, "Mad Gabs." It incorporates the Web Speech API to add interactivity, making it a fun and engaging experience for users. The game focuses on helping both native and non-native English speakers recognize common phrases by sound rather than spelling.
+# Mad Gabs Speech-toText-Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A brief description of what this project does and who it's for
 
-## Available Scripts
+# Mad Gabs Interactive Voice to Text Game
 
-In the project directory, you can run:
+## Project Overview
 
-### `npm start`
+### Description
+The "Mad Gabs Interactive Voice to Text Game" is a web application that brings a new twist to the classic word game, "Mad Gabs." It incorporates the Web Speech API to add interactivity, making it a fun and engaging experience for users. The game focuses on helping both native and non-native English speakers recognize common phrases by sound rather than spelling.## API Reference
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### End-Point Descriptions
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-// google res.user:
-/*  
-<!-- 
-
-Google auth response
-{
-  message: "successfull",
-  success: true,
-  user: {
+- **HTTP POST - /login**
+  - **Description**: This endpoint allows users to log in to the Mad Gabs game.
+  - **Response Format**:
+    ```json
     {
-      id: '105807361221685176765', 
-      displayName: 'Eric Millen', 
-      name: {
-        familyName: 'Millen', 
-        givenName: 'Eric'
-      },
-      photos: [], 
-      provider: 'google',
-  }
-}
+      "success": true,
+      "message": "Login successful",
+      "user": {
+        "mgUserId": 26,
+        "totalPoints": 0,
+        "userName": null,
+        "ranking": {
+          "userRank": 26,
+          "totalPlayers": 26
+        }
+      }
+    }
+    ```
 
-*/ -->
+- **HTTP POST - /signup**
+  - **Description**: Users can create a new account through this endpoint.
+  - **Response Format**:
+    ```json
+    {
+      "success": true,
+      "message": "User created successfully",
+      "user": {
+        "mgUserId": 26,
+        "userName": null,
+        "email": "email@email.com",
+        "password": "12345678",
+        "googleId": null,
+        "facebookId": null,
+        "totalPoints": 0
+      }
+    }
+    ```
+
+- **HTTP GET - /easy**
+  - **Description**: Retrieve a random Mad Gab with an easy difficulty level.
+  - **Response Format**:
+    ```json
+    {
+      "id": 7,
+      "question": "Faye Stew Phase",
+      "answer": "face to face",
+      "level": "easy"
+    }
+    ```
+
+- **HTTP GET - /medium**
+  - **Description**: Retrieve a random Mad Gab with a medium difficulty level.
+  - **Response Format**:
+    ```json
+    {
+      "id": 7,
+      "question": "Faye Stew Phase",
+      "answer": "face to face",
+      "level": "medium"
+    }
+    ```
+
+- **HTTP GET - /hard**
+  - **Description**: Retrieve a random Mad Gab with a hard difficulty level.
+  - **Response Format**:
+    ```json
+    {
+      "id": 7,
+      "question": "Faye Stew Phase",
+      "answer": "face to face",
+      "level": "hard"
+    }
+    ```
+
+- **HTTP POST -/submit**
+  - **Description**: Allows users to submit suggestions for new questions.
+  - **Response Format**:
+    ```json
+    {
+      "message": "Thanks for the suggested Gab!"
+    }
+    ```
+
+### External APIs
+
+None: Opening Window/Tab for user to log in via Google SSO.
+
+### Database Structure
+
+The project uses a database with two tables: Users and Gabs.
+
+### Authentication/Authorization and Security
+
+- Integration of social login with Google and Google SSO.
+- OAuth2 used as the authorization framework to allow users to grant limited access to their accounts on social platforms.
+- Users are redirected to the respective social provider's login page for consent to access basic profile information.
+## Appendix
+
+Any additional information goes here
+
+
+## Authors
+
+- [@ericdelmermillen](https://github.com/ericdelmermillen)
+

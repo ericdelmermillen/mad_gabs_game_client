@@ -24,11 +24,11 @@ const Login = ({ setUser, user }) => {
   const handleEmailLogin = async (event) => {
     event.preventDefault();
 
-    console.log(email, " ", password)
+    // console.log(email, " ", password)
 
     if (email === "" || password === "") {
       toast.error("🙄 All fields are required...");
-      return;
+
     } 
       
     try {
@@ -180,19 +180,19 @@ const Login = ({ setUser, user }) => {
 
         </div>
         <ToastContainer 
-            autoClose={2000}
-            closeOnClick
-            draggable
-            hideProgressBar={true}
-            newestOnTop={false}
-            pauseOnFocusLoss={false}
-            pauseOnHover={false}
-            position="bottom-center"
-            theme="light"
-            className="login__toast"
-            bodyStyle={{color: "#333"}}
-            transition={Flip}
-          />
+          autoClose={2000}
+          closeOnClick
+          draggable
+          hideProgressBar={true}
+          newestOnTop={false}
+          pauseOnFocusLoss={false}
+          pauseOnHover={false}
+          position="bottom-center"
+          theme="light"
+          className="login__toast"
+          bodyStyle={{color: "#333"}}
+          transition={Flip}
+        />
 
       </div>
     </div>

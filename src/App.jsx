@@ -68,10 +68,10 @@ const App = () => {
   }
 
   return (
+    
+    
     <BrowserRouter>
-      
-      <HamburgerMenu />
-
+    
       {showSubmitGab && 
 
         <SubmitGab 
@@ -94,6 +94,7 @@ const App = () => {
 
           ?
             <>
+
               <Route path="/*" element={<Navigate to="/welcome" />} />
               <Route path="/welcome" element={<Welcome setUser={setUser} mgUserId={mgUserId} />} />
             </>
@@ -101,6 +102,7 @@ const App = () => {
           : user ? // user exists and has a userName
 
           <>
+
             <Route path="/" element={<Navigate to="/home" />} />
             <Route path="/home" element={<Home />} />
             <Route path="/gabs" element={<Navigate to="/home" />} />

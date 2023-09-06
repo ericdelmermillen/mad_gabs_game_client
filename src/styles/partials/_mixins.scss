@@ -21,7 +21,6 @@
   font-size: 0.75rem;
   height: 2.5rem;
   position: relative;
-  width: 100%;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -57,8 +56,21 @@
 @mixin button-container {
   position: absolute;
   left: 50%;
+  display: flex;
+  justify-content: center;
   transform: translateX(-50%);
   bottom: 2rem;
+  width: 10rem;
+}
+
+@mixin double-button-container {
+  position: absolute;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  transform: translateX(-50%);
+  bottom: 2rem;
+  width: 10rem;
 }
 
 

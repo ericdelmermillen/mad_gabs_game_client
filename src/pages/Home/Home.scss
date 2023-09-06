@@ -41,13 +41,11 @@
     text-decoration: underline;
     margin-top: 1rem;
   }
-
+  
   .button {
   
     &__container {
-      display: flex;
-      margin-top: 3rem;
-      min-width: 8rem;
+      @include button-container;
       
       @media (min-width: 768px) {
   

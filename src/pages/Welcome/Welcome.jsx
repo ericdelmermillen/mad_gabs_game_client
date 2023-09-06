@@ -8,17 +8,13 @@ import 'react-toastify/dist/ReactToastify.css';
 const Welcome = ({ setUser, user, mgUserId }) => {
   const [userName, setUserName] = useState("");
 
-
   const navigate = useNavigate();  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (userName === "") {
-      // toast.error("🙄 A Username is required...");
-      toast.error("🙄 A Username is required...", {
-        toastId: "usernameIncomplete-toast"
-      });
+      toast.error("🙄 A Username is required...", {toastId: "usernameIncomplete-toast"});
 
       return;
     } 
@@ -29,12 +25,9 @@ const Welcome = ({ setUser, user, mgUserId }) => {
         userName: userName,
     });
 
-      // toast.success(`🤓 Welcome aboard ${userName}!`);
-
       toast.success(`🤓 Welcome aboard ${userName}!`, {
         toastId: "welcome-toast"
       });
-
 
 
       setUser(response.data.user);

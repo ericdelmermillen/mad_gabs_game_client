@@ -30,7 +30,7 @@
   
   .button {
     &__container {
-      @include button-container;
+      @include double-button-container;
       display: flex;
     }
     

@@ -7,7 +7,7 @@ import { useSpeechRecognition } from 'react-speech-recognition';
 import SubmitGab from "../../components/SubmitGab/SubmitGab";
 import HowToPlay from "../../components/HowToPlay/HowToPlay";
 
-import { Flip, ToastContainer, Zoom, toast } from 'react-toastify';
+import { Flip, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Home = () => {
@@ -34,16 +34,11 @@ const Home = () => {
   return (
       <div className="home">
 
-        <div className="home__card">
-          
-        </div>
-        
-
         <img 
           className="home__logo" 
           src={logo} 
           alt="Logo"
-        />
+          />
         
 
         {/* <img 
@@ -54,19 +49,19 @@ const Home = () => {
 
         {showSubmitGab &&
           <SubmitGab
-            setShowSubmitGab={setShowSubmitGab}
+          setShowSubmitGab={setShowSubmitGab}
           />
         }
 
         {showHowToPlay && 
         
-          <HowToPlay 
-            setShowHowToPlay={setShowHowToPlay}
-            showHowToPlay={showHowToPlay}
-            
-          />
+        <HowToPlay 
+        setShowHowToPlay={setShowHowToPlay}
+        showHowToPlay={showHowToPlay}
         
-        }
+        />
+        
+      }
 
         <h2 className="home__heading">"It’s Not What You Say… <br></br>...It’s how you say it"</h2>
         <h3 className="home__sub-heading">Choose your level: </h3>
@@ -75,12 +70,12 @@ const Home = () => {
           {level === "easy" 
             ?
             <Link className="level__option--selected" 
-              onClick={() => setLevelHandler("easy")}>
+            onClick={() => setLevelHandler("easy")}>
                 <span className="">Easy</span>
             </Link>
             :
             <Link className="level__option" 
-              onClick={() => setLevelHandler("easy")}>
+            onClick={() => setLevelHandler("easy")}>
                 <span className="">Easy</span>
             </Link>
           }
@@ -93,7 +88,7 @@ const Home = () => {
             </Link>
             :
             <Link className="level__option" 
-              onClick={() => setLevelHandler("medium")}>
+            onClick={() => setLevelHandler("medium")}>
                 <span className="">Medium</span>
             </Link>
           }
@@ -101,12 +96,12 @@ const Home = () => {
           {level === "hard" 
             ?
             <Link className="level__option--selected" 
-              onClick={() => setLevelHandler("hard")}>
+            onClick={() => setLevelHandler("hard")}>
                 <span className="">Hard</span>
             </Link>
             :
             <Link className="level__option" 
-              onClick={() => setLevelHandler("hard")}>
+            onClick={() => setLevelHandler("hard")}>
                 <span className="">Hard</span>
             </Link>
           }
@@ -122,7 +117,7 @@ const Home = () => {
         <div className="button__container">
           {level !== "" ?
 
-            <Link className="button--play" 
+          <Link className="button--play" 
             to={`/gabs/${level}`}
             >
               Play
