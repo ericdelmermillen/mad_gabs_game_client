@@ -106,7 +106,9 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
         const data = response.data;
 
         setCurrentGab([[data.question], data.answer.split(" ")]);
-        setIsLoading(false);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000); 
         setGabIsReady(true);
         setStartTime(new Date().getTime());
   

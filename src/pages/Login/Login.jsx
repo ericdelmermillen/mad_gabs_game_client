@@ -176,7 +176,7 @@ const Login = ({ setUser, user }) => {
           }
 
         </div>
-        <ToastContainer 
+        {/* <ToastContainer 
           autoClose={2000}
           closeOnClick
           draggable
@@ -189,7 +189,7 @@ const Login = ({ setUser, user }) => {
           className="login__toast"
           bodyStyle={{color: "#333"}}
           transition={Flip}
-        />
+        /> */}
 
       </div>
     </div>

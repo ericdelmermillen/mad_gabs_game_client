@@ -54,6 +54,10 @@
     &--next {
       @include btn;
     }
+    &--next .disabled {
+      @include btn;
+      pointer-events: none;
+    }
   }
 }
 

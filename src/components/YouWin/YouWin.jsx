@@ -38,11 +38,11 @@ const YouWin = ({ currentGab, duration, handleNext, roundTime, user, setUser, mg
 
     getPoints(secondsRemaining)
       .then((result) => {
-        setIsLoading(false);
+          setIsLoading(false);; 
       })
       .catch((error) => {
         console.error(error);
-        setIsLoading(false);
+          setIsLoading(false);
       });
   }, [duration, roundTime]);
 

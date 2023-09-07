@@ -90,7 +90,7 @@ const SubmitGab = ({ showSubmitGab, setShowSubmitGab }) => {
         </div>
       </form>
 
-      <ToastContainer 
+      {/* <ToastContainer 
         autoClose={2000}
         closeOnClick
         draggable
@@ -103,7 +103,7 @@ const SubmitGab = ({ showSubmitGab, setShowSubmitGab }) => {
         className="not-selected__toast"
         bodyStyle={{color: "#333"}}
         transition={Flip}
-      />
+      /> */}
     </div>
     </div>
   )};

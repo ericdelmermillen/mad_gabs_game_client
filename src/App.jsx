@@ -44,14 +44,21 @@ const App = () => {
       .then((resObject) => {
         setUser(resObject.user);
         setMgUserId(resObject.user.mgUserId)
-        setIsLoading(false)
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000); 
       })
         .catch((err) => {
           console.log(err);
-          setIsLoading(false)
+          // setIsLoading(false)
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 500); 
         })
         .finally(() => {
-          setIsLoading(false); 
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 500); 
         });
       };
       getUser();

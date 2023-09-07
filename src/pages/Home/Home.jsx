@@ -18,7 +18,9 @@ const Home = () => {
   const [showHowToPlay, setShowHowToPlay] = useState(false);
 
   const showToast = () => {
-    toast("🙄 Please select a Level first...");
+    // toast("🙄 Please select a Level first...");
+        toast('🙄 Please select a Level first...', {
+        toastId: 'levelSelection',});
   }
 
   if (!browserSupportsSpeechRecognition) {
@@ -116,7 +118,7 @@ const Home = () => {
               Play
             </Link>
           }
-          <ToastContainer 
+          {/* <ToastContainer 
             autoClose={2000}
             closeOnClick
             draggable
@@ -129,7 +131,7 @@ const Home = () => {
             className="not-selected__toast"
             bodyStyle={{color: "#333"}}
             transition={Flip}
-          />
+          /> */}
 
         </div>
         </div>
