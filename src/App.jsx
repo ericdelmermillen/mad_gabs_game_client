@@ -80,6 +80,7 @@ const App = () => {
           setShowSubmitGab={setShowSubmitGab}
           user={user} 
           setUser={setUser} mgUserId={mgUserId}
+          mgUserId={mgUserId}
           /> 
         }
         

@@ -6,10 +6,8 @@ import axios from 'axios';
 
 import { useState } from "react";
 
-
 import { Flip, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 
 const Login = ({ setUser, user }) => {
 
@@ -77,7 +75,6 @@ const Login = ({ setUser, user }) => {
       <div className="login__container">
 
       <h1 className="login__title">Choose a Login Method</h1>
-      
         <div className="login__inner-container">
 
           <div className="inner-container__left">

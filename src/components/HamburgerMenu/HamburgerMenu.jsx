@@ -11,7 +11,7 @@ import { Link, navigate } from "react-router-dom";
 import close from "../../assets/icons/close.svg";
 import menuIcon from "../../assets/icons/burger.svg";
 
-function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser}) {
+function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserId}) {
 
   const [sidebar, setSidebar] = useState(false);
 
@@ -26,6 +26,13 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser}) {
     setShowSubmitGab(!showSubmitGab)
 
   };
+
+    useEffect(() => {
+      setUser(user)
+      return () => {
+      };
+    }, [user]);
+
 
   return (
     <>
@@ -71,6 +78,7 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser}) {
             <ul className="hamburgerMenu__stats">
 
               <li className="hamburgerMenu__stat">User Name: 
+              {/* {user.userName */}
               {user.userName
               
               ?
@@ -88,7 +96,7 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser}) {
                 className="hamburgerMenu__stat">
                   Global Rank: 
 
-                  {user.username 
+                  {user.ranking
                   
                   ?
                   

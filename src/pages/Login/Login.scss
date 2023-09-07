@@ -3,37 +3,28 @@
 
 .login {
   align-items: center;
-  display: flex;
+  // display: flex;
   justify-content: center;
   height: calc(100vh - 8rem);
   position: relative;
   @include page;
   height: 90vh;
-
-  &__outer-container {
-    border: 20px solid yellow!important;
-  }
-
+    
   &__inner-container {
     @include card;
-    border: 2px solid red;
+    height: 100vh;
     
     @media (min-width: 768px) {
       max-width: 80%;
       top: 3rem;
-  
     }
   }
-  
   
   &__title {
-    
-    @media (min-width: 768px) {
-
-    }
-  }
     color:#333;
     text-align: center;
+  }
+
 
   &__inner-container {
     align-items: center;
