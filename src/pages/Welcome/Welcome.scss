@@ -3,24 +3,19 @@
 
 
 .welcome {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  height: calc(100vh - 8rem);
-  position: relative;
+@include page;
 
-  @media (min-width: 768px) {
-    height: calc(100vh - (4rem + 3.5rem));
-    padding-top: 3rem;
+  &__container {
+    @include card;
+    padding-top: 1rem;
   }
+
+
 
   &__heading {
+    margin-bottom: 2rem;
+  }
 
-  }
-  
-  &__card {
-@include card;
-  }
 }
 
 .welcome-form {
@@ -47,10 +42,6 @@
 
   
   .button {
-  
-    &__container {
-      @include button-container
-    }
     
     &--submit-gab {
       @include btn;

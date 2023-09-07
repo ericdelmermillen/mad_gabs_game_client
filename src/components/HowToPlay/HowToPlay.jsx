@@ -6,6 +6,8 @@ const HowToPlay = ({setShowHowToPlay, showHowToPlay}) => {
 
 <div className="howToPlay__card">
 
+  <div className="howToPlay__container">
+
 <h1 className="howToPlay__heading">How To Play</h1>
   <p className="howToPlay__instructions">
     Mad Gabs is a reading and speaking game where you need to listen to how you sound while reading the cue phrase to figure out what the secret answer is.
@@ -22,13 +24,14 @@ const HowToPlay = ({setShowHowToPlay, showHowToPlay}) => {
 <div className="howToPlay button__container">
 
 
-  <Link className="button--home" 
+  <span className="button--home" 
     onClick={() => setShowHowToPlay(!showHowToPlay)}>
     Got it!
-  </Link>
+  </span>
 
 </div>
 
+</div>
 </div>
   )};
 

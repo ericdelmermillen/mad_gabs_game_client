@@ -8,7 +8,7 @@
 
 body {
   max-height: 100vh;
-  // overflow: hidden;
+  overflow: hidden;
 }
 
 ul {
@@ -24,4 +24,19 @@ a {
   &:active {
     color: inherit;
   } 
+}
+
+.mobile__homeButton {
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+  height: 3.5rem;
+  
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.appContainer {
+    height: calc(100vh - (4rem + 3.5rem));
 }

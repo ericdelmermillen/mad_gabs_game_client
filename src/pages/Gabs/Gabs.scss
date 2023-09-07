@@ -2,18 +2,18 @@
 @use "../../styles/partials/variables" as *;
 
 .gabs {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  height: calc(100vh - 8rem);
-  position: relative;
+  @include page;
 
+  &__container {
+    @include pageContainer;
 
-  @media (min-width: 768px) {
-    height: calc(100vh - (4rem + 3.5rem));
-    padding-top: 3rem;
-    display: block;
+    
+    @media (min-width: 768px) {
+      @include card;
+      padding-top: 1rem;
+      }
   }
+
 
   &__current-gab {
     align-items: center;
@@ -22,32 +22,38 @@
     width: 100%; 
   }
 
-  &__logo {
-    margin-bottom: 3rem;
-    width: 10rem;
+// }
 
-    @media (min-width: 768px) {
-      display: none;
+
+.timer {
+  
+    &__container {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    &__header {
+      margin-bottom: 1rem;
+    }
+
+    &__countdown {
+      margin-bottom: 1.5rem;
+      margin-top: 1rem;
     }
   }
 }
 
 
-.timer {
-  
-  &__container {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  
-  &__header {
-    margin-bottom: 1rem;
-  }
+.giveUp {
 
-  &__countdown {
-    margin-bottom: 1.5rem;
-    margin-top: 1rem;
+    &__button {
+  
+      @include btn;
+    }
+  
+    &__container {
+      @include button-container;
+    }
   }
-}

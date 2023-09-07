@@ -2,11 +2,21 @@
 @use "../../styles/partials/variables" as *;
 
 .youWin {
-  position: relative;
-
-  &__card {
+  
+    &__card {
     @include card;
+    padding-top: 1rem;
+    padding-inline: 1rem;
+  
+    @media (min-width: 768px) {
+      top: 0;
+      width: 100%;
+    }
   }
+
+&__container {
+  width: 50rem;
+}
 
   &__heading {
     margin-bottom: 1.5rem;
@@ -14,9 +24,11 @@
 
   &__question {
     margin-block: 1rem;
+    font-size: 2rem;
   }
-
+  
   &__answer {
+    font-size: 2rem;
     &--word {
       & + &.youWin__answer--word {
         margin-left: 0.5rem;
@@ -29,6 +41,7 @@
   }
   
   .button {
+
     &__container {
       @include double-button-container;
       display: flex;
@@ -36,6 +49,7 @@
     
     &--home {
       @include btn;
+      margin-right: 2rem;
     }
     &--next {
       @include btn;
@@ -44,28 +58,28 @@
 }
 
 
-.youWin__points {
-  position: relative;
+// .youWin__points {
+//   position: relative;
 
-  .loading-dots {
-    position: absolute;
-    left: 100%;
-    animation: loadingDots 1s infinite;
-    border: 2px solid red;
-  }
-}
+//   .loading-dots {
+//     position: absolute;
+//     left: 100%;
+//     animation: loadingDots 1s infinite;
+//     border: 2px solid red;
+//   }
+// }
 
-@keyframes loadingDots {
-  0%, 20% {
-    content: '.';
-  }
-  40% {
-    content: '..';
-  }
-  60% {
-    content: '...';
-  }
-  80% {
-    content: '';
-  }
-}
+// @keyframes loadingDots {
+//   0%, 20% {
+//     content: '.';
+//   }
+//   40% {
+//     content: '..';
+//   }
+//   60% {
+//     content: '...';
+//   }
+//   80% {
+//     content: '';
+//   }
+// }

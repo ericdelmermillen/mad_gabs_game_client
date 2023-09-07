@@ -5,6 +5,8 @@ const YouGiveUp = ({ handleNext }) => {
   return (
     <div className="youGiveUp__card">
 
+      <div className="youGiveUp__container">
+
       <h1 className="youGiveUp__heading">You Give Up!</h1>
 
       <p className="youGiveUp__instructions">
@@ -28,6 +30,7 @@ const YouGiveUp = ({ handleNext }) => {
           Next
         </Link>
 
+      </div>
       </div>
 
     </div>

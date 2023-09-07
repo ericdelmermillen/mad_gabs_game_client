@@ -2,10 +2,24 @@
 @use "../../styles/partials/variables" as *;
 
 .submitGab {
-  position: relative;
   
   &__card {
     @include card;
+    z-index: 2;
+    padding-inline: 1rem;
+    padding-top: 1rem;
+  }
+
+
+  &__container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+    @media (min-width: 768px) {
+      width: min(40rem, 50%);
+
+    }
   }
 
   &__heading {
@@ -58,7 +72,7 @@
   .button {
   
     &__container {
-      @include button-container;
+      @include double-button-container;
       display: flex;
       gap: 2rem;
     }

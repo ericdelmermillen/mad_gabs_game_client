@@ -7,20 +7,33 @@
   justify-content: center;
   height: calc(100vh - 8rem);
   position: relative;
+  @include page;
+  height: 90vh;
 
   &__outer-container {
+    border: 20px solid yellow!important;
+  }
+
+  &__inner-container {
     @include card;
+    border: 2px solid red;
+    
+    @media (min-width: 768px) {
+      max-width: 80%;
+      top: 3rem;
+  
+    }
   }
   
   
   &__title {
-    color:#333;
-    text-align: center;
     
     @media (min-width: 768px) {
 
     }
   }
+    color:#333;
+    text-align: center;
 
   &__inner-container {
     align-items: center;
@@ -44,8 +57,10 @@
     display: flex;
     font-weight: bold;
     margin-bottom: 20px;
+    margin-top: 2rem;
     padding: 15px 25px;
     width: 150px;
+    justify-content: center;
     
 
     @media (min-width: 768px) {
@@ -111,6 +126,7 @@
   height: 100%;
   justify-content: center;
   position: relative;
+  margin-bottom: 1rem;
 
   @media (min-width: 768px) {
 
@@ -195,6 +211,7 @@
     margin-top: 1rem;
     cursor: pointer;
     text-decoration: underline;
+    margin-bottom: 2rem;
     
     @media (min-width: 768px) {
       

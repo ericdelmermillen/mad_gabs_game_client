@@ -48,6 +48,9 @@ const YouWin = ({ currentGab, duration, handleNext, roundTime, user, setUser, mg
 
   return (
     <div className="youWin__card">
+
+      <div className="youWin__container">
+
       <h1 className="youWin__heading">You Win!</h1>
 
       <p className="youWin__question">
@@ -82,6 +85,7 @@ const YouWin = ({ currentGab, duration, handleNext, roundTime, user, setUser, mg
           Next
         </Link>
       </div>
+    </div>
     </div>
   )};
 

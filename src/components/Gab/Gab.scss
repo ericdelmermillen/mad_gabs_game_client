@@ -3,6 +3,7 @@
 
 
 .gab {
+  // background-color: red;
   height: 100%;
   width: 100%;
 
@@ -195,9 +196,41 @@
 }
 
 .giveUp {
-  @include btn;
+
+  &__button {
+    @include btn;
+  }
 
   &__container {
-    width: 8rem;
+    @include button-container;
+    bottom: 8rem;
+
+    @media (min-width: 768px) {
+      bottom: 3rem;
+    }
   }
+}
+
+ 
+.button {
+
+  &__container {
+    @include double-button-container;
+    margin-top: 2rem;
+    position: absolute; 
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 2rem;
+  }
+
+  @include double-button-container;
+  &--home {
+    @include btn;
+  }
+  
+  &--next {
+    @include btn;
+  }
+  
 }

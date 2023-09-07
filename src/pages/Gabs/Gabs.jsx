@@ -4,13 +4,12 @@ import Gab from '../../components/Gab/Gab';
 import Timer from '../../components/Timer/Timer';
 import { Link, useLocation  } from 'react-router-dom';
 
-
 import logo from "../../assets/logo/logo.svg";
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 
-const Gabs = ({ user, setUser, mgUserId, setHomePath}) => {
+const Gabs = ({ user, setUser, mgUserId }) => {
   const [gabIsReady, setGabIsReady] = useState(false);
   const [isTimeElapsed, setIsTimeElapsed] = useState(false);
 
@@ -18,21 +17,10 @@ const Gabs = ({ user, setUser, mgUserId, setHomePath}) => {
 
   const duration = 60000;
 
-  useEffect(() => {
-    setHomePath(location.pathname.includes("/home"))
-    
-  }, []);
-
   return (
     <div className="gabs">
-      
-      <Link to="/home">
-        <img 
-          className="gabs__logo" 
-          src={logo} 
-          alt="Logo"
-        />
-      </Link>
+
+      <div className="gabs__container">
 
       <div className="timer__container">
         <h2 className="timer__header">
@@ -65,7 +53,7 @@ const Gabs = ({ user, setUser, mgUserId, setHomePath}) => {
           mgUserId={mgUserId}
         />
       </div>
-      
+      </div>
     </div>
   )};
 

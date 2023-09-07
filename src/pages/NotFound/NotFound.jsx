@@ -2,9 +2,12 @@ import "./NotFound.scss"
 
 const NotFound = () => {
   return (
-    <div>
+    <div className="notFound">
+      <div className="notFound__container">
+
       <h1>Not Fount Yo!</h1>
       
+      </div>
     </div>
   );
 };

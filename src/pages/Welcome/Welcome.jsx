@@ -40,6 +40,7 @@ const Welcome = ({ setUser, user, mgUserId }) => {
 
   return (
     <div className="welcome">
+      <div className="welcome__container">
       <div className="welcome__card">
 
         <h1 className="welcome__heading">Please choose a UserName</h1>
@@ -78,6 +79,7 @@ const Welcome = ({ setUser, user, mgUserId }) => {
           bodyStyle={{color: "#333"}}
           transition={Flip}
         />
+      </div>
       </div>
     </div>
   )};

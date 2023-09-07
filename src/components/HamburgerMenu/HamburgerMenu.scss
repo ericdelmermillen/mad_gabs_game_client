@@ -1,41 +1,49 @@
 // @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
-.hamburgeMenu {
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.hamburgerMenu {
   
+  @media (min-width: 768px) {
+    display: none;
+  }
+  
+  // menu closed state
   &__menu-bars {
-    right: 2rem;
-    justify-content: flex-start;
     align-items: center;
     background: none;
     border: 2px solid #fff;
     color: #333;
     display: flex;
     font-size: 2rem;
-    position: absolute;
-    z-index: 1;
-    padding: 5px;
+    justify-content: flex-start;
     height: 40px;
+    margin-top: 0.5rem;
+    padding: 5px;
+    position: absolute;
+    right: 2rem;
     width: 40px;
-    margin-top: 2rem;
+    z-index: 1;
+  }
+  
+  &__slider {
+    background: #fff;
+    border-left: 2px solid #333;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    left: 100%;
+    margin-inline: auto;
+    position: fixed;
+    transition: 850ms;
+    top: 0;
+    width: 60%;
+    z-index: 100;
 
     @media (min-width: 768px) {
       display: none;
     }
-  }
-  
-  &__slider {
-    background-color: orange;
-    border-left: 2px solid #333;
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-    left: 100%;
-    position: fixed;
-    top: 0;
-    margin-inline: auto;
-    transition: 850ms;
-    width: 60%;
-    z-index: 2;
     
     &--active {
       left: 40%;
@@ -45,13 +53,77 @@
   
   &__x {
     background: none;
-    height: 40px;
-    width: 40px;
-    margin-top: 2rem;
-    padding: 5px;
-    display: block;
     cursor: pointer;
-    margin-right: 1rem;
+    display: block;
+    height: 40px;
+    left: calc(50% - 20px);
+    margin-top: 0.5rem;
+    padding: 5px;
+    position: absolute;
+    width: 40px;
+  }
+  
+  &__content-container {
+  margin-top: 6rem;
+  min-width: 12rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-bottom: 2rem;
   }
 }
 
+
+// .hamburgerMenu {
+  
+//   &__levels {
+//     border: 2px solid red;
+//     text-align: center;
+    
+//   }
+  
+//   &__level {
+//     margin-block: 1rem;
+//     font-size: 1.25rem;;
+    
+//   }
+// }
+
+.hamburgerMenu__play {
+  text-align: center;
+  cursor: pointer;
+  @include btn;
+  margin: 0 auto;
+}
+
+.hamburgerMenu {
+
+  &__stats {
+    width: 100%;
+  }
+
+  &__stat {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    margin-block: 1rem;
+    text-decoration: underline;
+  }
+}
+
+
+
+.hamburgerMenu__action {
+  display: flex;
+  cursor: pointer;
+  text-align: left;
+  
+  &--icon {
+    display: flex;
+    align-items: center;
+    height: 1.25rem;
+    cursor: pointer;
+    width: 50%;
+    padding-left: 20%;
+  }
+}

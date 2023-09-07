@@ -9,19 +9,19 @@ import Navbar from "./components/NavBar/Navbar";
 import HamburgerMenu from "./components/HamburgerMenu/HamburgerMenu";
 import NotFound from "../src/pages/NotFound/NotFound";
 // import Submit from "./pages/Submit/Submit";
+import logo from "../src/assets/logo/logo.svg"
 import Submit from "./pages/Submit/Submit";
 import Welcome from "./pages/Welcome/Welcome";
 import SubmitGab from "../src/components/SubmitGab/SubmitGab";
 
 import { useEffect, useState } from "react";
-import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Navigate, Routes, Route, Link } from "react-router-dom";
 
 const App = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showSubmitGab, setShowSubmitGab] = useState(false);
   const [mgUserId, setMgUserId] = useState(null);
-  const [homePath, setHomePath] = useState(true);
 
   useEffect(() => {
     const getUser = () => {
@@ -70,31 +70,41 @@ const App = () => {
 
   return (
     
-    
     <BrowserRouter>
-    
-      {showSubmitGab && 
 
-        <SubmitGab 
-          setShowSubmitGab={setShowSubmitGab}
-          showSubmitGab={showSubmitGab}
-        />
-      }
-
-      {user && user.userName && homePath &&
+      {user && 
+      
         <HamburgerMenu 
-          homePath={homePath}
-          setHomePath={setHomePath}
-        />
-      }
-
-
+          className="home__navBar"
+          showSubmitGab={showSubmitGab}
+          setShowSubmitGab={setShowSubmitGab}
+          user={user} 
+          setUser={setUser} mgUserId={mgUserId}
+          /> 
+        }
+        
+        
       <Navbar 
         className="home__navBar"
         user={user} 
         setShowSubmitGab={setShowSubmitGab}
         showSubmitGab={showSubmitGab}
-      />
+        />
+
+      <Link className="mobile__homeButton"
+      to="/home"
+      >
+        <img src={logo} alt="" />
+      </Link>
+        
+      {showSubmitGab && 
+  
+          <SubmitGab 
+            setShowSubmitGab={setShowSubmitGab}
+            showSubmitGab={showSubmitGab}
+      />}
+
+    <div className="appContainer">
 
       <Routes>
         
@@ -107,22 +117,19 @@ const App = () => {
               <Route path="/welcome" element={<Welcome setUser={setUser} mgUserId={mgUserId} />} />
             </>
             
-          : user ? // user exists and has a userName
-
+          : user ? 
           
           <>
             
             <Route path="/" element={<Navigate to="/home" />} />
             <Route 
               path="/home" 
-              element={<Home homePath={homePath} setHomePath={setHomePath}/>} 
+              element={<Home />} 
             />
             <Route path="/gabs" element={<Navigate to="/home" />} />
             <Route path="/gabs/:level" element={<Gabs 
               setUser={setUser}   
               user={user} 
-              homePath={homePath}
-              setHomePath={setHomePath}
               mgUserId={mgUserId}/>} />
             <Route path="/submit/" element={<Submit />} />
             <Route path="/login" element={<Navigate to="/home" />} />
@@ -139,6 +146,7 @@ const App = () => {
         }
 
       </Routes>
+      </div>
       <Footer user={user} setUser={setUser} mgUserId={mgUserId}/>
     </BrowserRouter>
   )};

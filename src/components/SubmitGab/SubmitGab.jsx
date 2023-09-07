@@ -23,7 +23,6 @@ const SubmitGab = ({ showSubmitGab, setShowSubmitGab }) => {
       gabAnswer: gabAnswer,
     });
       
-      console.log("Server response:", response.data);
       setShowSubmitGab(!showSubmitGab)      
       toast.success("🤓 Thanks for the Gab!");
       
@@ -34,6 +33,9 @@ const SubmitGab = ({ showSubmitGab, setShowSubmitGab }) => {
 
   return (
     <div className="submitGab__card">
+
+      <div className="submitGab__container">
+
       <h1 className="submitGab__heading">Submit a Gab</h1>
       <form onSubmit={handleSubmit} className="form">
         <label className="form__questionLabel" htmlFor="form__questionInput">
@@ -102,6 +104,7 @@ const SubmitGab = ({ showSubmitGab, setShowSubmitGab }) => {
         bodyStyle={{color: "#333"}}
         transition={Flip}
       />
+    </div>
     </div>
   )};
 

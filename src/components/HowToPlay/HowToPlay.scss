@@ -2,10 +2,30 @@
 @use "../../styles/partials/variables" as *;
 
 .howToPlay {
-  position: relative;
   
   &__card {
-  @include card
+    @include card;
+    top: 0;
+    height: 82vh;
+    width: 100%;
+    padding-top: 1rem;
+    padding-inline: 1rem;
+    
+    @media (min-width: 768px) {
+      top: 0;
+      width: 100%;
+    }
+  }
+
+
+  &__container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+    @media (min-width: 768px) {
+      width: min(50rem, 50%);
+    }
   }
 
   &__heading {
@@ -20,13 +40,6 @@
     width: 100%;
   }
 
-  &__time {
-    margin-block: 1rem;
-  }
-  
-  &__points {
-    margin-block: 1rem;
-  }
   
   .button {
     &__container {

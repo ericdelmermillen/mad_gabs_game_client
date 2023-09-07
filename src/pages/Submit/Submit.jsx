@@ -32,7 +32,10 @@ const Submit = () => {
   };
 
   return (
-    <div className="submitGab__card">
+    <div className="submit">
+
+      <div className="submit__container">
+      {/* 
       <form onSubmit={handleSubmit} className="form">
         <label className="form__questionLabel" htmlFor="form__questionInput">
           Gab Question:
@@ -81,6 +84,8 @@ const Submit = () => {
         bodyStyle={{color: "#333"}}
         transition={Flip}
       />
+    */}
+    </div> 
     </div>
   )};
 

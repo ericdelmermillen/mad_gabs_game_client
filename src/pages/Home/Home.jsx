@@ -1,8 +1,8 @@
 import "./Home.scss";
 import logo from "../../assets/logo/logo.svg";
 
-import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useSpeechRecognition } from 'react-speech-recognition';
 import SubmitGab from "../../components/SubmitGab/SubmitGab";
 import HowToPlay from "../../components/HowToPlay/HowToPlay";
@@ -10,29 +10,15 @@ import HowToPlay from "../../components/HowToPlay/HowToPlay";
 import { Flip, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Home = ({setHomePath}) => {
+const Home = () => {
   const { browserSupportsSpeechRecognition } = useSpeechRecognition();
 
   const [level, setLevel] = useState("");
   const [showSubmitGab, setShowSubmitGab] = useState(false);
   const [showHowToPlay, setShowHowToPlay] = useState(false);
 
-  const location = useLocation();
-
-  console.log(location.pathname)
-
-  // Empty useEffect
-  useEffect(() => {
-    setHomePath(location.pathname.includes("/home"))
-    console.log(location.pathname.includes("/home"))
-    
-    // Your code goes here
-  }, []);
-
-
-
   const showToast = () => {
-    toast("🙄 Please select a Level first...")
+    toast("🙄 Please select a Level first...");
   }
 
   if (!browserSupportsSpeechRecognition) {
@@ -40,24 +26,14 @@ const Home = ({setHomePath}) => {
   }
 
   const setLevelHandler = (level) => {
-      setLevel(level);
+    setLevel(level);
   }
 
   return (
       <div className="home">
 
-        <img 
-          className="home__logo" 
-          src={logo} 
-          alt="Logo"
-          />
-        
-
-        {/* <img 
-          className="hamburgerMenu" 
-          src={hamburger} 
-          alt="Logo"
-        /> */}
+        <div className="home__container">
+        <div className="home__inner-container">
 
         {showSubmitGab &&
           <SubmitGab
@@ -70,7 +46,6 @@ const Home = ({setHomePath}) => {
         <HowToPlay 
         setShowHowToPlay={setShowHowToPlay}
         showHowToPlay={showHowToPlay}
-        
         />
         
       }
@@ -157,7 +132,8 @@ const Home = ({setHomePath}) => {
           />
 
         </div>
-
+        </div>
+        </div>
       </div>
   )};
 

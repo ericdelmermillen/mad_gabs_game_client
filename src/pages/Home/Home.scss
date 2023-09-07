@@ -2,18 +2,23 @@
 @use "../../styles/partials/variables" as *;
 
 .home {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  overflow-x: hidden;
-  padding-block: 1rem;
-  position: relative;
+  @include page;
+    
+  &__container {
+    @include pageContainer;
 
-  @media (min-width: 768px) {
-    height: calc(100vh - (4rem + 3.5rem));
-    padding-top: 3rem;
-  }
+    @media (min-width: 768px) {
+      @include card;
+      }
+    }
+    
+    &__inner-container {
+      height: 100%;
+      width: 100%;
+      position: relative;
+    }
+
+
 
   &__heading {
     line-height: 2;
@@ -26,16 +31,6 @@
     width: 100%;
   }
 
-  &__logo {
-    margin-bottom: 3rem;
-    width: 10rem;
-    cursor: pointer;
-
-    @media (min-width: 768px) {
-      display: none;
-    }
-  }
-
   .howToPlay-span {
     cursor: pointer;
     text-decoration: underline;
@@ -43,13 +38,13 @@
   }
   
   .button {
-  
+
     &__container {
-      @include button-container;
-      
-      @media (min-width: 768px) {
-  
-      }
+      @include buttonContainer;
+      margin-top: 2rem;
+      position: absolute; bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
     }
     
     &--play {
@@ -60,8 +55,6 @@
         @include btn;
       }
     }
-  }
-
 
 .level__links {
   align-items: center;
@@ -70,6 +63,7 @@
   justify-content: center;
   padding: 1rem;
   width: 100%;
+  margin-bottom: 2rem;
 }
 
 .level {
@@ -84,23 +78,5 @@
   box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.3), inset 0px -2px 4px rgba(0, 0, 0, 0.2);
   display: inline-block;
   padding: 0.5rem 1.2rem;
-}
-
-.not-selected__toast {
-  margin-bottom: 25%;
-}
-
-.hamburgerMenu {
-  border: 2px solid red;
-  position: absolute;
-  right: 6rem;
-  top: 1rem;
-  // right: 0;
-
-  @media (min-width: 768px) {
-    text-align: left;
-    display: none;
-    order: 0;
-    width: 30%;
   }
 }

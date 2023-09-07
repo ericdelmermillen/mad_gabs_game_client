@@ -195,7 +195,7 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
           </span>
 
           <div className="giveUp__container">
-            <Link className="giveUp" 
+            <Link className="giveUp__button" 
               onClick={handleGiveUp} >
               Give Up
             </Link>

@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useState } from "react";
 
 
-import { Flip, ToastContainer, Zoom, toast } from 'react-toastify';
+import { Flip, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -23,8 +23,6 @@ const Login = ({ setUser, user }) => {
 
   const handleEmailLogin = async (event) => {
     event.preventDefault();
-
-    // console.log(email, " ", password)
 
     if (email === "" || password === "") {
       toast.error("🙄 All fields are required...");
@@ -76,18 +74,20 @@ const Login = ({ setUser, user }) => {
   return (
     <div className="login">
 
-      <div className="login__outer-container">
+      <div className="login__container">
 
       <h1 className="login__title">Choose a Login Method</h1>
       
         <div className="login__inner-container">
 
           <div className="inner-container__left">
-            <div className="login__button login__button--google" onClick={google}>
-              <img src={Google} alt="google icon" className="login__button-icon" />
+
+            <span className="login__button login__button--google" onClick={google}>
               Google
-            </div>
+            </span>
+
           </div>
+
           <div className="or">
             <div className="or__line" />
             <div className="or__text">OR</div>

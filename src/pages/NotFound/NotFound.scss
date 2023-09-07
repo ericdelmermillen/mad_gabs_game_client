@@ -1,2 +1,11 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
+
+.notFound {
+  @include page;
+
+  &__container {
+    @include pageContainer;
+
+  }
+}

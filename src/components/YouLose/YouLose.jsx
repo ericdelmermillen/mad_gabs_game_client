@@ -6,6 +6,7 @@ const YouLose = ({ handleNext }) => {
   return (
 
     <div className="youLose__card">
+      <div className="youLose__container">
 
       <h1 className="youLose__heading">You Lose!</h1>
 
@@ -32,6 +33,7 @@ const YouLose = ({ handleNext }) => {
 
       </div>
 
+      </div>
     </div>
 
   )};
