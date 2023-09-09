@@ -16,6 +16,7 @@ import SubmitGab from "../src/components/SubmitGab/SubmitGab";
 
 import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Routes, Route, Link } from "react-router-dom";
+import axios from "axios";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -24,19 +25,15 @@ const App = () => {
   const [mgUserId, setMgUserId] = useState(null);
 
   useEffect(() => {
+    console.log("getUser")
     const getUser = () => {
-      fetch("http://localhost:5000/auth/login/success", {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-        },
+      axios.get("http://localhost:5000/auth/login/success", {
+        withCredentials: true,
       })
       .then((response) => {
+
         if (response.status === 200) {
-          return response.json()
+          return response.data
         } else {
           throw new Error("User not found"); 
         }
@@ -44,13 +41,13 @@ const App = () => {
       .then((resObject) => {
         setUser(resObject.user);
         setMgUserId(resObject.user.mgUserId)
+        sessionStorage.setItem('token', resObject.token);
+
         setTimeout(() => {
           setIsLoading(false);
-        }, 1000); 
+        }, 500); 
       })
         .catch((err) => {
-          console.log(err);
-          // setIsLoading(false)
           setTimeout(() => {
             setIsLoading(false);
           }, 500); 
@@ -63,7 +60,6 @@ const App = () => {
       };
       getUser();
   }, []);
-
 
   useEffect(() => {
     if (user) {

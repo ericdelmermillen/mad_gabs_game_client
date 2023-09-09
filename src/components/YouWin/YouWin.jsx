@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import './YouWin.scss';
 
@@ -14,16 +15,13 @@ const YouWin = ({ currentGab, duration, handleNext, roundTime, user, setUser, mg
 
   const getPoints = async (secondsRemaining, user) => {
     try {
-      const response = await fetch('http://localhost:5000/users/post-points', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ secondsRemaining, mgUserId: mgUserId }),
+      const response = await axios.post('http://localhost:5000/users/post-points', {
+        secondsRemaining,
+        mgUserId: mgUserId,
       });
 
-      const data = await response.json();
-      // needs to update user in state for dashboard to update)
+      const data = response.data;
+
       console.log(data)
       setUser(data.user)
       return data.points;

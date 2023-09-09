@@ -99,10 +99,26 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
     }, 750);
   }
 
+  // call for random gab
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/gabs`, {params: {level: level}});
+        const token = sessionStorage.getItem('token');
+
+        console.log("from getRandomGab")
+
+        console.log("token: ", token)
+
+        if(!token) {
+          throw new Error("No token found");
+        }
+
+        const response = await axios.get(`http://localhost:5000/gabs`, {
+          params: { level: level },
+          headers: { Authorization: `Bearer ${token}`}
+          }
+        )
+
         const data = response.data;
 
         setCurrentGab([[data.question], data.answer.split(" ")]);
@@ -115,6 +131,9 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
         handleStartListening();
         setReadyForNext(false)
       } catch (error) {
+        // show toast at time of logout
+        console.log("from catch")
+        window.open("http://localhost:5000/auth/logout", "_self");
         console.error(error);
       }
     };

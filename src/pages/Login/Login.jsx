@@ -10,42 +10,44 @@ import { Flip, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = ({ setUser, user }) => {
-
-  const google = () => {
-    window.open("http://localhost:5000/auth/google", "_self");
-  };
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showLogin, setShowLogin] = useState(true);
+  
 
+  const handleGoogleLoginSignUp = () => {
+    window.open("http://localhost:5000/auth/google", "_self");
+  };
+
+
+  // email Login
   const handleEmailLogin = async (event) => {
     event.preventDefault();
 
     if (email === "" || password === "") {
       toast.error("🙄 All fields are required...");
-
     } 
       
     try {
       const response = await axios.post(`http://localhost:5000/auth/user/login`, {
-        
         email: email,
         password: password,
-    });
+    })
+    console.log("after login")
+    console.log(response.data)
+      sessionStorage.setItem('token', response.data.token);
       setUser(response.data.user);
-      
+
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
-
+  // email signup adds token to session storage
   const handleEmailSignup = async (event) => {
     event.preventDefault();
 
     console.log("from handleEmailSignup")
-    console.log(email, " ", password)
 
     if (email === "" || password === "") {
       toast.error("🙄 All fields are required...");
@@ -55,18 +57,18 @@ const Login = ({ setUser, user }) => {
       
     try {
       const response = await axios.post(`http://localhost:5000/auth/user/signup`, {
-        
         email: email,
         password: password,
     });
-      setUser(response.data.user);
-      
-      console.log("Server response:", response.data.user);
+      console.log("token: ", response.data.token);
+
+      sessionStorage.setItem('token', response.data.token);
+
+      setUser(response.data);
       
     } catch (error) {
       console.error("Error:", error);
     }
-    console.log(user)
   };
 
   return (
@@ -79,7 +81,7 @@ const Login = ({ setUser, user }) => {
 
           <div className="inner-container__left">
 
-            <span className="login__button login__button--google" onClick={google}>
+            <span className="login__button login__button--google" onClick={handleGoogleLoginSignUp}>
               Google
             </span>
 

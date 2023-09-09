@@ -21,8 +21,15 @@
   }
   
   &__title {
+
     color:#333;
     text-align: center;
+    // border: 2px solid red;
+    position: absolute;
+    top: 8rem;
+    z-index: 2;
+    left: 50%;
+    transform: translateX((-50%));
   }
 
 
