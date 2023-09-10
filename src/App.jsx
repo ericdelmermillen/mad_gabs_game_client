@@ -65,6 +65,7 @@ const App = () => {
   useEffect(() => {
     if (user) {
       setMgUserId(user.mgUserId)
+      console.log("from useEffect")
     }
   }, [user]);
 
@@ -145,7 +146,7 @@ const App = () => {
           <>
             <Route path="/" element={<Navigate to="/login" />} />
             <Route path="/home" element={<Navigate to="/login" />} />
-            <Route path="/login" element={<Login setUser={setUser} user={user} />} />
+            <Route path="/login" element={<Login setUser={setUser} />} />
             <Route path="/*" element={<Navigate to="/login" />} />
           </>
         }

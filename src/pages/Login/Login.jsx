@@ -9,7 +9,7 @@ import { useState } from "react";
 import { Flip, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Login = ({ setUser, user }) => {
+const Login = ({ setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showLogin, setShowLogin] = useState(true);
@@ -63,8 +63,9 @@ const Login = ({ setUser, user }) => {
       console.log("token: ", response.data.token);
 
       sessionStorage.setItem('token', response.data.token);
+      console.log("response.data.user: ", response.data.user)
 
-      setUser(response.data);
+      setUser(response.data.user);
       
     } catch (error) {
       console.error("Error:", error);

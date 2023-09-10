@@ -5,8 +5,12 @@ import { Flip, ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 
-const Welcome = ({ setUser, user, mgUserId }) => {
+const Welcome = ({ setUser, mgUserId }) => {
   const [userName, setUserName] = useState("");
+
+  // mgUserId = 13;
+  // console.log("user.mgUserId:", user.mgUserId)
+  console.log("mgUserId: ", mgUserId)
 
   const navigate = useNavigate();  
 
