@@ -61,6 +61,7 @@ const App = () => {
       getUser();
   }, []);
 
+
   useEffect(() => {
     if (user) {
       setMgUserId(user.mgUserId)
@@ -82,7 +83,7 @@ const App = () => {
           showSubmitGab={showSubmitGab}
           setShowSubmitGab={setShowSubmitGab}
           user={user} 
-          setUser={setUser} mgUserId={mgUserId}
+          setUser={setUser} 
           mgUserId={mgUserId}
           /> 
         }

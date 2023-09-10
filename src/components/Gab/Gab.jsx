@@ -79,7 +79,6 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
 
   const handleYouWin = () => {
     setRoundOver(true);
-
     handleStopListening();  
 
     setTimeout(() => {
@@ -90,7 +89,6 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
 
   const handleGiveUp = () => {
     setRoundOver(true);
-
     handleStopListening();  
 
     setTimeout(() => {
@@ -104,10 +102,6 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
     const fetchData = async () => {
       try {
         const token = sessionStorage.getItem('token');
-
-        console.log("from getRandomGab")
-
-        console.log("token: ", token)
 
         if(!token) {
           throw new Error("No token found");

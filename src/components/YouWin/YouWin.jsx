@@ -8,24 +8,29 @@ const YouWin = ({ currentGab, duration, handleNext, roundTime, user, setUser, mg
   const [currentGabQuestion, currentGabAnswer] = currentGab;
   const msToSeconds = (ms) => Math.round(ms / 100) / 10;
 
-  console.log(user)
-
   const [isLoading, setIsLoading] = useState(true);
 
 
   const getPoints = async (secondsRemaining, user) => {
     try {
+      const token = sessionStorage.getItem('token');
+
+      if(!token) {
+        throw new Error("No token found");
+      }
+
       const response = await axios.post('http://localhost:5000/users/post-points', {
         secondsRemaining,
         mgUserId: mgUserId,
-      });
+      }, {headers: { Authorization: `Bearer ${token}`}
+    })
 
       const data = response.data;
 
-      console.log(data)
       setUser(data.user)
       return data.points;
     } catch (error) {
+      window.open("http://localhost:5000/auth/logout", "_self");
       console.error('Error fetching points:', error);
       return null;
     }

@@ -6,7 +6,7 @@ import submit from "../../assets/icons/submit.svg";
 
 import { Link, useLocation } from "react-router-dom";
 
-import { Flip, ToastContainer, Zoom, toast } from 'react-toastify';
+import { Flip, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
@@ -14,12 +14,10 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
   const location = useLocation();
 
   const handlePleaseFinishTutorial = () => {
-    const toastId = 'toast-finish-tutorial-id'; // Replace with your desired unique ID
-    return toast("🙄 Please finish the tutorial...", { toastId });
+    return toast("🙄 Please finish the tutorial...");
   }
   
   const handleAlreadyOnHome = () => {
-    const toastId = 'already-on-home-toast-id'; 
     return toast("🙄 Already on Home...");
   }
   
@@ -30,7 +28,6 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
   const handleAlreadyOnLogin = () => {
     return toast("🙄 Already on Login Page...");
   }
-  
 
   const logout = () => {
     window.open("http://localhost:5000/auth/logout", "_self");
@@ -39,7 +36,7 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
   return (
     <div className="navBar">
 
-      {user ? (
+      {user ? 
 
       <>
 
@@ -78,7 +75,6 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
             <img className="navBar__logo-img" src={logo} alt="Logo"/>
           </Link>
     }
-
 
         <ul className="navBar__actions">
         
@@ -123,7 +119,7 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
         </ul>
         </>
 
-          ) : (
+        : 
 
       <>
 
@@ -157,24 +153,7 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
         </ul>
       </>
 
-      )}
-
-      <div className="toastBox">
-        <ToastContainer
-          autoClose={2000}
-          closeOnClick
-          draggable
-          hideProgressBar={true}
-          newestOnTop={false}
-          pauseOnFocusLoss={false}
-          pauseOnHover={false}
-          position="bottom-center"
-          theme="light"
-          className="navBar__toast"
-          bodyStyle={{color: "#333"}}
-          transition={Flip}
-        />
-      </div>
+      }
       
     </div>
   )};

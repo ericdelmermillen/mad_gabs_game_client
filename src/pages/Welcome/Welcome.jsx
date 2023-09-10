@@ -15,25 +15,31 @@ const Welcome = ({ setUser, user, mgUserId }) => {
 
     if (userName === "") {
       toast.error("🙄 A Username is required...", {toastId: "usernameIncomplete-toast"});
-
       return;
     } 
       
     try {
+      const token = sessionStorage.getItem('token');
+
+      if(!token) {
+        throw new Error("No token found");
+      }
+
       const response = await axios.post(`http://localhost:5000/users/username`, {
         mgUserId: mgUserId,
         userName: userName,
-    });
+    }, {headers: { Authorization: `Bearer ${token}`}
+  })
 
       toast.success(`🤓 Welcome aboard ${userName}!`, {
         toastId: "welcome-toast"
       });
 
-
       setUser(response.data.user);
       navigate("/home");
 
     } catch (error) {
+      window.open("http://localhost:5000/auth/logout", "_self");
       console.error("Error:", error);
     }
   };
