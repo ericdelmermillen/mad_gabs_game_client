@@ -78,6 +78,7 @@ const Login = ({ setUser }) => {
       <div className="login__container">
 
       <h1 className="login__title">Choose a Login Method</h1>
+
         <div className="login__inner-container">
 
           <div className="inner-container__left">
@@ -86,21 +87,20 @@ const Login = ({ setUser }) => {
               Google
             </span>
 
-          </div>
+          </div> 
 
           <div className="or">
-            <div className="or__line" />
+            <div className="or__line or__line--above" />
             <div className="or__text">OR</div>
-          </div>
-
-          {console.log("showLogin: ", showLogin)}
+            <div className="or__line or__line--below" />
+          </div> 
 
           { showLogin 
           
             ?
 
             <div className="inner-container__right">
-              {/* <h2>showLogin: true</h2> */}
+
               <form 
                 className="login-form" 
                 onSubmit={handleEmailLogin}>
@@ -128,18 +128,23 @@ const Login = ({ setUser }) => {
                 />
           
                 <button className="login-form__submit">
-                  Login</button>
-              </form>
+                  Login
+                </button>
+
+              </form> 
+
               <span 
                 className='signup__link'
                 onClick={() => setShowLogin(!showLogin)}>
-                  Don't have an account?</span>
+                  Don't have an account?
+              </span>
+
             </div>
 
             :
             
             <div className="inner-container__right">
-              {/* <h2>showLogin: false</h2> */}
+
               <form 
                 className="login-form" 
                 onSubmit={handleEmailSignup}>
@@ -169,32 +174,21 @@ const Login = ({ setUser }) => {
                 <button className="login-form__submit">
                   Signup</button>
               </form>
+
               <span 
                 className='signup__link'
                 onClick={() => setShowLogin(!showLogin)}>
                   Already signed up?
               </span>
+              
             </div>
 
           }
 
         </div>
-        {/* <ToastContainer 
-          autoClose={2000}
-          closeOnClick
-          draggable
-          hideProgressBar={true}
-          newestOnTop={false}
-          pauseOnFocusLoss={false}
-          pauseOnHover={false}
-          position="bottom-center"
-          theme="light"
-          className="login__toast"
-          bodyStyle={{color: "#333"}}
-          transition={Flip}
-        /> */}
 
       </div>
+
     </div>
   )};
 
