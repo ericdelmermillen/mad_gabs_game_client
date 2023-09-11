@@ -8,7 +8,6 @@ import logo from "../../assets/logo/logo.svg";
 
 import { useState } from 'react';
 
-
 const Gabs = ({ user, setUser, mgUserId }) => {
   const [gabIsReady, setGabIsReady] = useState(false);
   const [isTimeElapsed, setIsTimeElapsed] = useState(false);
