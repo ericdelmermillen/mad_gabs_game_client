@@ -1,21 +1,19 @@
 import "./Home.scss";
-import logo from "../../assets/logo/logo.svg";
+// import logo from "../../assets/logo/logo.svg";
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSpeechRecognition } from 'react-speech-recognition';
 import SubmitGab from "../../components/SubmitGab/SubmitGab";
-import HowToPlay from "../../components/HowToPlay/HowToPlay";
 
 import { Flip, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Home = () => {
+const Home = ({showHowToPlay, setShowHowToPlay}) => {
   const { browserSupportsSpeechRecognition } = useSpeechRecognition();
 
   const [level, setLevel] = useState("");
   const [showSubmitGab, setShowSubmitGab] = useState(false);
-  const [showHowToPlay, setShowHowToPlay] = useState(false);
 
   const showToast = () => {
     toast('🙄 Please select a Level first...', {
@@ -30,6 +28,8 @@ const Home = () => {
     setLevel(level);
   }
 
+  console.log("showHowToPlay from Home: ", showHowToPlay)
+
   return (
 
       <div className="home">
@@ -38,15 +38,6 @@ const Home = () => {
           <SubmitGab
           setShowSubmitGab={setShowSubmitGab}
           />
-        }
-
-        {showHowToPlay && 
-        
-        <HowToPlay 
-          setShowHowToPlay={setShowHowToPlay}
-          showHowToPlay={showHowToPlay}
-        />
-        
         }
 
         <div className="home__container">
@@ -103,7 +94,8 @@ const Home = () => {
 
           <span 
             className="howToPlay-span" 
-            onClick={() => setShowHowToPlay(!showHowToPlay)}>
+            onClick={() => setShowHowToPlay(!showHowToPlay)}
+            >
               How To Play
           </span>
 

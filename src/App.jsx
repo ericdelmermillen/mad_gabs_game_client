@@ -43,7 +43,7 @@ const App = () => {
         setUser(resObject.user);
         setMgUserId(resObject.user.mgUserId)
         sessionStorage.setItem('token', resObject.token);
-
+        
         setTimeout(() => {
           setIsLoading(false);
         }, 500); 
@@ -102,7 +102,13 @@ const App = () => {
           <img src={logo} alt="mobile home logo" />
       </Link>
 
-      {showHowToPlay && <HowToPlay />}
+      {showHowToPlay && 
+      
+        <HowToPlay 
+          showHowToPlay={showHowToPlay} 
+          setShowHowToPlay={setShowHowToPlay}
+        />
+      }
         
       {showSubmitGab && 
   
@@ -119,7 +125,6 @@ const App = () => {
 
           ?
             <>
-
               <Route path="/*" element={<Navigate to="/welcome" />} />
               <Route path="/welcome" element={<Welcome setUser={setUser} mgUserId={mgUserId} />} />
             </>
@@ -131,7 +136,7 @@ const App = () => {
             <Route path="/" element={<Navigate to="/home" />} />
             <Route 
               path="/home" 
-              element={<Home />} 
+              element={<Home showHowToPlay={showHowToPlay} setShowHowToPlay={setShowHowToPlay}/>} 
             />
             <Route path="/gabs" element={<Navigate to="/home" />} />
             <Route path="/gabs/:level" element={<Gabs 
