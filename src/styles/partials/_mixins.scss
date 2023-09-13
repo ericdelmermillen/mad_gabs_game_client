@@ -41,6 +41,26 @@
   }
 }
 
+@mixin modalContainer {
+  background: yellow;
+  border-radius: 20px;
+  flex-grow: 1;
+  height: 75vh;
+  left: 50%;
+  max-width: 50rem;
+  position: absolute;
+  padding-block: 1rem;
+  padding-inline: 2rem;
+  top: 5.2rem;
+  transform: translateX(-50%);
+  width: calc(100% - 2rem);
+  z-index: 2;
+  
+  @media (min-width: 768px) {
+    top: 5.5rem;
+  }
+}
+
 
 // 
 

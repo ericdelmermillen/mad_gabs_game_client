@@ -3,6 +3,7 @@ import "./App.scss";
 import Footer from "./components/Footer/Footer";
 import Gabs from "./pages/Gabs/Gabs";
 import Home from "./pages/Home/Home";
+import HowToPlay from "./components/HowToPlay/HowToPlay";
 import Loading from "../src/components/Loading/Loading";
 import Login from "./pages/Login/Login";
 import Navbar from "./components/NavBar/Navbar";
@@ -23,6 +24,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [showSubmitGab, setShowSubmitGab] = useState(false);
   const [mgUserId, setMgUserId] = useState(null);
+  const [showHowToPlay, setShowHowToPlay] = useState(true);
 
   useEffect(() => {
     const getUser = () => {
@@ -94,11 +96,13 @@ const App = () => {
         showSubmitGab={showSubmitGab}
         />
 
-      <Link className="mobile__homeButton"
-      to="/home"
-      >
-        <img src={logo} alt="" />
+      <Link 
+        className="mobile__homeButton"
+        to="/home">
+          <img src={logo} alt="mobile home logo" />
       </Link>
+
+      {showHowToPlay && <HowToPlay />}
         
       {showSubmitGab && 
   
