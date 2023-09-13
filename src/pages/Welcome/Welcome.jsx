@@ -1,17 +1,13 @@
-import { useState, useEffect } from "react";
 import "./Welcome.scss";
 import axios from 'axios';
+
+import { useState } from "react";
 import { Flip, ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 
 const Welcome = ({ setUser, mgUserId }) => {
   const [userName, setUserName] = useState("");
-
-  // mgUserId = 13;
-  // console.log("user.mgUserId:", user.mgUserId)
-  console.log("mgUserId: ", mgUserId)
-
   const navigate = useNavigate();  
 
   const handleSubmit = async (event) => {
@@ -51,12 +47,10 @@ const Welcome = ({ setUser, mgUserId }) => {
   return (
     <div className="welcome">
       <div className="welcome__container">
-      <div className="welcome__card">
 
         <h1 className="welcome__heading">Please choose a UserName</h1>
         <form onSubmit={handleSubmit} className="welcome-form">
           <label className="welcome-form__userNameLabel" htmlFor="welcome-form__userName">
-            Username:
           </label>
           <input
             className="welcome-form__userName-input"
@@ -67,29 +61,18 @@ const Welcome = ({ setUser, mgUserId }) => {
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
             />
+            <div className="welcome-form__info-container">
+              <p className="welcome-form__info">
+                *User names are used for the Leader Board.
+              </p>
+            </div>
 
-          <div className="button__container">
+          <div className="welcome-form__button-container">
             <button type="submit" className="button--submit-gab">
               Submit
             </button>
           </div>
         </form>
-
-        <ToastContainer 
-          autoClose={2000}
-          closeOnClick
-          draggable
-          hideProgressBar={true}
-          newestOnTop={false}
-          pauseOnFocusLoss={false}
-          pauseOnHover={false}
-          position="bottom-center"
-          theme="light"
-          className="not-selected__toast"
-          bodyStyle={{color: "#333"}}
-          transition={Flip}
-        />
-      </div>
       </div>
     </div>
   )};

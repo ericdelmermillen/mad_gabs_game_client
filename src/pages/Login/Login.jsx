@@ -33,8 +33,6 @@ const Login = ({ setUser }) => {
         email: email,
         password: password,
     })
-    console.log("after login")
-    console.log(response.data)
       sessionStorage.setItem('token', response.data.token);
       setUser(response.data.user);
 
@@ -47,8 +45,6 @@ const Login = ({ setUser }) => {
   const handleEmailSignup = async (event) => {
     event.preventDefault();
 
-    console.log("from handleEmailSignup")
-
     if (email === "" || password === "") {
       toast.error("🙄 All fields are required...");
       console.log("email or password missing")
@@ -60,11 +56,8 @@ const Login = ({ setUser }) => {
         email: email,
         password: password,
     });
-      console.log("token: ", response.data.token);
 
       sessionStorage.setItem('token', response.data.token);
-      console.log("response.data.user: ", response.data.user)
-
       setUser(response.data.user);
       
     } catch (error) {

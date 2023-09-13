@@ -4,7 +4,7 @@ import micOn from "../../assets/icons/mic_on.svg"
 import { Link } from 'react-router-dom';
 
 import axios from 'axios';
-import chevronRight from "../../assets/icons/chevron-right.svg"
+import chevronRight from "../../assets/icons/chevron-right.svg";
 
 import Loading from '../../components/Loading/Loading';
 import YouLose from '../../components/YouLose/YouLose';
@@ -16,7 +16,7 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setIsTimeElapsed, gabIsReady, user, setUser, mgUserId }) => {
+const Gab = ({ duration, isTimeElapsed, mgUserId, setGabIsReady, user, setUser }) => {
   const { level } = useParams();
   const navigate = useNavigate();
   const msToSeconds = (ms) => Math.round(ms / 100) / 10;
@@ -211,7 +211,7 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setI
 
           <div className="giveUp__container">
             <Link className="giveUp__button" 
-              onClick={handleGiveUp} >
+              onClick={handleGiveUp}>
               Give Up
             </Link>
           </div>

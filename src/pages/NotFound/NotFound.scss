@@ -6,6 +6,24 @@
 
   &__container {
     @include pageContainer;
+    align-items: center;
+    display: flex;
+    position: relative;
+  }
 
+  &__heading {
+    margin-top: 1rem;
+  }
+
+  &__sub-heading {
+    margin-top: 20%;
+  }
+
+  &__button-container {
+    @include buttonContainer;
+  }
+
+  &__home {
+    @include btn;
   }
 }

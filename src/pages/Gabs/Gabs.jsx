@@ -2,9 +2,8 @@ import "./Gabs.scss";
 
 import Gab from '../../components/Gab/Gab';
 import Timer from '../../components/Timer/Timer';
-import { Link, useLocation  } from 'react-router-dom';
-
-import logo from "../../assets/logo/logo.svg";
+// import { Link, useLocation  } from 'react-router-dom';
+import { useLocation  } from 'react-router-dom';
 
 import { useState } from 'react';
 
@@ -12,46 +11,47 @@ const Gabs = ({ user, setUser, mgUserId }) => {
   const [gabIsReady, setGabIsReady] = useState(false);
   const [isTimeElapsed, setIsTimeElapsed] = useState(false);
 
-  const location = useLocation();
-
-  const duration = 60000;
+  const duration = 600000;
 
   return (
     <div className="gabs">
 
       <div className="gabs__container">
 
-      <div className="timer__container">
-        <h2 className="timer__header">
-          Time Remaining:
-        </h2>
+        <div className="timer__container">
+          <h2 className="timer__header">
+            Time Remaining:
+          </h2>
 
-        <div className="timer__countdown">
-          {gabIsReady ? (
+          <div className="timer__countdown">
 
-            <Timer 
-            duration={duration} 
-            setIsTimeElapsed={setIsTimeElapsed}
-            className="timer__countdown"
-            />
-            ) : (
-              ' 00:00'
-          )}
+            {gabIsReady ? 
+
+              <Timer 
+                duration={duration} 
+                setIsTimeElapsed={setIsTimeElapsed}
+                className="timer__countdown"
+              />
+
+              : 
+                '00:00'
+            }
+
+          </div>
         </div>
-      </div>
 
-      <div className="gabs__current-gab">
-        <Gab
-          setGabIsReady={setGabIsReady}
-          isTimeElapsed={isTimeElapsed}
-          duration={duration}
-          setIsTimeElapsed={setIsTimeElapsed}
-          gabIsReady={gabIsReady}
-          user={user}
-          setUser={setUser}
-          mgUserId={mgUserId}
-        />
-      </div>
+        <div className="gabs__current-gab">
+          <Gab
+            duration={duration}
+            // gabIsReady={gabIsReady}
+            isTimeElapsed={isTimeElapsed}
+            mgUserId={mgUserId}
+            setGabIsReady={setGabIsReady}
+            // setIsTimeElapsed={setIsTimeElapsed}
+            setUser={setUser}
+            user={user}
+          />
+        </div>
       </div>
     </div>
   )};

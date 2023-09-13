@@ -25,7 +25,6 @@ const App = () => {
   const [mgUserId, setMgUserId] = useState(null);
 
   useEffect(() => {
-    console.log("getUser")
     const getUser = () => {
       axios.get("http://localhost:5000/auth/login/success", {
         withCredentials: true,
@@ -64,8 +63,7 @@ const App = () => {
 
   useEffect(() => {
     if (user) {
-      setMgUserId(user.mgUserId)
-      console.log("from useEffect")
+      setMgUserId(user.mgUserId);
     }
   }, [user]);
 
@@ -86,9 +84,8 @@ const App = () => {
           user={user} 
           setUser={setUser} 
           mgUserId={mgUserId}
-          /> 
-        }
-        
+        /> 
+      }
         
       <Navbar 
         className="home__navBar"
@@ -139,6 +136,12 @@ const App = () => {
               mgUserId={mgUserId}/>} />
             <Route path="/submit/" element={<Submit />} />
             <Route path="/login" element={<Navigate to="/home" />} />
+
+            <Route path="/*" element={<Navigate to="/notfound" />} />
+            <Route 
+              path="/notfound" 
+              element={<NotFound />} 
+            />
           </>
 
           : // User doesn't exist

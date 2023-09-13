@@ -6,12 +6,7 @@
 
   &__container {
     @include pageContainer;
-
-    
-    @media (min-width: 768px) {
-      @include card;
-      padding-top: 1rem;
-      }
+    position: relative;
   }
 
 
@@ -21,8 +16,7 @@
     flex-direction: column;
     width: 100%; 
   }
-
-// }
+}
 
 
 .timer {
@@ -36,6 +30,7 @@
     
     &__header {
       margin-bottom: 1rem;
+      margin-top: 1rem;
     }
 
     &__countdown {
@@ -43,7 +38,6 @@
       margin-top: 1rem;
     }
   }
-}
 
 
 .giveUp {

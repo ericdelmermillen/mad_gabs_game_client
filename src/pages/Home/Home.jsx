@@ -18,9 +18,8 @@ const Home = () => {
   const [showHowToPlay, setShowHowToPlay] = useState(false);
 
   const showToast = () => {
-    // toast("🙄 Please select a Level first...");
-        toast('🙄 Please select a Level first...', {
-        toastId: 'levelSelection',});
+    toast('🙄 Please select a Level first...', {
+    toastId: 'levelSelection',});
   }
 
   if (!browserSupportsSpeechRecognition) {
@@ -32,10 +31,8 @@ const Home = () => {
   }
 
   return (
-      <div className="home">
 
-        <div className="home__container">
-        <div className="home__inner-container">
+      <div className="home">
 
         {showSubmitGab &&
           <SubmitGab
@@ -46,97 +43,89 @@ const Home = () => {
         {showHowToPlay && 
         
         <HowToPlay 
-        setShowHowToPlay={setShowHowToPlay}
-        showHowToPlay={showHowToPlay}
+          setShowHowToPlay={setShowHowToPlay}
+          showHowToPlay={showHowToPlay}
         />
         
-      }
+        }
 
-        <h2 className="home__heading">"It’s Not What You Say… <br></br>...It’s how you say it"</h2>
-        <h3 className="home__sub-heading">Choose your level: </h3>
-        <div className="level__links">
+        <div className="home__container">
 
-          {level === "easy" 
-            ?
-            <Link className="level__option--selected" 
-            onClick={() => setLevelHandler("easy")}>
-                <span className="">Easy</span>
-            </Link>
-            :
-            <Link className="level__option" 
-            onClick={() => setLevelHandler("easy")}>
-                <span className="">Easy</span>
-            </Link>
-          }
+          <h2 className="home__heading">
+            "It’s Not What You Say… 
+            <span className="home__heading--secondLine">...It’s how you say it"</span>
+          </h2>
 
-          {level === "medium" 
-            ?
-            <Link className="level__option--selected" 
+          <h3 className="home__sub-heading">Choose your level: </h3>
+
+          <div className="level__links">
+
+            {level === "easy" 
+              ?
+              <Link className="level__option--selected" 
+              onClick={() => setLevelHandler("easy")}>
+                  <span className="">Easy</span>
+              </Link>
+              :
+              <Link className="level__option" 
+              onClick={() => setLevelHandler("easy")}>
+                  <span className="">Easy</span>
+              </Link>
+            }
+
+            {level === "medium" 
+              ?
+              <Link className="level__option--selected" 
+                onClick={() => setLevelHandler("medium")}>
+                  <span className="">Medium</span>
+              </Link>
+              :
+              <Link className="level__option" 
               onClick={() => setLevelHandler("medium")}>
-                <span className="">Medium</span>
-            </Link>
-            :
-            <Link className="level__option" 
-            onClick={() => setLevelHandler("medium")}>
-                <span className="">Medium</span>
-            </Link>
-          }
+                  <span className="">Medium</span>
+              </Link>
+            }
 
-          {level === "hard" 
-            ?
-            <Link className="level__option--selected" 
-            onClick={() => setLevelHandler("hard")}>
-                <span className="">Hard</span>
-            </Link>
-            :
-            <Link className="level__option" 
-            onClick={() => setLevelHandler("hard")}>
-                <span className="">Hard</span>
-            </Link>
-          }
+            {level === "hard" 
+              ?
+              <Link className="level__option--selected" 
+              onClick={() => setLevelHandler("hard")}>
+                  <span className="">Hard</span>
+              </Link>
+              :
+              <Link className="level__option" 
+              onClick={() => setLevelHandler("hard")}>
+                  <span className="">Hard</span>
+              </Link>
+            }
 
-        </div>
+          </div>
 
-        <span 
-          className="howToPlay-span" 
-          onClick={() => setShowHowToPlay(!showHowToPlay)}>
-            How To Play
-        </span>
+          <span 
+            className="howToPlay-span" 
+            onClick={() => setShowHowToPlay(!showHowToPlay)}>
+              How To Play
+          </span>
 
-        <div className="button__container">
-          {level !== "" ?
+          <div className="home__button-container">
+            {level !== "" ?
 
-          <Link className="button--play" 
-            to={`/gabs/${level}`}
-            >
+            <Link className="home__button--play" 
+              to={`/gabs/${level}`}>
               Play
             </Link>
-          :
-            <Link className="button--play-disabled" 
-            onClick={showToast }
-            >
-              Play
-            </Link>
-          }
-          {/* <ToastContainer 
-            autoClose={2000}
-            closeOnClick
-            draggable
-            hideProgressBar={true}
-            newestOnTop={false}
-            pauseOnFocusLoss={false}
-            pauseOnHover={false}
-            position="bottom-center"
-            theme="light"
-            className="not-selected__toast"
-            bodyStyle={{color: "#333"}}
-            transition={Flip}
-          /> */}
 
-        </div>
-        </div>
+            :
+            <Link className="home__button--play-disabled" 
+              onClick={showToast }>
+                Play
+            </Link>
+            }
+
+          </div>
         </div>
       </div>
+
   )};
 
 export default Home;
