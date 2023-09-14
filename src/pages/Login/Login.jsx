@@ -6,8 +6,7 @@ import axios from 'axios';
 
 import { useState } from "react";
 
-import { Flip, ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 const Login = ({ setUser }) => {
   const [email, setEmail] = useState("");
@@ -25,7 +24,9 @@ const Login = ({ setUser }) => {
     event.preventDefault();
 
     if (email === "" || password === "") {
+      console.log("No email or password")
       toast.error("🙄 All fields are required...");
+      return
     } 
       
     try {

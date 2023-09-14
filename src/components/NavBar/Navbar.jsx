@@ -6,27 +6,26 @@ import submit from "../../assets/icons/submit.svg";
 
 import { Link, useLocation } from "react-router-dom";
 
-import { Flip, ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
 
   const location = useLocation();
 
   const handlePleaseFinishTutorial = () => {
-    return toast("🙄 Please finish the tutorial...");
+    // return toast("🙄 Please finish the tutorial...");
   }
   
   const handleAlreadyOnHome = () => {
-    return toast("🙄 Already on Home...");
+    // return toast("🙄 Already on Home...");
   }
   
   const handlePleaseLogin = () => {
-    return toast("🙄 Please Login to Continue...");
+    toast("🙄 Please Login to Continue...");
   }
   
   const handleAlreadyOnLogin = () => {
-    return toast("🙄 Already on Login Page...");
+    toast("🙄 Already on Login Page...");
   }
 
   const logout = () => {
@@ -128,11 +127,9 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
         <Link 
           className="navBar__logo" 
           onClick={handlePleaseLogin}>
-            
             <img 
               className="navBar__logo-img" 
               src={logo} alt="Logo"/>
-
         </Link>
 
 

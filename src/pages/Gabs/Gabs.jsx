@@ -41,11 +41,9 @@ const Gabs = ({ user, setUser, mgUserId }) => {
         <div className="gabs__current-gab">
           <Gab
             duration={duration}
-            // gabIsReady={gabIsReady}
             isTimeElapsed={isTimeElapsed}
             mgUserId={mgUserId}
             setGabIsReady={setGabIsReady}
-            // setIsTimeElapsed={setIsTimeElapsed}
             setUser={setUser}
             user={user}
           />

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./Submit.scss";
 import axios from 'axios';
-import { Flip, ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { Flip, ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 const Submit = () => {
   const [gabQuestion, setGabQuestion] = useState("");
@@ -12,7 +12,7 @@ const Submit = () => {
     event.preventDefault();
 
     if (gabQuestion === "" || gabAnswer === "") {
-      toast.error("🙄 All fields are required...");
+      // toast.error("🙄 All fields are required...");
       return;
     } 
       
@@ -25,7 +25,7 @@ const Submit = () => {
       console.log("Server response:", response.data);
       // setShowSubmitGab(false)
       
-      toast.success("🤓 Thanks for the Gab!");
+      // toast.success("🤓 Thanks for the Gab!");
     } catch (error) {
       console.error("Error:", error);
     }
@@ -70,20 +70,6 @@ const Submit = () => {
         </div>
       </form>
 
-      <ToastContainer 
-        autoClose={2000}
-        closeOnClick
-        draggable
-        hideProgressBar={true}
-        newestOnTop={false}
-        pauseOnFocusLoss={false}
-        pauseOnHover={false}
-        position="bottom-center"
-        theme="light"
-        className="not-selected__toast"
-        bodyStyle={{color: "#333"}}
-        transition={Flip}
-      />
     */}
     </div> 
     </div>

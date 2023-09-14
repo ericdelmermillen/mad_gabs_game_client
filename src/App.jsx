@@ -1,5 +1,9 @@
 import "./App.scss";
 
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer } from "react-toastify/dist/components";
+
 import Footer from "./components/Footer/Footer";
 import Gabs from "./pages/Gabs/Gabs";
 import Home from "./pages/Home/Home";
@@ -28,10 +32,14 @@ const App = () => {
   const [level, setLevel] = useState("");
 
   const handleNavigateHome = () => {
-    console.log("mobile home button")
     setIsLoading(true);
     setLevel("");
     setTimeout (() => setIsLoading(false), 500)
+  }
+
+  const handlePleaseLogin = () => {
+    toast("🙄 Please login to continue...");
+
   }
 
   useEffect(() => {
@@ -82,6 +90,8 @@ const App = () => {
   }
 
   return (
+
+    <>
     
     <BrowserRouter>
 
@@ -106,12 +116,27 @@ const App = () => {
         showSubmitGab={showSubmitGab}
         />
 
+      {user 
+      
+      ?
       <Link 
         className="mobile__homeButton"
         to="/home"
         onClick={handleNavigateHome}>
           <img src={logo} alt="mobile home logo" />
       </Link>
+
+      :
+      
+      <Link 
+        className="mobile__homeButton"
+        to="/home"
+        onClick={handlePleaseLogin}>
+          <img src={logo} alt="mobile home logo" />
+      </Link>
+      
+      }
+
 
       {showHowToPlay && 
       
@@ -186,6 +211,23 @@ const App = () => {
       </div>
       <Footer user={user} setUser={setUser} mgUserId={mgUserId}/>
     </BrowserRouter>
+
+      
+    <ToastContainer
+      position="bottom-center"
+      autoClose={5000}
+      hideProgressBar={true}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss={false}
+      draggable
+      pauseOnHover={false}
+      theme="light"
+    />
+
+    </>
+
   )};
 
 export default App;

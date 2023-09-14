@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./SubmitGab.scss";
 import axios from 'axios';
-import { Flip, ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { Flip, ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 const SubmitGab = ({ showSubmitGab, setShowSubmitGab }) => {
 
@@ -13,7 +13,7 @@ const SubmitGab = ({ showSubmitGab, setShowSubmitGab }) => {
     event.preventDefault();
 
     if (gabQuestion === "" || gabAnswer === "") {
-      toast.error("🙄 All fields are required...");
+      // toast.error("🙄 All fields are required...");
       return;
     } 
       
@@ -32,7 +32,7 @@ const SubmitGab = ({ showSubmitGab, setShowSubmitGab }) => {
   }) 
     if(response.status === 201) {
       setShowSubmitGab(!showSubmitGab)      
-      toast.success("🤓 Thanks for the Gab!");
+      // toast.success("🤓 Thanks for the Gab!");
     } 
     } catch (error) {
       window.open("http://localhost:5000/auth/logout", "_self");

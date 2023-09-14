@@ -2,9 +2,9 @@ import "./Welcome.scss";
 import axios from 'axios';
 
 import { useState } from "react";
-import { Flip, ToastContainer, toast } from 'react-toastify';
+// import { Flip, ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
-import 'react-toastify/dist/ReactToastify.css';
+// import 'react-toastify/dist/ReactToastify.css';
 
 const Welcome = ({ setUser, mgUserId }) => {
   const [userName, setUserName] = useState("");
@@ -14,7 +14,7 @@ const Welcome = ({ setUser, mgUserId }) => {
     event.preventDefault();
 
     if (userName === "") {
-      toast.error("🙄 A Username is required...", {toastId: "usernameIncomplete-toast"});
+      // toast.error("🙄 A Username is required...", {toastId: "usernameIncomplete-toast"});
       return;
     } 
       
@@ -31,9 +31,9 @@ const Welcome = ({ setUser, mgUserId }) => {
     }, {headers: { Authorization: `Bearer ${token}`}
   })
 
-      toast.success(`🤓 Welcome aboard ${userName}!`, {
-        toastId: "welcome-toast"
-      });
+      // toast.success(`🤓 Welcome aboard ${userName}!`, {
+      //   toastId: "welcome-toast"
+      // });
 
       setUser(response.data.user);
       navigate("/home");

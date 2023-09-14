@@ -5,7 +5,7 @@ import power from "../../assets/icons/power.svg";
 import submit from "../../assets/icons/submit.svg";
 
 import { useState, useEffect } from "react";
-import { Link, useNavigate, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import close from "../../assets/icons/close.svg";
 import menuIcon from "../../assets/icons/burger.svg";
@@ -16,6 +16,7 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserI
 
   const showSidebar = () => setSidebar(!sidebar);
 
+
   const logout = () => {
     window.open("http://localhost:5000/auth/logout", "_self");
   };
@@ -25,13 +26,11 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserI
     setShowSubmitGab(!showSubmitGab);
   };
 
-  const navigate = useNavigate()
-
-    useEffect(() => {
-      setUser(user)
-      return () => {
-      };
-    }, [user]);
+  useEffect(() => {
+    setUser(user)
+    return () => {
+    };
+  }, [user]);
 
 
   return (

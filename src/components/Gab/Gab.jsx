@@ -202,10 +202,23 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, user
             }
           </div>
 
+          {isLoading
+          
+          ?
+          <span className="skip" onClick={() => console.log("Still loading bro")}>
+              Skip
+              <img className="skip__chevron" src={chevronRight} alt="skip icon"/>
+          </span>
+
+          :
+
           <span className="skip" onClick={handleSkip}>
               Skip
               <img className="skip__chevron" src={chevronRight} alt="skip icon"/>
           </span>
+
+          }
+
 
           <div className="giveUp__container">
             <Link className="giveUp__button" 
