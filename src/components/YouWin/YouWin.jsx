@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import './YouWin.scss';
+
 import axios from 'axios';
 
-import './YouWin.scss';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 
 const YouWin = ({ currentGab, duration, handleNext, roundTime, user, setUser, mgUserId }) => {
   const [currentGabQuestion, currentGabAnswer] = currentGab;
   const msToSeconds = (ms) => Math.round(ms / 100) / 10;
 
   const [isLoading, setIsLoading] = useState(true);
-
+  const [pointsAreReady, setPointsAreReady] = useState(false);
+  
 
   const getPoints = async (secondsRemaining, user) => {
     try {
@@ -24,10 +27,14 @@ const YouWin = ({ currentGab, duration, handleNext, roundTime, user, setUser, mg
         mgUserId: mgUserId,
       }, {headers: { Authorization: `Bearer ${token}`}
     })
-
       const data = response.data;
+      
+      setUser(data.user);
 
-      setUser(data.user)
+      setTimeout(() => {
+        setPointsAreReady(!pointsAreReady);
+      }, 500);
+
       return data.points;
     } catch (error) {
       window.open("http://localhost:5000/auth/logout", "_self");
@@ -84,9 +91,21 @@ const YouWin = ({ currentGab, duration, handleNext, roundTime, user, setUser, mg
             Home
           </Link>
 
+          {pointsAreReady 
+
+          ?
+
           <Link className="button--next" onClick={handleNext}>
             Next
           </Link>
+
+          :
+
+          <Link className="button--next" onClick={() => console.log("Hold on bro")}>
+            Next
+          </Link>
+
+          }
         </div>
       </div>
     </div>

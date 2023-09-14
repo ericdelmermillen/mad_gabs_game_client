@@ -9,7 +9,7 @@ const Gabs = ({ user, setUser, mgUserId }) => {
   const [gabIsReady, setGabIsReady] = useState(false);
   const [isTimeElapsed, setIsTimeElapsed] = useState(false);
 
-  const duration = 600000;
+  const duration = 60000;
 
   return (
     <div className="gabs">
