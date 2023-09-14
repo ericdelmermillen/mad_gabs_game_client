@@ -20,16 +20,19 @@ import SubmitGab from "../src/components/SubmitGab/SubmitGab";
 import Welcome from "./pages/Welcome/Welcome";
 
 import { useEffect, useState } from "react";
-import { BrowserRouter, Navigate, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Navigate, Routes, Route, Link, useLocation } from "react-router-dom";
 import axios from "axios";
 
 const App = () => {
+  
+  const location = useLocation();
+
   const [ isLoading, setIsLoading ] = useState(true);
   const [ mgUserId, setMgUserId ] = useState(null);
   const [ showSubmitGab, setShowSubmitGab ] = useState(false);
   const [ showHowToPlay, setShowHowToPlay ] = useState(false);
   const [ user, setUser ] = useState(null);
-  const [level, setLevel] = useState("");
+  const [ level, setLevel ] = useState("");
 
   const handleNavigateHome = () => {
     setIsLoading(true);
@@ -38,9 +41,20 @@ const App = () => {
   }
 
   const handlePleaseLogin = () => {
-    toast("🙄 Please login to continue...");
-
+    toast('🙄 Please login to continue...', {
+    toastId: 'pleaseLoginToast',});
   }
+
+  const handleEnterUsername = () => {
+    toast('🙄 Please enter Username...!', {
+    toastId: 'pleaseEnterUsernameToast',});
+  }
+
+  const handleAlreadyOnHome = () => {
+    toast('🙄 Already on Home...!', {
+    toastId: 'aleadyOnHomeToast',});
+  }
+
 
   useEffect(() => {
     const getUser = () => {
@@ -92,8 +106,8 @@ const App = () => {
   return (
 
     <>
-    
-    <BrowserRouter>
+
+      <p className="homeBoolean">Is on path: {location.pathname.includes('home') ? "true" :" false"}</p>
 
       {user && 
       
@@ -116,22 +130,36 @@ const App = () => {
         showSubmitGab={showSubmitGab}
         />
 
-      {user 
+      {user && user.userName
       
       ?
+
       <Link 
         className="mobile__homeButton"
         to="/home"
-        onClick={handleNavigateHome}>
+        onClick={location.pathname.includes('home') 
+          ? handleAlreadyOnHome
+          : handleNavigateHome
+          }>
+        {/* onClick={() => console.log("user with userName: ", user, user.userName)}> */}
+          <img src={logo} alt="mobile home logo" />
+      </Link>
+
+
+      : user && !user.userName ?
+
+      <Link 
+        className="mobile__homeButton"
+        onClick={handleEnterUsername}>
           <img src={logo} alt="mobile home logo" />
       </Link>
 
       :
-      
+
       <Link 
         className="mobile__homeButton"
-        to="/home"
         onClick={handlePleaseLogin}>
+        {/* onClick={() => console.log("no user")}> */}
           <img src={logo} alt="mobile home logo" />
       </Link>
       
@@ -155,76 +183,75 @@ const App = () => {
 
       }
 
-    <div className="appContainer">
+      <div className="appContainer">
 
-      <Routes>
-        
-        {user && !user.userName
-
-          ?
-            <>
-              <Route path="/*" element={<Navigate to="/welcome" />} />
-              <Route path="/welcome" element={<Welcome setUser={setUser} mgUserId={mgUserId} />} />
-            </>
-            
-          : user ? 
+        <Routes>
           
-          <>
+          {user && !user.userName
+
+            ?
+              <>
+                <Route path="/*" element={<Navigate to="/welcome" />} />
+                <Route path="/welcome" element={<Welcome setUser={setUser} mgUserId={mgUserId} />} />
+              </>
+              
+            : user ? 
             
-            <Route path="/" element={<Navigate to="/home" />} />
-            <Route 
-              path="/home" 
-              element={
-                <Home 
-                  showHowToPlay={showHowToPlay} setShowHowToPlay={setShowHowToPlay}
-                  level={level}
-                  setLevel={setLevel}
-                />
-              } 
-            />
-            <Route path="/gabs" element={<Navigate to="/home" />} />
-            <Route path="/gabs/:level" element={<Gabs 
-              setUser={setUser}   
-              user={user} 
-              mgUserId={mgUserId}/>} />
-            <Route path="/submit/" element={<Submit />} />
-            <Route path="/login" element={<Navigate to="/home" />} />
+            <>
+              
+              <Route path="/" element={<Navigate to="/home" />} />
+              <Route 
+                path="/home" 
+                element={
+                  <Home 
+                    showHowToPlay={showHowToPlay} setShowHowToPlay={setShowHowToPlay}
+                    level={level}
+                    setLevel={setLevel}
+                  />
+                } 
+              />
+              <Route path="/gabs" element={<Navigate to="/home" />} />
+              <Route path="/gabs/:level" element={<Gabs 
+                setUser={setUser}   
+                user={user} 
+                mgUserId={mgUserId}/>} />
+              <Route path="/submit/" element={<Submit />} />
+              <Route path="/login" element={<Navigate to="/home" />} />
 
-            <Route path="/*" element={<Navigate to="/notfound" />} />
-            <Route 
-              path="/notfound" 
-              element={<NotFound />} 
-            />
-          </>
+              <Route path="/*" element={<Navigate to="/notfound" />} />
+              <Route 
+                path="/notfound" 
+                element={<NotFound />} 
+              />
+            </>
 
-          : // User doesn't exist
+            : // User doesn't exist
 
-          <>
-            <Route path="/" element={<Navigate to="/login" />} />
-            <Route path="/home" element={<Navigate to="/login" />} />
-            <Route path="/login" element={<Login setUser={setUser} />} />
-            <Route path="/*" element={<Navigate to="/login" />} />
-          </>
-        }
+            <>
+              <Route path="/" element={<Navigate to="/login" />} />
+              <Route path="/home" element={<Navigate to="/login" />} />
+              <Route path="/login" element={<Login setUser={setUser} />} />
+              <Route path="/*" element={<Navigate to="/login" />} />
+            </>
+          }
 
-      </Routes>
+        </Routes>
       </div>
-      <Footer user={user} setUser={setUser} mgUserId={mgUserId}/>
-    </BrowserRouter>
 
-      
-    <ToastContainer
-      position="bottom-center"
-      autoClose={5000}
-      hideProgressBar={true}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss={false}
-      draggable
-      pauseOnHover={false}
-      theme="light"
-    />
+      <Footer user={user} setUser={setUser} mgUserId={mgUserId}/>
+        
+      <ToastContainer
+        position="bottom-center"
+        autoClose={3000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover={false}
+        theme="light"
+      />
 
     </>
 

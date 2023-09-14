@@ -12,12 +12,12 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
 
   const location = useLocation();
 
-  const handlePleaseFinishTutorial = () => {
-    // return toast("🙄 Please finish the tutorial...");
+  const handleEnterUsername = () => {
+    toast("🙄 Please enter a Username...");
   }
   
   const handleAlreadyOnHome = () => {
-    // return toast("🙄 Already on Home...");
+    toast("🙄 Already on Home...");
   }
   
   const handlePleaseLogin = () => {
@@ -64,7 +64,7 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
           : location.pathname.includes('welcome')?
               
           <Link className="navBar__logo" 
-            onClick={handlePleaseFinishTutorial}>
+            onClick={handleEnterUsername}>
             <img className="navBar__logo-img" src={logo} alt="Logo"/>
           </Link>
           
@@ -96,7 +96,7 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
 
           <li 
             className="navBar__action--submit" 
-            onClick={() => handlePleaseFinishTutorial(!showSubmitGab)}>
+            onClick={() => handleEnterUsername(!showSubmitGab)}>
 
             <img className="navBar__submit-icon" 
               src={submit} 

@@ -1,11 +1,11 @@
 import "./HamburgerMenu.scss";
 
-
 import power from "../../assets/icons/power.svg";
 import submit from "../../assets/icons/submit.svg";
 
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 import close from "../../assets/icons/close.svg";
 import menuIcon from "../../assets/icons/burger.svg";
@@ -16,6 +16,22 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserI
 
   const showSidebar = () => setSidebar(!sidebar);
 
+  const location = useLocation();
+
+
+  const handleEnterUsername = () => {
+    toast("🙄 Please enter a Username...");
+    
+    setTimeout(() => {
+      showSidebar();
+    }, 500)
+  }
+
+
+  const handleNoLevelSelected = () => {
+    toast('🙄 Please select a Level first...', {
+    toastId: 'noLevelSelectedToast',});
+  }
 
   const logout = () => {
     window.open("http://localhost:5000/auth/logout", "_self");
@@ -110,7 +126,15 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserI
 
             </ul>
 
-            {level !== "" ?
+            {!user.userName ?
+
+            <Link 
+              className="hamburgerMenu__play"
+              onClick={handleEnterUsername}>
+              Play
+            </Link>
+
+            : level !== "" ?
 
             <Link 
               className="hamburgerMenu__play"
@@ -123,8 +147,7 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserI
 
             <Link 
               className="hamburgerMenu__play--disabled"
-              // onClick={showSidebar}
-              // onClick={showToast }
+              onClick={handleNoLevelSelected}
               >
               Play
             </Link>
@@ -167,6 +190,10 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserI
               </li>
             </ul>
 
+            {user.userName 
+
+            ?
+
             <span 
               className="hamburgerMenu__action"
               onClick={handleHamburgerSubmit}>
@@ -177,6 +204,21 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserI
 
               Submit
             </span>
+
+            :
+
+            <span 
+              className="hamburgerMenu__action"
+              onClick={handleEnterUsername}>
+
+              <img className="hamburgerMenu__action hamburgerMenu__action--icon" 
+                src={submit} 
+                alt="submit icon"/>
+
+              Submit
+            </span>
+
+            }
 
             <span 
               className="hamburgerMenu__action"

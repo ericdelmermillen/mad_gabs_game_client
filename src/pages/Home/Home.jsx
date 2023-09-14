@@ -6,17 +6,16 @@ import { Link } from "react-router-dom";
 import { useSpeechRecognition } from 'react-speech-recognition';
 import SubmitGab from "../../components/SubmitGab/SubmitGab";
 
-// import { Flip, ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 const Home = ({ level, setLevel, showHowToPlay, setShowHowToPlay}) => {
   const { browserSupportsSpeechRecognition } = useSpeechRecognition();
   const [showSubmitGab, setShowSubmitGab] = useState(false);
 
-  // const showToast = () => {
-  //   toast('🙄 Please select a Level first...', {
-  //   toastId: 'levelSelection',});
-  // }
+  const handleNoLevelSelected = () => {
+    toast('🙄 Please select a Level first...', {
+    toastId: 'noLevelSelectedToast',});
+  }
 
   if (!browserSupportsSpeechRecognition) {
     return <span>Sorry, this browser doesn't support speech recognition.</span>;
@@ -96,6 +95,7 @@ const Home = ({ level, setLevel, showHowToPlay, setShowHowToPlay}) => {
           </span>
 
           <div className="home__button-container">
+
             {level !== "" ?
 
             <Link className="home__button--play" 
@@ -105,10 +105,10 @@ const Home = ({ level, setLevel, showHowToPlay, setShowHowToPlay}) => {
 
             :
             <Link className="home__button--play-disabled" 
-              // onClick={showToast }
-              >
+              onClick={handleNoLevelSelected }>
                 Play
             </Link>
+
             }
 
           </div>

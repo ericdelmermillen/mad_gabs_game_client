@@ -6,6 +6,7 @@
   &__container {
     @include cardShadow;
     @include modalContainer;
+    border: 2px solid red!important;
   }
 
   &__heading {
