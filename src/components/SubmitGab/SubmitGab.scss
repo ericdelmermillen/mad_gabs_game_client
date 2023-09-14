@@ -3,27 +3,13 @@
 
 .submitGab {
   
-  &__card {
-    @include card;
-    z-index: 2;
-    padding-inline: 1rem;
-    padding-top: 1rem;
-  }
-
-
   &__container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    
-    @media (min-width: 768px) {
-      width: min(40rem, 50%);
-
-    }
+    @include modalContainer;
+    @include cardShadow;
   }
 
   &__heading {
-    margin-bottom: 1.5rem;
+    @include modalHeading;
   }
 
   &__instructions {
@@ -37,6 +23,8 @@
 
 .form {
   width: 100%;
+  margin-inline: auto;
+  max-width: 35rem;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -69,20 +57,23 @@
     margin-bottom: 2rem;
   }
   
-  .button {
-  
-    &__container {
-      @include double-button-container;
+  .submitGab {
+
+    &__button-container {
+      
+      @include doubleButtonContainer;;
+      bottom: 2rem;
       display: flex;
       gap: 2rem;
+      position: absolute;
+      
+      .button--submit-cancel,
+      .button--submit-gab {
+        @include btn;
+      }
     }
-    
-    &--submit-cancel {
-      @include btn;
-    }
-    
-    &--submit-gab {
-      @include btn;
+    &__instructions {
+      text-align: center;
     }
   }
 }

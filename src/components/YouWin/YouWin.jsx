@@ -50,45 +50,45 @@ const YouWin = ({ currentGab, duration, handleNext, roundTime, user, setUser, mg
   }, [duration, roundTime]);
 
   return (
-    <div className="youWin__card">
+    <div className="youWin">
 
       <div className="youWin__container">
 
-      <h1 className="youWin__heading">You Win!</h1>
+        <h1 className="youWin__heading">You Win!</h1>
 
-      <p className="youWin__question">
-        Gab: "{`${currentGabQuestion.join(' ')}`}"
-      </p>
+        <p className="youWin__question">
+          Gab: "{`${currentGabQuestion.join(' ')}`}"
+        </p>
 
-      <p className="youWin__answer">
-        Answer: "
-        {currentGabAnswer.map((word, index) => (
-          <span
-            className="youWin__answer--word"
-            key={index}
-          >
-            {word.slice(0, 1).toUpperCase() + word.slice(1)}
-          </span>
-        ))}
-        "
-      </p>
+        <p className="youWin__answer">
+          Answer: "
+          {currentGabAnswer.map((word, index) => (
+            <span
+              className="youWin__answer--word"
+              key={index}
+            >
+              {word.slice(0, 1).toUpperCase() + word.slice(1)}
+            </span>
+          ))}
+          "
+        </p>
 
-      <p className="youWin__time">Time Elapsed: {roundTime} Seconds</p>
+        <p className="youWin__time">Time Elapsed: {roundTime} Seconds</p>
 
-      <p className="youWin__points">
-        Points Earned: {isLoading ? 'Loading...' : user.points}
-      </p>
+        <p className="youWin__points">
+          Points Earned: {isLoading ? 'Loading...' : user.points}
+        </p>
 
-      <div className="youWin button__container">
-        <Link className="button--home" to={'/'}>
-          Home
-        </Link>
+        <div className="youWin button__container">
+          <Link className="button--home" to={'/'}>
+            Home
+          </Link>
 
-        <Link className="button--next" onClick={handleNext}>
-          Next
-        </Link>
+          <Link className="button--next" onClick={handleNext}>
+            Next
+          </Link>
+        </div>
       </div>
-    </div>
     </div>
   )};
 

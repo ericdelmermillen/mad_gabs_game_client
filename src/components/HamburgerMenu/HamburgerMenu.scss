@@ -9,7 +9,6 @@
     display: none;
   }
   
-  // menu closed state
   &__menu-bars {
     align-items: center;
     background: none;
@@ -64,66 +63,82 @@
   }
   
   &__content-container {
-  margin-top: 6rem;
-  min-width: 12rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+    min-width: 12rem;
   }
-}
-
-
-// .hamburgerMenu {
   
-//   &__levels {
-//     border: 2px solid red;
-//     text-align: center;
-    
-//   }
+  &__levels {
+    text-align: center;
+  }
   
-//   &__level {
-//     margin-block: 1rem;
-//     font-size: 1.25rem;;
+  &__level-option {
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
     
-//   }
-// }
+    &:nth-of-type(2) {
+      margin-block: 0.75rem;
+    }
+  }
 
-.hamburgerMenu__play {
-  text-align: center;
-  cursor: pointer;
-  @include btn;
-  margin: 0 auto;
-}
+  &__level-option--selected {
+    @extend .hamburgerMenu__level-option;
+    border-radius: 20px;
+    box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.3), inset 0px -2px 4px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+  }
 
-.hamburgerMenu {
+  &__play {
+    text-align: center;
+    cursor: pointer;
+    @include btn;
+    margin: 0 auto;
+  }
+  
+
+  &__play--disabled {
+    text-align: center;
+    cursor: pointer;
+    @include btn;
+    margin: 0 auto;
+  }
 
   &__stats {
     width: 100%;
   }
-
+  
   &__stat {
-    cursor: pointer;
     display: flex;
     justify-content: space-between;
     margin-block: 1rem;
     text-decoration: underline;
   }
-}
-
-
-
-.hamburgerMenu__action {
-  display: flex;
-  cursor: pointer;
-  text-align: left;
   
-  &--icon {
+  &__action {
     display: flex;
-    align-items: center;
-    height: 1.25rem;
     cursor: pointer;
-    width: 50%;
-    padding-left: 20%;
+    text-align: left;
+    
+    &--icon {
+      align-items: center;
+      cursor: pointer;
+      display: flex;
+      height: 1.25rem;
+      padding-left: 20%;
+      width: 50%;
+    }
   }
 }
+
+
+
+
+
+
+  
+
+
+

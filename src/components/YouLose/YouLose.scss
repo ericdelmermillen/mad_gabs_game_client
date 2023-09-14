@@ -3,41 +3,28 @@
 
 .youLose {
 
-  &__card {
-    @include card;
-    padding-top: 1rem;
-    padding-inline: 1rem;
-
-    @media (min-width: 768px) {
-      top: 0;
-      width: 100%;
-    }
-  }
- 
-
   &__container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    
-    @media (min-width: 768px) {
-      width: min(50rem, 50%);
+    @include gabsModalContainer;
+
+    @media (max-width: 768px) {
+      @include cardShadow;
     }
   }
+
   &__heading {
-    margin-bottom: 2rem;
+    @include modalHeading;
   }
   
   .button {
 
     &__container {
-      @include double-button-container;
+      @include doubleButtonContainer;
     }
     
     &--home {
       @include btn;
-      margin-right: 2rem;
     }
+    
     &--next {
       @include btn;
     }

@@ -3,57 +3,36 @@
 
 .youGiveUp {
   
-  &__card {
-    @include card;
-    padding-top: 1rem;
-    padding-inline: 1rem;
+  &__container {
+    @include gabsModalContainer;
 
-  @media (min-width: 768px) {
-    top: 0;
-    width: 100%;
+    @media (max-width: 768px) {
+      @include cardShadow;
+    }
   }
-}
-
-&__container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  
-  @media (min-width: 768px) {
-    width: min(50rem, 50%);
-  }
-}
   
   &__heading {
-    margin-bottom: 1.5rem;
+    @include modalHeading;
+    margin-bottom: 4rem;
   }
-
+  
   &__instructions {
     text-align: left;
     line-height: 1.75rem;
     margin-bottom: 1rem;
-    display: inline-block;
+    display: block;
     width: 100%;
+    max-width: 35rem;
+    text-align: center;
+    margin-inline: auto;
   }
-
-  .button--home {
-    @include btn;
+    
+  &__button-container {
+    @include doubleButtonContainer;
   }
   
-    
-  .button {
-    &__container {
-      @include double-button-container;
-      border: 2px solid red;
-
-    }
-    
-    &--submit-cancel {
-      @include btn;
-    }
-    
-    &--submit-gab {
-      @include btn;
-    }
+  .button--home,
+  .button--next {
+    @include btn;
   }
 }

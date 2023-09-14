@@ -9,17 +9,18 @@
   }
 
   &__heading {
-    margin-bottom: 1.5rem;
-    margin-top: 1rem;
-    text-align: center;
+    @include modalHeading;
+    margin-bottom: 3rem;
   }
 
   &__instructions {
     text-align: left;
     line-height: 1.75rem;
     margin-bottom: 1rem;
-    display: inline-block;
+    display: block;
     width: 100%;
+    max-width: 30rem;
+    margin-inline: auto;
   }
 
   

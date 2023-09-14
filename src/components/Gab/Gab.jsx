@@ -4,7 +4,7 @@ import micOn from "../../assets/icons/mic_on.svg"
 import { Link } from 'react-router-dom';
 
 import axios from 'axios';
-import chevronRight from "../../assets/icons/chevron-right.svg";
+import chevronRight from "../../assets/icons/chevron-right.svg"
 
 import Loading from '../../components/Loading/Loading';
 import YouLose from '../../components/YouLose/YouLose';
@@ -16,7 +16,7 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-const Gab = ({ duration, isTimeElapsed, mgUserId, setGabIsReady, user, setUser }) => {
+const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, setIsTimeElapsed, gabIsReady, user, setUser, mgUserId }) => {
   const { level } = useParams();
   const navigate = useNavigate();
   const msToSeconds = (ms) => Math.round(ms / 100) / 10;
@@ -118,7 +118,7 @@ const Gab = ({ duration, isTimeElapsed, mgUserId, setGabIsReady, user, setUser }
         setCurrentGab([[data.question], data.answer.split(" ")]);
         setTimeout(() => {
           setIsLoading(false);
-        }, 1000); 
+        }, 500); 
         setGabIsReady(true);
         setStartTime(new Date().getTime());
   
@@ -160,18 +160,16 @@ const Gab = ({ duration, isTimeElapsed, mgUserId, setGabIsReady, user, setUser }
     return <Loading />
   } 
 
-  console.log(transcript)
-
   return (
     <div className="gab">
 
-      <h2 className="gab__current-gab">"{currentGab[0]}"</h2>
+      {currentGab[0] && <h2 className="gab__current-gab">"{currentGab[0]}"</h2>}
 
       <div className="gab__answer">
 
         <div className="answer-word__container">
           
-          {currentGab && 
+          {currentGab[1] && 
           
             currentGab[1].map((word, i) => {
               transcript.split(" ").forEach(word => alreadySaid.push(word));
@@ -211,7 +209,7 @@ const Gab = ({ duration, isTimeElapsed, mgUserId, setGabIsReady, user, setUser }
 
           <div className="giveUp__container">
             <Link className="giveUp__button" 
-              onClick={handleGiveUp}>
+              onClick={handleGiveUp} >
               Give Up
             </Link>
           </div>

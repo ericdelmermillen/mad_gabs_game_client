@@ -5,13 +5,12 @@ import power from "../../assets/icons/power.svg";
 import submit from "../../assets/icons/submit.svg";
 
 import { useState, useEffect } from "react";
-import { Link, navigate } from "react-router-dom";
-
+import { Link, useNavigate, Navigate } from "react-router-dom";
 
 import close from "../../assets/icons/close.svg";
 import menuIcon from "../../assets/icons/burger.svg";
 
-function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserId}) {
+function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserId, level, setLevel}) {
 
   const [sidebar, setSidebar] = useState(false);
 
@@ -23,9 +22,10 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserI
 
   const handleHamburgerSubmit = () => {
     showSidebar();
-    setShowSubmitGab(!showSubmitGab)
-
+    setShowSubmitGab(!showSubmitGab);
   };
+
+  const navigate = useNavigate()
 
     useEffect(() => {
       setUser(user)
@@ -59,20 +59,78 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserI
 
           <div className="hamburgerMenu__content-container">
 
-            {/* <ul className="hamburgerMenu__levels">
-              <li className="hamburgerMenu__level">Easy</li>
-              <li className="hamburgerMenu__level">Medium</li>
-              <li className="hamburgerMenu__level">Hard</li>
-            </ul> */}
+            <ul className="hamburgerMenu__levels">
+
+              {level === "easy" 
+
+              ?
+              
+              <li className=" hamburgerMenu__level-option--selected" 
+                onClick={() => setLevel("easy")}>
+                  Easy
+              </li>
+              :
+
+              <li className="hamburgerMenu__level-option" 
+                onClick={() => setLevel("easy")}>
+                  Easy
+              </li>
+              }
+             
+              {level === "medium" 
+
+              ?
+
+              <li className=" hamburgerMenu__level-option--selected" 
+                onClick={() => setLevel("medium")}>
+                  Medium
+              </li>
+              :
+
+              <li className=" hamburgerMenu__level-option" 
+                onClick={() => setLevel("medium")}>
+                  Medium
+              </li>
+            }
+             
+              {level === "hard" 
+
+              ?
+
+              <li className=" hamburgerMenu__level-option--selected" 
+                onClick={() => setLevel("hard")}>
+                  Hard
+              </li>
+              :
+
+              <li className=" hamburgerMenu__level-option" 
+                onClick={() => setLevel("hard")}>
+                  Hard
+              </li>
+            }
+
+            </ul>
+
+            {level !== "" ?
 
             <Link 
               className="hamburgerMenu__play"
-              to="/gabs"
               onClick={showSidebar}
-              >
-                Play
+              to={`/gabs/${level}`}>
+              Play
             </Link>
 
+            :
+
+            <Link 
+              className="hamburgerMenu__play--disabled"
+              // onClick={showSidebar}
+              // onClick={showToast }
+              >
+              Play
+            </Link>
+
+            }
             
 
             <ul className="hamburgerMenu__stats">
@@ -105,7 +163,6 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserI
 
                       :
                   <span className="hamburgerMenu__statSpan"> NA</span>
-
 
                   }
               </li>

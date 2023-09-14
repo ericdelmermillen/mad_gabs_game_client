@@ -41,7 +41,7 @@ const SubmitGab = ({ showSubmitGab, setShowSubmitGab }) => {
   };
 
   return (
-    <div className="submitGab__card">
+    <div className="submitGab">
 
       <div className="submitGab__container">
 
@@ -77,11 +77,7 @@ const SubmitGab = ({ showSubmitGab, setShowSubmitGab }) => {
             Think you've got a great Gab? Send it along. 
           </p>
 
-          <p className="submitGab__instructions">
-            
-          </p>
-
-          <div className="submitGab button__container">
+          <div className="submitGab__button-container">
             
             <span 
               className="button--submit-cancel"

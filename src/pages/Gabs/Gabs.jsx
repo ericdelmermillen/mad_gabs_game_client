@@ -2,8 +2,6 @@ import "./Gabs.scss";
 
 import Gab from '../../components/Gab/Gab';
 import Timer from '../../components/Timer/Timer';
-// import { Link, useLocation  } from 'react-router-dom';
-import { useLocation  } from 'react-router-dom';
 
 import { useState } from 'react';
 

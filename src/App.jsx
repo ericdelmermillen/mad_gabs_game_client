@@ -12,19 +12,27 @@ import NotFound from "../src/pages/NotFound/NotFound";
 // import Submit from "./pages/Submit/Submit";
 import logo from "../src/assets/logo/logo.svg"
 import Submit from "./pages/Submit/Submit";
-import Welcome from "./pages/Welcome/Welcome";
 import SubmitGab from "../src/components/SubmitGab/SubmitGab";
+import Welcome from "./pages/Welcome/Welcome";
 
 import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Routes, Route, Link } from "react-router-dom";
 import axios from "axios";
 
 const App = () => {
-  const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [showSubmitGab, setShowSubmitGab] = useState(false);
-  const [mgUserId, setMgUserId] = useState(null);
-  const [showHowToPlay, setShowHowToPlay] = useState(true);
+  const [ isLoading, setIsLoading ] = useState(true);
+  const [ mgUserId, setMgUserId ] = useState(null);
+  const [ showSubmitGab, setShowSubmitGab ] = useState(false);
+  const [ showHowToPlay, setShowHowToPlay ] = useState(false);
+  const [ user, setUser ] = useState(null);
+  const [level, setLevel] = useState("");
+
+  const handleNavigateHome = () => {
+    console.log("mobile home button")
+    setIsLoading(true);
+    setLevel("");
+    setTimeout (() => setIsLoading(false), 500)
+  }
 
   useEffect(() => {
     const getUser = () => {
@@ -86,6 +94,8 @@ const App = () => {
           user={user} 
           setUser={setUser} 
           mgUserId={mgUserId}
+          level={level}
+          setLevel={setLevel}
         /> 
       }
         
@@ -98,7 +108,8 @@ const App = () => {
 
       <Link 
         className="mobile__homeButton"
-        to="/home">
+        to="/home"
+        onClick={handleNavigateHome}>
           <img src={logo} alt="mobile home logo" />
       </Link>
 
@@ -112,10 +123,12 @@ const App = () => {
         
       {showSubmitGab && 
   
-          <SubmitGab 
-            setShowSubmitGab={setShowSubmitGab}
-            showSubmitGab={showSubmitGab}
-      />}
+        <SubmitGab 
+          setShowSubmitGab={setShowSubmitGab}
+          showSubmitGab={showSubmitGab}
+        />
+
+      }
 
     <div className="appContainer">
 
@@ -136,7 +149,13 @@ const App = () => {
             <Route path="/" element={<Navigate to="/home" />} />
             <Route 
               path="/home" 
-              element={<Home showHowToPlay={showHowToPlay} setShowHowToPlay={setShowHowToPlay}/>} 
+              element={
+                <Home 
+                  showHowToPlay={showHowToPlay} setShowHowToPlay={setShowHowToPlay}
+                  level={level}
+                  setLevel={setLevel}
+                />
+              } 
             />
             <Route path="/gabs" element={<Navigate to="/home" />} />
             <Route path="/gabs/:level" element={<Gabs 

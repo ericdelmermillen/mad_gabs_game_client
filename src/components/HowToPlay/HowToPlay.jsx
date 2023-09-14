@@ -10,18 +10,19 @@ const HowToPlay = ({setShowHowToPlay, showHowToPlay}) => {
 
     <div className="howToPlay__container">
 
-      <h1 className="howToPlay__heading">How To Play</h1>
+    <h1 className="howToPlay__heading">How To Play Mad Gabs</h1>
       <p className="howToPlay__instructions">
-        Mad Gabs is a reading and speaking game where you need to listen to how you sound while reading the cue phrase to figure out what the secret answer is.
+        Mad Gabs is a game where you speak a phrase to uncover a hidden answer.
       </p>
-    
+
       <p className="howToPlay__instructions">
-        In order to win a round you must say the phrase clearly enough so that the mic can hear the secret word. 
+        To win, speak clearly so the microphone can detect the secret words.
       </p>
-    
+
       <p className="howToPlay__instructions">
-        If you've got no idea what the secret phrase is just keep saying the cue in different ways until the answer words appear... or you run out of time.
+        If you're stuck, try different ways of saying the phrase until the answer is revealed or time runs out.
       </p>
+
 
       <div className="howToPlay button__container">
 

@@ -9,10 +9,8 @@ import SubmitGab from "../../components/SubmitGab/SubmitGab";
 import { Flip, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Home = ({showHowToPlay, setShowHowToPlay}) => {
+const Home = ({ level, setLevel, showHowToPlay, setShowHowToPlay}) => {
   const { browserSupportsSpeechRecognition } = useSpeechRecognition();
-
-  const [level, setLevel] = useState("");
   const [showSubmitGab, setShowSubmitGab] = useState(false);
 
   const showToast = () => {
@@ -27,8 +25,6 @@ const Home = ({showHowToPlay, setShowHowToPlay}) => {
   const setLevelHandler = (level) => {
     setLevel(level);
   }
-
-  console.log("showHowToPlay from Home: ", showHowToPlay)
 
   return (
 
@@ -55,12 +51,12 @@ const Home = ({showHowToPlay, setShowHowToPlay}) => {
               ?
               <Link className="level__option--selected" 
               onClick={() => setLevelHandler("easy")}>
-                  <span className="">Easy</span>
+                Easy
               </Link>
               :
               <Link className="level__option" 
               onClick={() => setLevelHandler("easy")}>
-                  <span className="">Easy</span>
+                Easy
               </Link>
             }
 
@@ -68,7 +64,7 @@ const Home = ({showHowToPlay, setShowHowToPlay}) => {
               ?
               <Link className="level__option--selected" 
                 onClick={() => setLevelHandler("medium")}>
-                  <span className="">Medium</span>
+                  Medium
               </Link>
               :
               <Link className="level__option" 
@@ -81,12 +77,12 @@ const Home = ({showHowToPlay, setShowHowToPlay}) => {
               ?
               <Link className="level__option--selected" 
               onClick={() => setLevelHandler("hard")}>
-                  <span className="">Hard</span>
+                Hard
               </Link>
               :
               <Link className="level__option" 
               onClick={() => setLevelHandler("hard")}>
-                  <span className="">Hard</span>
+                Hard
               </Link>
             }
 
