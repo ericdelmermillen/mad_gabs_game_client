@@ -77,9 +77,9 @@ const Login = ({ setUser }) => {
 
           <div className="inner-container__left">
 
-            <span className="login__button login__button--google" onClick={handleGoogleLoginSignUp}>
+            <button className="login__button login__button--google" onClick={handleGoogleLoginSignUp}>
               Google
-            </span>
+            </button>
 
           </div> 
 

@@ -32,12 +32,8 @@
   }
 
   &__userName-input {
-    border: 1px solid black;
-    border-radius: 4px;
-    margin-block: 1rem;
-    padding: 0.5rem 1rem;
-    width: 100%;
-    font-family: inherit;
+    @include inputStyling;
+    width: 100%; 
   }
 
   &__info-container {

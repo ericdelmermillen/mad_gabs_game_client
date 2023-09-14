@@ -148,5 +148,16 @@
 }
 
 @mixin inputStyling {
-  
+  border: 1px solid gray;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  padding: 15px 20px;
+
+  &:focus {
+    outline:  rgba(10, 10, 28, 0.9); ; 
+    // border-color: rgba(10, 10, 28, 0.9); 
+    box-shadow: 0 0 5px rgba(10, 10, 28, 0.4);
+  }
 }
