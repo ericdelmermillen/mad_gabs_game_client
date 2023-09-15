@@ -8,7 +8,7 @@ import { Link, useLocation } from "react-router-dom";
 
 import { toast } from 'react-toastify';
 
-const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
+const Navbar = ({ showSubmitGab, setShowSubmitGab, user, setLevel, setIsLoading }) => {
 
   const location = useLocation();
 
@@ -17,6 +17,7 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
   }
   
   const handleAlreadyOnHome = () => {
+    setLevel("");
     toast("🙄 Already on Home...");
   }
   
@@ -27,6 +28,15 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
   const handleAlreadyOnLogin = () => {
     toast("🙄 Already on Login Page...");
   }
+
+  const handleNavigateToHome = () => {
+    setIsLoading(true);
+    setLevel("");
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 500)
+  }
+
 
   const logout = () => {
     window.open("http://localhost:5000/auth/logout", "_self");
@@ -70,7 +80,11 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user }) => {
           
           : 
 
-          <Link className="navBar__logo" to="/home">
+          <Link 
+            className="navBar__logo" 
+            onClick={handleNavigateToHome}
+            to="/home"
+            >
             <img className="navBar__logo-img" src={logo} alt="Logo"/>
           </Link>
     }

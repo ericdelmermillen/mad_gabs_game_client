@@ -2,7 +2,6 @@ import "./App.scss";
 
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-// import { ToastContainer } from "react-toastify/dist/components";
 
 import Footer from "./components/Footer/Footer";
 import Gabs from "./pages/Gabs/Gabs";
@@ -53,6 +52,7 @@ const App = () => {
   const handleAlreadyOnHome = () => {
     toast('🙄 Already on Home...!', {
     toastId: 'aleadyOnHomeToast',});
+    setLevel("")
   }
 
 
@@ -107,8 +107,6 @@ const App = () => {
 
     <>
 
-      <p className="homeBoolean">Is on path: {location.pathname.includes('home') ? "true" :" false"}</p>
-
       {user && 
       
         <HamburgerMenu 
@@ -118,8 +116,9 @@ const App = () => {
           user={user} 
           setUser={setUser} 
           mgUserId={mgUserId}
-          level={level}
           setLevel={setLevel}
+          level={level}
+          setIsLoading={setIsLoading}
         /> 
       }
         
@@ -128,6 +127,9 @@ const App = () => {
         user={user} 
         setShowSubmitGab={setShowSubmitGab}
         showSubmitGab={showSubmitGab}
+        level={level}
+        setLevel={setLevel}
+        setIsLoading={setIsLoading}
         />
 
       {user && user.userName

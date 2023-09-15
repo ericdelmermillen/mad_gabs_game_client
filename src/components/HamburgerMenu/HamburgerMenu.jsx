@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 import close from "../../assets/icons/close.svg";
 import menuIcon from "../../assets/icons/burger.svg";
 
-function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserId, level, setLevel}) {
+function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserId, level, setLevel, setIsLoading}) {
 
   const [sidebar, setSidebar] = useState(false);
 
@@ -65,6 +65,7 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserI
         <nav className={sidebar ?     
             "hamburgerMenu__slider hamburgerMenu__slider--active" : "hamburgerMenu__slider"}>
           
+
           <img 
             src={close} 
             alt="hamburger menu close icon"
