@@ -35,13 +35,10 @@
     @include inputStyling;
     width: 100%; 
   }
-
+  
   &__info-container {
+    margin-bottom: auto;
     margin-top: 10%;
-  }
-
-  &__button-container {
-    @include buttonContainer;
   }
   
   .button {
