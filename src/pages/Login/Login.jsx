@@ -71,7 +71,7 @@ const Login = ({ setUser }) => {
 
       <div className="login__container">
 
-      <h1 className="login__title">Choose a Login Method</h1>
+      <h1 className="login__title">Choose Login Method</h1>
 
         <div className="login__inner-container">
 

@@ -4,7 +4,6 @@
 .login {
   @include page;
   
-  
   &__container {
     @include cardShadow;
     @include pageContainer;
@@ -22,9 +21,13 @@
   
   &__title {
     color:#333;
-    margin-bottom: 1rem;
+    font-size: 1.25rem;
     text-align: center;
-
+    
+    @media (min-width: 400px) {
+      font-size: 2rem;
+      margin-block: 1rem;
+    }
 
     @media (min-width: 768px) {
       // margin-bottom: 2.5rem;
@@ -154,6 +157,7 @@
   @media (min-width: 768px) {
     margin-bottom: 0;
     
+    
   }
   
   
@@ -163,10 +167,18 @@
     border: 2px solid gray;
     border-radius: 50%;
     display: flex;
+    font-size: 0.8rem;
     font-weight: bold;
     justify-content: center;
-    margin-inline: 1rem;
-    padding: 0.75rem;
+    margin-inline: 0.5rem;
+    padding: 0.5rem;
+    
+    @media (min-width: 400px) {
+      font-size: 1rem;
+      margin-inline: 1rem;
+      padding: 0.75rem;
+  
+    }
 
     @media (min-width: 768px) {
 
