@@ -44,21 +44,23 @@
 
     &__container {
       @include doubleButtonContainer;
+      border: 2px solid red;
+      // display: flex;
     }
     
     &--home {
       @include btn;
     }
-
+    
     &--next {
       @include btn;
     }
-    
     &--next .disabled {
       @include btn;
       pointer-events: none;
     }
   }
+  
 }
 
   
