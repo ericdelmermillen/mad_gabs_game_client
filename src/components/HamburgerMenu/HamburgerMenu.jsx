@@ -34,6 +34,7 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserI
   }
 
   const logout = () => {
+    sessionStorage.removeItem('token');
     window.open("http://localhost:5000/auth/logout", "_self");
   };
 

@@ -39,6 +39,7 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user, setLevel, setIsLoading 
 
 
   const logout = () => {
+    sessionStorage.removeItem('token');
     window.open("http://localhost:5000/auth/logout", "_self");
   };
 
