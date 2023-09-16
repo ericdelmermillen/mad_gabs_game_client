@@ -143,7 +143,6 @@ const App = () => {
           ? handleAlreadyOnHome
           : handleNavigateHome
           }>
-        {/* onClick={() => console.log("user with userName: ", user, user.userName)}> */}
           <img src={logo} alt="mobile home logo" />
       </Link>
 
