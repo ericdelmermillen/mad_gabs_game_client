@@ -223,14 +223,14 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, user
           }
 
 
-          <div className="giveUp__container">
+      </div>
+
+          {/* <div className="giveUp__container"> */}
             <Link className="giveUp__button" 
               onClick={handleGiveUp} >
               Give Up
             </Link>
-          </div>
-
-      </div>
+          {/* </div> */}
 
       { youWin && 
         <YouWin 

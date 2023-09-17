@@ -6,14 +6,15 @@
 
   &__container {
     @include pageContainer;
+    display: flex;
     position: relative;
   }
-
-
+  
   &__current-gab {
     align-items: center;
     display: flex;
     flex-direction: column;
+    height: 100%;
     width: 100%; 
   }
 }
@@ -29,13 +30,19 @@
     }
     
     &__header {
-      margin-bottom: 1rem;
-      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      
+      // @media (min-width: 400px) {
+      //   margin-bottom: 0.5rem;
+      // }
     }
-
+    
     &__countdown {
-      margin-bottom: 1.5rem;
-      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+
+      @media (min-width: 400px) {
+        margin-bottom: 1rem;
+      }
     }
   }
 
@@ -43,11 +50,6 @@
 .giveUp {
 
     &__button {
-  
       @include btn;
-    }
-  
-    &__container {
-      @include buttonContainer;
     }
   }
