@@ -6,14 +6,10 @@
     
   &__container {
     @include pageContainer;
-    position: relative;
   }
 
   &__heading {
-    line-height: 2;
-    text-align: center;
-    margin-bottom: 2rem;
-    margin-top: 1rem;
+    @include pageHeading;
 
     &--secondLine {
       display: block;
@@ -30,22 +26,21 @@
   .howToPlay-span {
     cursor: pointer;
     display: inline-block;
+    margin-bottom: auto;
     margin-inline: auto;
     margin-top: 1rem;
     text-decoration: underline;
-  }
-
-  &__button-container {
-    @include buttonContainer;
   }
   
   &__button {
     &--play {
       @include btn;
+      margin-inline: auto;
+      margin-top: 1rem;
     }
     
-      &--play-disabled {
-        @include btn;
+    &--play-disabled {
+        @extend .home__button--play;
       }
     }
 
