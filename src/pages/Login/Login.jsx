@@ -24,7 +24,6 @@ const Login = ({ setUser }) => {
     event.preventDefault();
 
     if (email === "" || password === "") {
-      console.log("No email or password")
       toast.error("🙄 All fields are required...");
       return
     } 
@@ -73,6 +72,7 @@ const Login = ({ setUser }) => {
       setUser(response.data.user);
       
     } catch (error) {
+      toast.error(`🙄 ${error.response.data.message}...`);
       console.error("Error:", error);
     }
   };

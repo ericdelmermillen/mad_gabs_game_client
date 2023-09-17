@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 
-const Welcome = ({ setUser, mgUserId }) => {
+const Welcome = ({ setUser, mgUserId, setLevel }) => {
   const [userName, setUserName] = useState("");
   const navigate = useNavigate();  
 
@@ -15,7 +15,12 @@ const Welcome = ({ setUser, mgUserId }) => {
     event.preventDefault();
 
     if (userName === "") {
-      toast.error("🙄 A Username is required...", {toastId: "usernameIncomplete-toast"});
+      toast.error("🙄 A Username is required...");
+      return;
+    } 
+
+    if (userName.trim(" ").length <= 2) {
+      toast.error("🙄 Username too short...");
       return;
     } 
       
@@ -32,13 +37,12 @@ const Welcome = ({ setUser, mgUserId }) => {
     }, {headers: { Authorization: `Bearer ${token}`}
   })
       toast.success(`🤓 Welcome aboard ${userName}!`);
-
       setUser(response.data.user);
+      setLevel("");
       navigate("/home");
 
     } catch (error) {
-      window.open(`${BASE_URL}auth/logout`, "_self");
-      sessionStorage.removeItem('token');
+      toast.error(`🙄 ${error.response.data.error}...`);
       console.error("Error:", error);
     }
   };

@@ -196,7 +196,7 @@ const App = () => {
             ?
               <>
                 <Route path="/*" element={<Navigate to="/welcome" />} />
-                <Route path="/welcome" element={<Welcome setUser={setUser} mgUserId={mgUserId} />} />
+                <Route path="/welcome" element={<Welcome setUser={setUser} mgUserId={mgUserId} setLevel={setLevel}/>} />
               </>
               
             : user ? 
