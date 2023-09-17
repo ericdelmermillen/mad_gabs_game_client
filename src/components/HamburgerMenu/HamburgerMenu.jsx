@@ -18,6 +18,9 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserI
 
   const location = useLocation();
 
+  const BASE_URL = 'https://mad-gabs-game-server-a3fe555ec3c0.herokuapp.com/';
+  // const BASE_URL = 'http://localhost:5000/';
+
 
   const handleEnterUsername = () => {
     toast("🙄 Please enter a Username...");
@@ -35,7 +38,7 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserI
 
   const logout = () => {
     sessionStorage.removeItem('token');
-    window.open("http://localhost:5000/auth/logout", "_self");
+    window.open(`${BASE_URL}auth/logout`, "_self");
   };
 
   const handleHamburgerSubmit = () => {

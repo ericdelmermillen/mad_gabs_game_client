@@ -33,6 +33,9 @@ const App = () => {
   const [ user, setUser ] = useState(null);
   const [ level, setLevel ] = useState("");
 
+  const BASE_URL = 'https://mad-gabs-game-server-a3fe555ec3c0.herokuapp.com/';
+  // const BASE_URL = 'http://localhost:5000/';
+
   const handleNavigateHome = () => {
     setIsLoading(true);
     setLevel("");
@@ -58,7 +61,7 @@ const App = () => {
 
   useEffect(() => {
     const getUser = () => {
-      axios.get("http://localhost:5000/auth/login/success", {
+      axios.get(`${BASE_URL}auth/login/success`, {
         withCredentials: true,
       })
       .then((response) => {
