@@ -7,14 +7,21 @@
 }
 
 body {
-  max-height: 100vh;
-  overflow: hidden;
+  // max-height: 100vh;
+  // overflow: hidden;
 }
 
-ul {
+ul,
+ol {
   padding: 0;
   margin: 0;
   list-style: none;
+
+  li {
+    a {
+      text-decoration: none;
+    }
+  }
 }
 
 a {
@@ -27,17 +34,12 @@ a {
 }
 
 .mobile__homeButton {
-  margin: 0 auto;
   display: block;
-  text-align: center;
   height: 3.5rem;
+  margin: 0 auto;
+  text-align: center;
   
   @media (min-width: 768px) {
     display: none;
   }
-}
-
-.homeBoolean {
-  position: absolute;
-  border: 2px solid red;
 }

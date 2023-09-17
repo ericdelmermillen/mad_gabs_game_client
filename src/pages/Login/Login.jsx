@@ -38,6 +38,7 @@ const Login = ({ setUser }) => {
       setUser(response.data.user);
 
     } catch (error) {
+      toast.error(`🙄 ${error.response.data.message}...`);
       console.error("Error:", error);
     }
   };
@@ -49,6 +50,16 @@ const Login = ({ setUser }) => {
     if (email === "" || password === "") {
       toast.error("🙄 All fields are required...");
       console.log("email or password missing")
+      return;
+    } 
+    
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+      toast.error("🙄 Invalid email address...");
+      return;
+    }
+    
+    if (password.trim(" ").length < 8) {
+      toast.error("🙄 Min password 8 characters...");
       return;
     } 
       
@@ -125,13 +136,13 @@ const Login = ({ setUser }) => {
                   Login
                 </button>
 
-              </form> 
-
               <span 
                 className='signup__link'
                 onClick={() => setShowLogin(!showLogin)}>
                   Don't have an account?
               </span>
+
+              </form> 
 
             </div>
 
