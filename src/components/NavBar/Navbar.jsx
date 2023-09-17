@@ -37,9 +37,7 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user, setLevel, setIsLoading 
     }, 500)
   }
 
-  const BASE_URL = 'https://mad-gabs-game-server-a3fe555ec3c0.herokuapp.com/';
-  // const BASE_URL = 'http://localhost:5000/';
-
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
 
   const logout = () => {
     sessionStorage.removeItem('token');

@@ -8,6 +8,8 @@ const Submit = () => {
   const [gabQuestion, setGabQuestion] = useState("");
   const [gabAnswer, setGabAnswer] = useState("");
 
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -17,7 +19,7 @@ const Submit = () => {
     } 
       
     try {
-      const response = await axios.post(`http://localhost:5000/submit/gab`, {
+      const response = await axios.post(`${BASE_URL}/submit/gab`, {
       suggestedGab: gabQuestion,
       gabAnswer: gabAnswer,
     });

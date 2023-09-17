@@ -19,7 +19,7 @@ import SubmitGab from "../src/components/SubmitGab/SubmitGab";
 import Welcome from "./pages/Welcome/Welcome";
 
 import { useEffect, useState } from "react";
-import { BrowserRouter, Navigate, Routes, Route, Link, useLocation } from "react-router-dom";
+import { Navigate, Routes, Route, Link, useLocation } from "react-router-dom";
 import axios from "axios";
 
 const App = () => {
@@ -33,7 +33,7 @@ const App = () => {
   const [ user, setUser ] = useState(null);
   const [ level, setLevel ] = useState("");
 
-  const BASE_URL = 'https://mad-gabs-game-server-a3fe555ec3c0.herokuapp.com/';
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   // const BASE_URL = 'http://localhost:5000/';
 
   const handleNavigateHome = () => {
