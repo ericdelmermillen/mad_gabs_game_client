@@ -7,11 +7,15 @@ import { Link } from 'react-router-dom';
 
 
 const YouWin = ({ currentGab, duration, handleNext, roundTime, user, setUser, mgUserId }) => {
-  const [currentGabQuestion, currentGabAnswer] = currentGab;
+  const [ currentGabQuestion, currentGabAnswer ] = currentGab;
+  
+  const [ isLoading, setIsLoading ] = useState(true);
+  const [ pointsAreReady, setPointsAreReady ] = useState(false);
+
   const msToSeconds = (ms) => Math.round(ms / 100) / 10;
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [pointsAreReady, setPointsAreReady] = useState(false);
+  const BASE_URL = 'https://mad-gabs-game-server-a3fe555ec3c0.herokuapp.com/';
+  // const BASE_URL = 'http://localhost:5000/';
   
 
   const getPoints = async (secondsRemaining, user) => {
@@ -21,8 +25,7 @@ const YouWin = ({ currentGab, duration, handleNext, roundTime, user, setUser, mg
       if(!token) {
         throw new Error("No token found");
       }
-
-      const response = await axios.post('http://localhost:5000/users/post-points', {
+      const response = await axios.post(`${BASE_URL}users/post-points`, {
         secondsRemaining,
         mgUserId: mgUserId,
       }, {headers: { Authorization: `Bearer ${token}`}
@@ -37,7 +40,8 @@ const YouWin = ({ currentGab, duration, handleNext, roundTime, user, setUser, mg
 
       return data.points;
     } catch (error) {
-      window.open("http://localhost:5000/auth/logout", "_self");
+      window.open(`${BASE_URL}auth/logout`, "_self");
+      sessionStorage.removeItem('token');
       console.error('Error fetching points:', error);
       return null;
     }

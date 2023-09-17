@@ -1,5 +1,4 @@
 import "./Home.scss";
-// import logo from "../../assets/logo/logo.svg";
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -10,11 +9,10 @@ import { toast } from 'react-toastify';
 
 const Home = ({ level, setLevel, showHowToPlay, setShowHowToPlay}) => {
   const { browserSupportsSpeechRecognition } = useSpeechRecognition();
-  const [showSubmitGab, setShowSubmitGab] = useState(false);
+  const [ showSubmitGab, setShowSubmitGab ] = useState(false);
 
   const handleNoLevelSelected = () => {
-    toast('🙄 Please select a Level first...', {
-    toastId: 'noLevelSelectedToast',});
+    toast('🙄 Please select a Level first...');
   }
 
   if (!browserSupportsSpeechRecognition) {

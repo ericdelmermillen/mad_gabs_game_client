@@ -98,6 +98,10 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, user
     }, 750);
   }
 
+
+  const BASE_URL = 'https://mad-gabs-game-server-a3fe555ec3c0.herokuapp.com/';
+  // const BASE_URL = 'http://localhost:5000/';
+
   // call for random gab
   useEffect(() => {
     const fetchData = async () => {
@@ -108,7 +112,7 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, user
           throw new Error("No token found");
         }
 
-        const response = await axios.get(`http://localhost:5000/gabs`, {
+        const response = await axios.get(`${BASE_URL}gabs`, {
           params: { level: level },
           headers: { Authorization: `Bearer ${token}`}
           }
@@ -126,9 +130,8 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, user
         handleStartListening();
         setReadyForNext(false)
       } catch (error) {
-        // show toast at time of logout
-        console.log("from catch")
-        window.open("http://localhost:5000/auth/logout", "_self");
+        sessionStorage.removeItem('token');
+        window.open(`${BASE_URL}auth/logout`, "_self");
         console.error(error);
       }
     };

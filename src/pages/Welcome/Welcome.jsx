@@ -9,6 +9,9 @@ const Welcome = ({ setUser, mgUserId }) => {
   const [userName, setUserName] = useState("");
   const navigate = useNavigate();  
 
+  const BASE_URL = 'https://mad-gabs-game-server-a3fe555ec3c0.herokuapp.com/';
+  // const BASE_URL = 'http://localhost:5000/';
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -24,7 +27,7 @@ const Welcome = ({ setUser, mgUserId }) => {
         throw new Error("No token found");
       }
 
-      const response = await axios.post(`http://localhost:5000/users/username`, {
+      const response = await axios.post(`${BASE_URL}users/username`, {
         mgUserId: mgUserId,
         userName: userName,
     }, {headers: { Authorization: `Bearer ${token}`}
@@ -35,7 +38,8 @@ const Welcome = ({ setUser, mgUserId }) => {
       navigate("/home");
 
     } catch (error) {
-      window.open("http://localhost:5000/auth/logout", "_self");
+      window.open(`${BASE_URL}auth/logout`, "_self");
+      sessionStorage.removeItem('token');
       console.error("Error:", error);
     }
   };

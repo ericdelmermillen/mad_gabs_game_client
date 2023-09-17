@@ -6,8 +6,12 @@ import { toast } from "react-toastify";
 
 const SubmitGab = ({ showSubmitGab, setShowSubmitGab }) => {
 
-  const [gabQuestion, setGabQuestion] = useState("");
-  const [gabAnswer, setGabAnswer] = useState("");
+  const [ gabQuestion, setGabQuestion ] = useState("");
+  const [ gabAnswer, setGabAnswer ] = useState("");
+
+  const BASE_URL = 'https://mad-gabs-game-server-a3fe555ec3c0.herokuapp.com/';
+  // const BASE_URL = 'http://localhost:5000/';
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -25,7 +29,7 @@ const SubmitGab = ({ showSubmitGab, setShowSubmitGab }) => {
         throw new Error("No token found");
       }
       
-      const response = await axios.post(`http://localhost:5000/submit/gab`, {
+      const response = await axios.post(`${BASE_URL}submit/gab`, {
       suggestedGab: gabQuestion,
       gabAnswer: gabAnswer,
     }, {headers: { Authorization: `Bearer ${token}`}
@@ -35,7 +39,8 @@ const SubmitGab = ({ showSubmitGab, setShowSubmitGab }) => {
       toast("🤓 All fields are required...");     
     } 
     } catch (error) {
-      window.open("http://localhost:5000/auth/logout", "_self");
+      window.open(`${BASE_URL}auth/logout`, "_self");
+      sessionStorage.removeItem('token');
       console.error("Error:", error);
     }
   };

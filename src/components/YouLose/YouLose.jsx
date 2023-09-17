@@ -18,7 +18,6 @@ const YouLose = ({ handleNext }) => {
         Keep trying and maybe you'll get it next time around.
       </p>
 
-
       <div className="youLose button__container">
 
         <Link className="button--home" 

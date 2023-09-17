@@ -6,8 +6,8 @@ import Timer from '../../components/Timer/Timer';
 import { useState } from 'react';
 
 const Gabs = ({ user, setUser, mgUserId }) => {
-  const [gabIsReady, setGabIsReady] = useState(false);
-  const [isTimeElapsed, setIsTimeElapsed] = useState(false);
+  const [ gabIsReady, setGabIsReady ] = useState(false);
+  const [ isTimeElapsed, setIsTimeElapsed ] = useState(false);
 
   const duration = 60000;
 

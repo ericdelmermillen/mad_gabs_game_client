@@ -1,8 +1,6 @@
 import "./HowToPlay.scss"
 
 const HowToPlay = ({setShowHowToPlay, showHowToPlay}) => {
-
-  console.log("from howToPlay: ", showHowToPlay)
   
   return (
 

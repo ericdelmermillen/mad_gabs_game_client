@@ -14,10 +14,10 @@ const Login = ({ setUser }) => {
   const [showLogin, setShowLogin] = useState(true);
 
   const BASE_URL = 'https://mad-gabs-game-server-a3fe555ec3c0.herokuapp.com/';
+  // const BASE_URL = 'http://localhost:5000/';
   
 
   const handleGoogleLoginSignUp = () => {
-    // window.open("http://localhost:5000/auth/google", "_self");
     window.open(`${BASE_URL}auth/google`, "_self");
   };
 
@@ -57,7 +57,7 @@ const Login = ({ setUser }) => {
     } 
       
     try {
-      const response = await axios.post(`http://localhost:5000/auth/user/signup`, {
+      const response = await axios.post(`${BASE_URL}auth/user/signup`, {
         email: email,
         password: password,
     });
