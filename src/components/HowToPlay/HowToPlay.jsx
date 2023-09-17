@@ -24,7 +24,6 @@ const HowToPlay = ({setShowHowToPlay, showHowToPlay}) => {
 
       <div className="howToPlay button__container">
 
-
         <span className="button--home" 
           onClick={() => setShowHowToPlay(!showHowToPlay)}>
           Got it!

@@ -1,5 +1,4 @@
 import "./Login.scss";
-import Google from "../../assets/img/google.png";
 
 import React from 'react';
 import axios from 'axios';
@@ -13,9 +12,7 @@ const Login = ({ setUser }) => {
   const [password, setPassword] = useState("");
   const [showLogin, setShowLogin] = useState(true);
 
-  const BASE_URL = 'https://mad-gabs-game-server-a3fe555ec3c0.herokuapp.com/';
-  // const BASE_URL = 'http://localhost:5000/';
-  
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
 
   const handleGoogleLoginSignUp = () => {
     window.open(`${BASE_URL}auth/google`, "_self");
@@ -34,7 +31,6 @@ const Login = ({ setUser }) => {
       
     try {
       const response = await axios.post(`${BASE_URL}auth/user/login`, {
-      // const response = await axios.post(`http://localhost:5000/auth/user/login`, {
         email: email,
         password: password,
     })
@@ -107,7 +103,7 @@ const Login = ({ setUser }) => {
           
                 <input 
                   className="login-form__input" 
-                  type="emailt" 
+                  type="email" 
                   id="email" 
                   placeholder="Email"
                   value={email}
