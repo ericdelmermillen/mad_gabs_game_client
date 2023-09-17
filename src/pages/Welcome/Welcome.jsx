@@ -51,7 +51,7 @@ const Welcome = ({ setUser, mgUserId, setLevel }) => {
     <div className="welcome">
       <div className="welcome__container">
 
-        <h1 className="welcome__heading">Please choose a UserName</h1>
+        <h1 className="welcome__heading">Choose a UserName</h1>
         <form onSubmit={handleSubmit} className="welcome-form">
           <label className="welcome-form__userNameLabel" htmlFor="welcome-form__userName">
           </label>

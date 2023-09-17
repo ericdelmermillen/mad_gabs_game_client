@@ -12,9 +12,10 @@
   }
 
   &__heading {
-    margin-bottom: 2rem;
-    margin-top: 1rem;
-    text-align: center;
+    @include pageHeading;
+    // margin-bottom: 2rem;
+    // margin-top: 1rem;
+    // text-align: center;
   }
 }
 
