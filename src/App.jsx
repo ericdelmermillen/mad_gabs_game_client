@@ -6,7 +6,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import Footer from "./components/Footer/Footer";
 import Gabs from "./pages/Gabs/Gabs";
 import Home from "./pages/Home/Home";
-import HowToPlay from "./components/HowToPlay/HowToPlay";
 import Loading from "../src/components/Loading/Loading";
 import Login from "./pages/Login/Login";
 import Navbar from "./components/NavBar/Navbar";
@@ -29,7 +28,6 @@ const App = () => {
   const [ isLoading, setIsLoading ] = useState(true);
   const [ mgUserId, setMgUserId ] = useState(null);
   const [ showSubmitGab, setShowSubmitGab ] = useState(false);
-  const [ showHowToPlay, setShowHowToPlay ] = useState(false);
   const [ user, setUser ] = useState(null);
   const [ level, setLevel ] = useState("");
 
@@ -168,15 +166,6 @@ const App = () => {
       </Link>
       
       }
-
-
-      {showHowToPlay && 
-      
-        <HowToPlay 
-          showHowToPlay={showHowToPlay} 
-          setShowHowToPlay={setShowHowToPlay}
-        />
-      }
         
       {showSubmitGab && 
   
@@ -208,7 +197,6 @@ const App = () => {
                 path="/home" 
                 element={
                   <Home 
-                    showHowToPlay={showHowToPlay} setShowHowToPlay={setShowHowToPlay}
                     level={level}
                     setLevel={setLevel}
                   />

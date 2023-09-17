@@ -3,9 +3,14 @@
 
 .home {
   @include page;
-    
+  position: relative;
+  
   &__container {
     @include pageContainer;
+    
+    @media (min-width: 768px) {
+      position: relative;
+    }
   }
 
   &__heading {

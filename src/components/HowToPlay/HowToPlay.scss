@@ -7,10 +7,13 @@
     @include cardShadow;
     @include modalContainer;
   }
+  
+  &__content {
+    margin-bottom: auto;
+  }
 
   &__heading {
-    @include modalHeading;
-    margin-bottom: 3rem;
+    @include pageHeading;
   }
 
   &__instructions {
@@ -22,15 +25,13 @@
     max-width: 30rem;
     margin-inline: auto;
   }
-
   
   .button {
-    &__container {
-      @include buttonContainer;
-    }
     
     &--home {
       @include btn;
+      margin-inline: auto;
+      margin-top: auto;
     }
   }
 }
