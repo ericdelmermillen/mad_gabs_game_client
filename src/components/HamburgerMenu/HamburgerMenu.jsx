@@ -4,19 +4,21 @@ import power from "../../assets/icons/power.svg";
 import submit from "../../assets/icons/submit.svg";
 
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 
 import close from "../../assets/icons/close.svg";
 import menuIcon from "../../assets/icons/burger.svg";
 
-function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserId, level, setLevel, setIsLoading}) {
+function HamburgerMenu ({ user, setUser, mgUserId, level, setLevel, setIsLoading}) {
 
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
 
   const location = useLocation();
+
+  const navigate = useNavigate(); 
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -29,7 +31,6 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserI
     }, 500)
   }
 
-
   const handleNoLevelSelected = () => {
     toast('🙄 Please select a Level first...', {
     toastId: 'noLevelSelectedToast',});
@@ -40,10 +41,20 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserI
     window.open(`${BASE_URL}auth/logout`, "_self");
   };
 
-  const handleHamburgerSubmit = () => {
+  const handleNavigateToSubmit = () => {
     showSidebar();
-    setShowSubmitGab(!showSubmitGab);
+    setIsLoading(true);
+    setLevel("");
+    navigate('/submit');
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 500)
   };
+
+  const handleAlreadyOnSubmit = () => {
+    showSidebar();
+    toast("🙄 Already on Submit...");
+  }
 
   useEffect(() => {
     setUser(user)
@@ -162,7 +173,6 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserI
             <ul className="hamburgerMenu__stats">
 
               <li className="hamburgerMenu__stat">User Name: 
-              {/* {user.userName */}
               {user.userName
               
               ?
@@ -194,13 +204,28 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserI
               </li>
             </ul>
 
-            {user.userName 
+            {/* {user.userName  */}
+            {user && location.pathname.includes('welcome')
 
             ?
 
             <span 
               className="hamburgerMenu__action"
-              onClick={handleHamburgerSubmit}>
+              // onClick={handleHamburgerSubmit}>
+              onClick={handleEnterUsername}>
+
+              <img className="hamburgerMenu__action hamburgerMenu__action--icon" 
+                src={submit} 
+                alt="submit icon"/>
+
+              Submit
+            </span>
+
+            : user && location.pathname.includes('submit') ?
+
+            <span 
+              className="hamburgerMenu__action"
+              onClick={handleAlreadyOnSubmit}>
 
               <img className="hamburgerMenu__action hamburgerMenu__action--icon" 
                 src={submit} 
@@ -213,7 +238,7 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserI
 
             <span 
               className="hamburgerMenu__action"
-              onClick={handleEnterUsername}>
+              onClick={handleNavigateToSubmit}>
 
               <img className="hamburgerMenu__action hamburgerMenu__action--icon" 
                 src={submit} 
@@ -221,6 +246,8 @@ function HamburgerMenu ({showSubmitGab, setShowSubmitGab, user, setUser, mgUserI
 
               Submit
             </span>
+
+
 
             }
 

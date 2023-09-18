@@ -4,21 +4,28 @@ import logo from "../../assets/logo/logo.svg";
 import power from "../../assets/icons/power.svg";
 import submit from "../../assets/icons/submit.svg";
 
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { toast } from 'react-toastify';
 
-const Navbar = ({ showSubmitGab, setShowSubmitGab, user, setLevel, setIsLoading }) => {
+const Navbar = ({ user, setLevel, setIsLoading, setShowHowToPlay }) => {
 
   const location = useLocation();
+
+  const navigate = useNavigate(); 
 
   const handleEnterUsername = () => {
     toast("🙄 Please enter a Username...");
   }
   
   const handleAlreadyOnHome = () => {
+    
     setLevel("");
     toast("🙄 Already on Home...");
+  }
+  
+  const handleAlreadyOnSubmit = () => {
+    toast("🙄 Already on Submit...");
   }
   
   const handlePleaseLogin = () => {
@@ -30,8 +37,18 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user, setLevel, setIsLoading 
   }
 
   const handleNavigateToHome = () => {
+    setShowHowToPlay(false);
     setIsLoading(true);
     setLevel("");
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 500)
+  }
+
+  const handleNavigateToSubmit = () => {
+    setIsLoading(true);
+    setLevel("");
+    navigate('/submit');
     setTimeout(() => {
       setIsLoading(false)
     }, 500)
@@ -93,13 +110,13 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user, setLevel, setIsLoading 
 
         <ul className="navBar__actions">
         
-        {user.userName 
+        {user && location.pathname.includes('welcome')
 
           ?
 
           <li 
             className="navBar__action--submit" 
-            onClick={() => setShowSubmitGab(!showSubmitGab)}>
+            onClick={handleEnterUsername}>
 
             <img className="navBar__submit-icon" 
               src={submit} 
@@ -108,18 +125,32 @@ const Navbar = ({ showSubmitGab, setShowSubmitGab, user, setLevel, setIsLoading 
               Submit
           </li>
 
-          :
+          : user && location.pathname.includes('submit') ?
 
           <li 
             className="navBar__action--submit" 
-            onClick={() => handleEnterUsername(!showSubmitGab)}>
+            onClick={handleAlreadyOnSubmit}>
 
             <img className="navBar__submit-icon" 
               src={submit} 
               alt="submit icon"
             />
-              Submit!
+              Submit
           </li>
+
+          : 
+
+          <li 
+            className="navBar__action--submit" 
+            onClick={handleNavigateToSubmit}>
+
+            <img className="navBar__submit-icon" 
+              src={submit} 
+              alt="submit icon"
+            />
+              Submit
+          </li>
+
         }
 
           <li 

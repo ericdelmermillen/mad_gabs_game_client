@@ -1,78 +1,84 @@
-// @use "../../styles/partials/mixins" as *;
-// @use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
 
-// .submitGab {
-//   position: relative;
-  
-//   &__card {
-//     align-items: center;
-//     background: #fff;
-//     display: flex;
-//     flex-direction: column;
-//     height: 75%;
-//     left: 50%;
-//     padding: 1rem;
-//     position: absolute;
-//     text-align: center;
-//     top: 50%;
-//     transform: translate(-50%, -50%);
-//     width: 50%;
-//     z-index: 10;
+.submitGab {
+  @include page;
+
+  &__container {
+    @include cardShadow;
+    @include pageContainer;
+  }
+
+  &__heading {
+    @include pageHeading;
+  }
+
+  &__instructions {
+    text-align: left;
+    line-height: 1.75rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+.form {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 35rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+
+  &__questionLabel {
+    display: block;
+  }
+
+  &__questionInput {
+    @include inputStyling;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    max-width: 25rem;
+    font-family: inherit;
+    margin-block: 0.5rem;
     
-//     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
-//     -moz-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
-//     -webkit-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
-//     border-radius: 20px;
-//   }
+    @media (min-width: 400px) {
+      margin-block: 1rem;
+      
+    }
+  }
   
-//   &__heading {
-//     margin-bottom: 1.5rem;
-//   }
-
-// }
-
-// .form {
-//   width: 100%;
-//   height: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-
-//   &__questionLabel {
-//     display: block;
-//   }
-
-//   &__questionInput {
-//     border: 1px solid black;
-//     border-radius: 4px;
-//     margin-block: 1rem;
-//     padding: 0.5rem 1rem;
-//     width: 100%;
-//     font-family: inherit;
-//   }
+  &__answerLabel {
+    display: block;
+  }
   
-//   &__answerLabel {
-//     display: block;
-//   }
+  &__answerInput {
+    @include inputStyling;
+    @extend .form__questionInput;
+    max-width: 25rem;
+    margin-bottom: 2rem;
+  }
   
-//   &__answerInput {
-//     border: 1px solid black;
-//     border-radius: 4px;
-//     margin-block: 1rem;
-//     padding: 0.5rem 1rem;
-//     width: 100%;
-//     font-family: inherit;
-//   }
-// }
+  .submitGab {
+    
+    &__instructions {
+      text-align: center;
+      margin-bottom: auto;
+    }
 
-
-// .button {
-
-//   &__container {
-//     display: flex;
-//   }
-  
-//   &--submit-gab {
-//     @include btn;
-//   }
-// }
+    &__button-container {
+      
+      @include doubleButtonContainer;
+      display: flex;
+      gap: 2rem;
+      
+      .button--submit-cancel,
+      .button--submit-gab {
+        @include btn;
+      }
+    }
+  }
+}

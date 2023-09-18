@@ -3,17 +3,13 @@ import "./Home.scss";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSpeechRecognition } from 'react-speech-recognition';
-import SubmitGab from "../../components/SubmitGab/SubmitGab";
 
 import HowToPlay from "../../components/HowToPlay/HowToPlay";
 
 import { toast } from 'react-toastify';
 
-const Home = ({ level, setLevel }) => {
+const Home = ({ level, setLevel, setShowHowToPlay, showHowToPlay }) => {
   const { browserSupportsSpeechRecognition } = useSpeechRecognition();
-  const [ showSubmitGab, setShowSubmitGab ] = useState(false);
-
-  const [ showHowToPlay, setShowHowToPlay ] = useState(false);
 
   const handleNoLevelSelected = () => {
     toast('🙄 Please select a Level first...');
@@ -30,13 +26,6 @@ const Home = ({ level, setLevel }) => {
   return (
 
       <div className="home">
-
-
-        {showSubmitGab &&
-          <SubmitGab
-          setShowSubmitGab={setShowSubmitGab}
-          />
-        }
 
         <div className="home__container">
         

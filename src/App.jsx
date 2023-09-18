@@ -11,10 +11,8 @@ import Login from "./pages/Login/Login";
 import Navbar from "./components/NavBar/Navbar";
 import HamburgerMenu from "./components/HamburgerMenu/HamburgerMenu";
 import NotFound from "../src/pages/NotFound/NotFound";
-// import Submit from "./pages/Submit/Submit";
 import logo from "../src/assets/logo/logo.svg"
 import Submit from "./pages/Submit/Submit";
-import SubmitGab from "../src/components/SubmitGab/SubmitGab";
 import Welcome from "./pages/Welcome/Welcome";
 
 import { useEffect, useState } from "react";
@@ -31,6 +29,8 @@ const App = () => {
   const [ user, setUser ] = useState(null);
   const [ level, setLevel ] = useState("");
 
+  const [ showHowToPlay, setShowHowToPlay ] = useState(false);
+
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   // const BASE_URL = 'http://localhost:5000/';
 
@@ -41,8 +41,7 @@ const App = () => {
   }
 
   const handlePleaseLogin = () => {
-    toast('🙄 Please login to continue...', {
-    toastId: 'pleaseLoginToast',});
+    toast('🙄 Please login to continue...');
   }
 
   const handleEnterUsername = () => {
@@ -51,6 +50,9 @@ const App = () => {
   }
 
   const handleAlreadyOnHome = () => {
+    if (showHowToPlay) {
+      setShowHowToPlay(!showHowToPlay)
+    }
     toast('🙄 Already on Home...!', {
     toastId: 'aleadyOnHomeToast',});
     setLevel("")
@@ -112,25 +114,25 @@ const App = () => {
       
         <HamburgerMenu 
           className="home__navBar"
-          showSubmitGab={showSubmitGab}
-          setShowSubmitGab={setShowSubmitGab}
           user={user} 
           setUser={setUser} 
           mgUserId={mgUserId}
           setLevel={setLevel}
           level={level}
           setIsLoading={setIsLoading}
+          showHowToPlay={showHowToPlay}
+          setShowHowToPlay={setShowHowToPlay}
         /> 
       }
         
       <Navbar 
         className="home__navBar"
         user={user} 
-        setShowSubmitGab={setShowSubmitGab}
-        showSubmitGab={showSubmitGab}
         level={level}
         setLevel={setLevel}
         setIsLoading={setIsLoading}
+        showHowToPlay={showHowToPlay}
+        setShowHowToPlay={setShowHowToPlay}
         />
 
       {user && user.userName
@@ -165,7 +167,7 @@ const App = () => {
       </Link>
       
       }
-        
+{/*         
       {showSubmitGab && 
   
         <SubmitGab 
@@ -173,7 +175,7 @@ const App = () => {
           showSubmitGab={showSubmitGab}
         />
 
-      }
+      } */}
 
       <div className="appContainer">
 
@@ -198,6 +200,7 @@ const App = () => {
                   <Home 
                     level={level}
                     setLevel={setLevel}
+                    setShowHowToPlay={setShowHowToPlay}showHowToPlay={showHowToPlay}
                   />
                 } 
               />
