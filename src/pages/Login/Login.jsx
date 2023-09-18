@@ -177,14 +177,15 @@ const Login = ({ setUser }) => {
                 />
           
                 <button className="login-form__submit">
-                  Signup</button>
+                  Signup
+                </button>
+                <span 
+                  className='signup__link'
+                  onClick={() => setShowLogin(!showLogin)}>
+                    Already signed up?
+                </span>
               </form>
 
-              <span 
-                className='signup__link'
-                onClick={() => setShowLogin(!showLogin)}>
-                  Already signed up?
-              </span>
               
             </div>
 
