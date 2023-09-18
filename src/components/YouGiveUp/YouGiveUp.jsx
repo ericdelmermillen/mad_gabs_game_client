@@ -10,7 +10,7 @@ const YouGiveUp = ({ handleNext }) => {
       <h1 className="youGiveUp__heading">You Give Up!</h1>
 
       <p className="youGiveUp__instructions">
-        Keep trying and maybe you'll get it next time around.
+        Keep trying! Maybe you'll get it next time.
       </p>
 
       <div className="youGiveUp__button-container">

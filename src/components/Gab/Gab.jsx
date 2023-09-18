@@ -8,65 +8,44 @@ import axios from 'axios';
 import chevronRight from "../../assets/icons/chevron-right.svg"
 
 import Loading from '../../components/Loading/Loading';
-import YouLose from '../../components/YouLose/YouLose';
-import YouGiveUp from '../../components/YouGiveUp/YouGiveUp';
-import YouWin from '../../components/YouWin/YouWin';
 
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, user, setUser, mgUserId }) => {
+const Gab = ({ 
+  currentGab, setCurrentGab, 
+  handleSkip, 
+  isLoading, setIsLoading, 
+  isTimeElapsed, 
+  readyForNext, setReadyForNext, 
+  roundOver, setRoundOver, 
+  setEndTime,
+  setGabIsReady, 
+  setStartTime, 
+  setYouWin, 
+  youGiveUp, setYouGiveUp, 
+}) => {
+
+  const [ isListening, setIsListening ] = useState(false);  
+  
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
+
   const { level } = useParams();
-  const navigate = useNavigate();
-  const msToSeconds = (ms) => Math.round(ms / 100) / 10;
+
   const alreadySaid = [];
   
+
   const {
     transcript,
     resetTranscript,
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
 
-  const [ currentGab, setCurrentGab ] = useState(null);
-  const [ isListening, setIsListening ] = useState(false);
-  const [ isLoading, setIsLoading ] = useState(true);
-  const [ roundOver, setRoundOver ] = useState(false);
-  const [ roundTime, setRoundTime ] = useState(null);
-  const [ startTime, setStartTime ] = useState(null);
-  const [ youWin, setYouWin ] = useState(false);
-  const [ youGiveUp, setYouGiveUp ] = useState(false);
-  const [ readyForNext, setReadyForNext ] = useState(false);
-
-  
-  const handleNext = () => {
-    setCurrentGab(null);
-    setIsLoading(true);
-    setReadyForNext(true);
-    setRoundOver(false);
-    setRoundTime(null);
-    setStartTime(null);
-    setYouGiveUp(false);
-    setYouWin(false);
-    setGabIsReady(false);
-    navigate(`/${level}`, { replace: true });
-  }  
-  
-  const handleSkip = () => {
-    setCurrentGab(null);
-    setIsLoading(true);
-    setReadyForNext(true);
-    setRoundOver(false);
-    setRoundTime(null);
-    setStartTime(null);
-    setYouGiveUp(false);
-    setYouWin(false);
-    setGabIsReady(false);
-    navigate(`/gabs/${level}`, { replace: true });
-  }
   
   const handleStartListening = () => {
+    resetTranscript();
     SpeechRecognition.startListening({ continuous: true });
     setTimeout(() => setIsListening(true), 500);
     console.log("start listening");
@@ -75,6 +54,7 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, user
   const handleStopListening = () => {
     SpeechRecognition.stopListening();
     setTimeout(() => setIsListening(false), 500);
+    resetTranscript();
     console.log("stop listening");
   }
 
@@ -99,7 +79,6 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, user
   }
 
 
-  const BASE_URL = process.env.REACT_APP_BASE_URL;
 
   // call for random gab
   useEffect(() => {
@@ -129,8 +108,8 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, user
         handleStartListening();
         setReadyForNext(false)
       } catch (error) {
-        sessionStorage.removeItem('token');
-        window.open(`${BASE_URL}auth/logout`, "_self");
+        // sessionStorage.removeItem('token');
+        // window.open(`${BASE_URL}auth/logout`, "_self");
         console.error(error);
       }
     };
@@ -140,7 +119,7 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, user
 
   useEffect(() => {
     if(currentGab && !isTimeElapsed && !youGiveUp) {
-      
+
       const isWinningConditionMet =
       [...currentGab[1]].sort().join(" ") ===
       [...new Set(alreadySaid.filter(word => currentGab[1].includes(word)))].sort().join(" ") &&
@@ -148,8 +127,7 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, user
       
       if(isWinningConditionMet) {
         handleYouWin()
-        const endTime = new Date().getTime(); 
-        setRoundTime(endTime - startTime)
+        setEndTime(new Date().getTime())
       };
     }
   }, [currentGab, alreadySaid, roundOver]);
@@ -225,37 +203,10 @@ const Gab = ({ duration, handleIsTimeElapsed, isTimeElapsed, setGabIsReady, user
 
       </div>
 
-          {/* <div className="giveUp__container"> */}
-            <Link className="giveUp__button" 
-              onClick={handleGiveUp} >
-              Give Up
-            </Link>
-          {/* </div> */}
-
-      { youWin && 
-        <YouWin 
-          currentGab={currentGab}
-          roundTime={msToSeconds(roundTime)}
-          duration={duration}
-          handleNext={handleNext} 
-          setUser={setUser}
-          user={user} 
-          mgUserId={mgUserId} 
-          />
-      }
-
-      { !youWin && isTimeElapsed && !youGiveUp && 
-        <YouLose 
-          currentGab={currentGab}
-          handleNext={handleNext} /> 
-      }
-          
-      { !youWin && youGiveUp && 
-        <YouGiveUp 
-          currentGab={currentGab}
-          handleNext={handleNext} /> 
-      }
-
+      <Link className="giveUp__button" 
+        onClick={handleGiveUp} >
+        Give Up
+      </Link>
     </div>
   )};
 

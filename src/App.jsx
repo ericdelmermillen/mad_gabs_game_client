@@ -161,7 +161,6 @@ const App = () => {
       <Link 
         className="mobile__homeButton"
         onClick={handlePleaseLogin}>
-        {/* onClick={() => console.log("no user")}> */}
           <img src={logo} alt="mobile home logo" />
       </Link>
       

@@ -6,11 +6,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 
-const YouWin = ({ currentGab, duration, handleNext, roundTime, user, setUser, mgUserId }) => {
+const YouWin = ({ currentGab, duration, handleNext, roundTime, user, setUser, mgUserId, startTime, endTime }) => {
   const [ currentGabQuestion, currentGabAnswer ] = currentGab;
-  
   const [ isLoading, setIsLoading ] = useState(true);
   const [ pointsAreReady, setPointsAreReady ] = useState(false);
+  
 
   const msToSeconds = (ms) => Math.round(ms / 100) / 10;
 
@@ -38,25 +38,24 @@ const YouWin = ({ currentGab, duration, handleNext, roundTime, user, setUser, mg
 
       return data.points;
     } catch (error) {
-      window.open(`${BASE_URL}auth/logout`, "_self");
-      sessionStorage.removeItem('token');
       console.error('Error fetching points:', error);
       return null;
     }
   };
 
   useEffect(() => {
-    const secondsRemaining = msToSeconds(duration) - roundTime;
+    const secondsRemaining = msToSeconds((duration) - (endTime - startTime));
 
     getPoints(secondsRemaining)
       .then((result) => {
-          setIsLoading(false);; 
+          setIsLoading(false); 
       })
       .catch((error) => {
         console.error(error);
           setIsLoading(false);
       });
   }, [duration, roundTime]);
+
 
   return (
     <div className="youWin">
@@ -82,7 +81,7 @@ const YouWin = ({ currentGab, duration, handleNext, roundTime, user, setUser, mg
           "
         </p>
 
-        <p className="youWin__time">Time Elapsed: {roundTime} Seconds</p>
+        <p className="youWin__time">Time Elapsed: {msToSeconds(endTime - startTime)} Seconds</p>
 
         <p className="youWin__points">
           Points Earned: {isLoading ? 'Loading...' : user.points}

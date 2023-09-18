@@ -15,7 +15,7 @@ const YouLose = ({ handleNext }) => {
       </p>
 
       <p className="youGiveUp__instructions">
-        Keep trying and maybe you'll get it next time around.
+        Maybe you'll get it next time.
       </p>
 
       <div className="youLose button__container">
