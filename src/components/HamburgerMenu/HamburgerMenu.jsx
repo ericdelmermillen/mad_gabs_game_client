@@ -51,6 +51,16 @@ function HamburgerMenu ({ user, setUser, mgUserId, level, setLevel, setIsLoading
     }, 500)
   };
 
+  const handleNavigateToLevel = () => {
+    showSidebar();
+    setIsLoading(true);
+    setLevel(level);
+    navigate(`/gabs/${level}`);
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 500)
+  };
+
   const handleAlreadyOnSubmit = () => {
     showSidebar();
     toast("🙄 Already on Submit...");
@@ -78,7 +88,6 @@ function HamburgerMenu ({ user, setUser, mgUserId, level, setLevel, setIsLoading
 
         <nav className={sidebar ?     
             "hamburgerMenu__slider hamburgerMenu__slider--active" : "hamburgerMenu__slider"}>
-          
 
           <img 
             src={close} 
@@ -153,8 +162,10 @@ function HamburgerMenu ({ user, setUser, mgUserId, level, setLevel, setIsLoading
 
             <Link 
               className="hamburgerMenu__play"
-              onClick={showSidebar}
-              to={`/gabs/${level}`}>
+              // onClick={showSidebar}
+              onClick={handleNavigateToLevel}
+              // to={`/gabs/${level}`}
+              >
               Play
             </Link>
 

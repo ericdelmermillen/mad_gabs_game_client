@@ -40,6 +40,7 @@ const Gab = ({
   const {
     transcript,
     resetTranscript,
+    finalTranscript,
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
 
@@ -141,6 +142,7 @@ const Gab = ({
     return <Loading />
   } 
 
+  console.log(finalTranscript)
   return (
     <div className="gab">
 
