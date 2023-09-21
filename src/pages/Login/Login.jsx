@@ -8,16 +8,15 @@ import { useState } from "react";
 import { toast } from 'react-toastify';
 
 const Login = ({ setUser }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showLogin, setShowLogin] = useState(true);
+  const [ email, setEmail ] = useState("");
+  const [ password, setPassword ] = useState("");
+  const [ showLogin, setShowLogin ] = useState(true);
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
   const handleGoogleLoginSignUp = () => {
     window.open(`${BASE_URL}auth/google`, "_self");
   };
-
 
   // email Login
   const handleEmailLogin = async (event) => {
@@ -82,7 +81,7 @@ const Login = ({ setUser }) => {
 
       <div className="login__container">
 
-      <h1 className="login__title">Choose Login Method</h1>
+        <h1 className="login__title">Choose Login Method</h1>
 
         <div className="login__inner-container">
 
@@ -185,7 +184,6 @@ const Login = ({ setUser }) => {
                     Already signed up?
                 </span>
               </form>
-
               
             </div>
 

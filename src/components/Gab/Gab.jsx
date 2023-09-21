@@ -2,7 +2,6 @@ import "./Gab.scss";
 import micOn from "../../assets/icons/mic_on.svg"
 
 import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 import axios from 'axios';
 import chevronRight from "../../assets/icons/chevron-right.svg"
@@ -40,7 +39,6 @@ const Gab = ({
   const {
     transcript,
     resetTranscript,
-    finalTranscript,
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
 
@@ -80,8 +78,6 @@ const Gab = ({
   }
 
 
-
-  // call for random gab
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -109,8 +105,6 @@ const Gab = ({
         handleStartListening();
         setReadyForNext(false)
       } catch (error) {
-        // sessionStorage.removeItem('token');
-        // window.open(`${BASE_URL}auth/logout`, "_self");
         console.error(error);
       }
     };
@@ -142,7 +136,6 @@ const Gab = ({
     return <Loading />
   } 
 
-  console.log(finalTranscript)
   return (
     <div className="gab">
 
@@ -201,7 +194,6 @@ const Gab = ({
           </span>
 
           }
-
 
       </div>
 

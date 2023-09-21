@@ -5,13 +5,11 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-
-const YouWin = ({ currentGab, duration, handleNext, roundTime, user, setUser, mgUserId, startTime, endTime }) => {
+const YouWin = ({ currentGab, duration, endTime, handleNext, roundTime, user, setUser, mgUserId, startTime }) => {
   const [ currentGabQuestion, currentGabAnswer ] = currentGab;
   const [ isLoading, setIsLoading ] = useState(true);
   const [ pointsAreReady, setPointsAreReady ] = useState(false);
   
-
   const msToSeconds = (ms) => Math.round(ms / 100) / 10;
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;

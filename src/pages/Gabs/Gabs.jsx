@@ -55,7 +55,6 @@ const Gabs = ({ user, setUser, mgUserId }) => {
     navigate(`/${level}`, { replace: true });
   }  
 
-// ***
   const handleSkip = () => {
     setCurrentGab(null);
     setIsLoading(true);
@@ -67,9 +66,6 @@ const Gabs = ({ user, setUser, mgUserId }) => {
     setGabIsReady(false);
     navigate(`/gabs/${level}`, { replace: true });
   }
-
-  // **
-  
 
   return (
     <div className="gabs">
@@ -124,41 +120,28 @@ const Gabs = ({ user, setUser, mgUserId }) => {
         <div className="gabs__current-gab">
           <Gab
             duration={duration}
-
             isTimeElapsed={isTimeElapsed}
-            
             mgUserId={mgUserId}
             setGabIsReady={setGabIsReady}
-            
             user={user}
             setUser={setUser}
-
             youGiveUp={youGiveUp}
             setYouGiveUp={setYouGiveUp}
-            
             youLose={youLose}
             setYouLose={setYouLose}
-            
             youWin={youWin}
             setYouWin={setYouWin}
-
             readyForNext={readyForNext}
             setReadyForNext={setReadyForNext}
-
             currentGab={currentGab}
             setCurrentGab={setCurrentGab}
-            
             roundOver={roundOver}
             setRoundOver={setRoundOver}
-            
             isLoading={isLoading}
             setIsLoading={setIsLoading}
-            
             startTime={startTime}
             setStartTime={setStartTime}
-
             handleSkip={handleSkip}
-
             setEndTime={setEndTime}
           />
         </div>

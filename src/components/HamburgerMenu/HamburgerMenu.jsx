@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 import close from "../../assets/icons/close.svg";
 import menuIcon from "../../assets/icons/burger.svg";
 
-function HamburgerMenu ({ user, setUser, mgUserId, level, setLevel, setIsLoading}) {
+function HamburgerMenu ({ user, setUser, level, setLevel, setIsLoading}) {
 
   const [sidebar, setSidebar] = useState(false);
 
@@ -21,7 +21,6 @@ function HamburgerMenu ({ user, setUser, mgUserId, level, setLevel, setIsLoading
   const navigate = useNavigate(); 
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-
 
   const handleEnterUsername = () => {
     toast("🙄 Please enter a Username...");
@@ -162,10 +161,7 @@ function HamburgerMenu ({ user, setUser, mgUserId, level, setLevel, setIsLoading
 
             <Link 
               className="hamburgerMenu__play"
-              // onClick={showSidebar}
-              onClick={handleNavigateToLevel}
-              // to={`/gabs/${level}`}
-              >
+              onClick={handleNavigateToLevel}>
               Play
             </Link>
 
@@ -180,7 +176,6 @@ function HamburgerMenu ({ user, setUser, mgUserId, level, setLevel, setIsLoading
 
             }
             
-
             <ul className="hamburgerMenu__stats">
 
               <li className="hamburgerMenu__stat">User Name: 
@@ -215,20 +210,16 @@ function HamburgerMenu ({ user, setUser, mgUserId, level, setLevel, setIsLoading
               </li>
             </ul>
 
-            {/* {user.userName  */}
             {user && location.pathname.includes('welcome')
 
             ?
 
             <span 
               className="hamburgerMenu__action"
-              // onClick={handleHamburgerSubmit}>
               onClick={handleEnterUsername}>
-
               <img className="hamburgerMenu__action hamburgerMenu__action--icon" 
                 src={submit} 
                 alt="submit icon"/>
-
               Submit
             </span>
 
@@ -250,15 +241,11 @@ function HamburgerMenu ({ user, setUser, mgUserId, level, setLevel, setIsLoading
             <span 
               className="hamburgerMenu__action"
               onClick={handleNavigateToSubmit}>
-
               <img className="hamburgerMenu__action hamburgerMenu__action--icon" 
                 src={submit} 
                 alt="submit icon"/>
-
               Submit
             </span>
-
-
 
             }
 

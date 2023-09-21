@@ -12,9 +12,9 @@ const NotFound = () => {
         <div className="notFound__button-container">
           <Link 
             className="notFound__home"
-            to="/"
-          >
-            Home</Link>
+            to="/">
+            Home
+          </Link>
         </div>
       </div>
 

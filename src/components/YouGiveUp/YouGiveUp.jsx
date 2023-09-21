@@ -7,28 +7,27 @@ const YouGiveUp = ({ handleNext }) => {
 
       <div className="youGiveUp__container">
 
-      <h1 className="youGiveUp__heading">You Give Up!</h1>
+        <h1 className="youGiveUp__heading">You Give Up!</h1>
 
-      <p className="youGiveUp__instructions">
-        Keep trying! Maybe you'll get it next time.
-      </p>
+        <p className="youGiveUp__instructions">
+          Keep trying! Maybe you'll get it next time.
+        </p>
 
-      <div className="youGiveUp__button-container">
+        <div className="youGiveUp__button-container">
 
-        <Link className="button--home" 
-          to={"/"} >
-          Home
-        </Link>
+          <Link className="button--home" 
+            to={"/"} >
+            Home
+          </Link>
 
-        <Link className="button--next"
-          onClick={handleNext} 
-          >
-          Next
-        </Link>
+          <Link className="button--next"
+            onClick={handleNext} 
+            >
+            Next
+          </Link>
 
+        </div>
       </div>
-      </div>
-
     </div>
   )};
 

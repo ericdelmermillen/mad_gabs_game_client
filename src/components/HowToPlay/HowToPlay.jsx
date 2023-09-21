@@ -19,7 +19,6 @@ const HowToPlay = ({ setShowHowToPlay, showHowToPlay }) => {
         </p>
       </div>
 
-
       <div className="howToPlay button__container">
 
         <span className="button--home" 

@@ -25,7 +25,6 @@ const App = () => {
 
   const [ isLoading, setIsLoading ] = useState(true);
   const [ mgUserId, setMgUserId ] = useState(null);
-  const [ showSubmitGab, setShowSubmitGab ] = useState(false);
   const [ user, setUser ] = useState(null);
   const [ level, setLevel ] = useState("");
 
@@ -167,15 +166,6 @@ const App = () => {
       </Link>
       
       }
-{/*         
-      {showSubmitGab && 
-  
-        <SubmitGab 
-          setShowSubmitGab={setShowSubmitGab}
-          showSubmitGab={showSubmitGab}
-        />
-
-      } */}
 
       <div className="appContainer">
 
