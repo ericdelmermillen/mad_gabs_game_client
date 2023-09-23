@@ -5,7 +5,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const YouWin = ({ currentGab, duration, endTime, handleNext, roundTime, user, setUser, mgUserId, startTime }) => {
+const YouWin = ({ currentGab, duration, endTime, handleNext, roundTime, user, setUser, mgUserId, startTime , setLevel }) => {
   const [ currentGabQuestion, currentGabAnswer ] = currentGab;
   const [ isLoading, setIsLoading ] = useState(true);
   const [ pointsAreReady, setPointsAreReady ] = useState(false);
@@ -87,7 +87,10 @@ const YouWin = ({ currentGab, duration, endTime, handleNext, roundTime, user, se
         </p>
 
         <div className="youWin button__container">
-          <Link className="button--home" to={'/'}>
+          <Link 
+            className="button--home" 
+            onClick={() => setLevel("")}
+            to={'/'}>
             Home
           </Link>
 

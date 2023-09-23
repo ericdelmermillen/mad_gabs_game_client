@@ -12,7 +12,7 @@ import YouWin from '../../components/YouWin/YouWin';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-const Gabs = ({ user, setUser, mgUserId }) => {
+const Gabs = ({ user, setUser, mgUserId, setLevel }) => {
 
   const [ currentGab, setCurrentGab ] = useState(null);
   
@@ -74,12 +74,15 @@ const Gabs = ({ user, setUser, mgUserId }) => {
 
       { !youWin && youGiveUp && 
         <YouGiveUp 
-          handleNext={handleNext} /> 
+          handleNext={handleNext} 
+          setLevel={setLevel}/> 
       }
       
       { !youWin && isTimeElapsed && !youGiveUp && 
         <YouLose 
-          handleNext={handleNext} /> 
+          handleNext={handleNext} 
+          setLevel={setLevel}
+          /> 
       }
 
       { youWin && 
@@ -92,6 +95,7 @@ const Gabs = ({ user, setUser, mgUserId }) => {
           mgUserId={mgUserId} 
           startTime={startTime}
           endTime={endTime}
+          setLevel={setLevel}
           />
       }
 
