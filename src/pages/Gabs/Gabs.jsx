@@ -40,8 +40,23 @@ const Gabs = ({ user, setUser, mgUserId, setLevel }) => {
   const { level } = useParams();
   const navigate = useNavigate();  
 
-
   const duration = 60000;
+
+  const handleClickedHome = () => {
+    setIsLoading(true);
+    setCurrentGab(null);
+    setReadyForNext(true);
+    setRoundOver(false);
+    setStartTime(null);
+    setYouGiveUp(false);
+    setYouWin(false);
+    setGabIsReady(false);
+    setLevel('');
+    setTimeout(() => {
+      navigate('/home');
+    }, 500);
+  }
+
 
   const handleNext = () => {
     setIsLoading(true);
@@ -75,14 +90,15 @@ const Gabs = ({ user, setUser, mgUserId, setLevel }) => {
       { !youWin && youGiveUp &&
         <YouGiveUp 
           handleNext={handleNext} 
-          setLevel={setLevel}/> 
+          handleClickedHome={handleClickedHome}
+          /> 
       }
       
       { !youWin && isTimeElapsed && !youGiveUp && 
         <YouLose 
           handleNext={handleNext} 
-          setLevel={setLevel}
-          /> 
+          handleClickedHome={handleClickedHome}
+        /> 
       }
 
       { youWin && 
@@ -95,7 +111,7 @@ const Gabs = ({ user, setUser, mgUserId, setLevel }) => {
           mgUserId={mgUserId} 
           startTime={startTime}
           endTime={endTime}
-          setLevel={setLevel}
+          handleClickedHome={handleClickedHome}
           />
       }
 

@@ -7,7 +7,7 @@ import Confetti from 'react-confetti';
 
 import { Link } from 'react-router-dom';
 
-const YouWin = ({ currentGab, duration, endTime, handleNext, roundTime, user, setUser, mgUserId, startTime , setLevel }) => {
+const YouWin = ({ currentGab, duration, endTime, handleNext, roundTime, user, setUser, mgUserId, startTime, handleClickedHome }) => {
   const [ currentGabQuestion, currentGabAnswer ] = currentGab;
   const [ isLoading, setIsLoading ] = useState(true);
   const [ pointsAreReady, setPointsAreReady ] = useState(false);
@@ -117,8 +117,8 @@ const YouWin = ({ currentGab, duration, endTime, handleNext, roundTime, user, se
         <div className="youWin button__container">
           <Link 
             className="button--home" 
-            onClick={() => setLevel("")}
-            to={'/'}>
+            onClick={handleClickedHome}
+            >
             Home
           </Link>
 
