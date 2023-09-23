@@ -93,7 +93,7 @@ const App = () => {
         });
       };
       getUser();
-  });
+  }, [BASE_URL]);
 
 
   useEffect(() => {

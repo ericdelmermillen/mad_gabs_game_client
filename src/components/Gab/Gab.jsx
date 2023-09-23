@@ -79,6 +79,7 @@ const Gab = ({
 
 
   useEffect(() => {
+    console.log("from useEffect fetchData")
     const fetchData = async () => {
       try {
         const token = sessionStorage.getItem('token');
@@ -114,6 +115,7 @@ const Gab = ({
 
   useEffect(() => {
     if(currentGab && !isTimeElapsed && !youGiveUp) {
+      console.log("from gab useEffect")
 
       const isWinningConditionMet =
       [...currentGab[1]].sort().join(" ") ===
@@ -125,7 +127,7 @@ const Gab = ({
         setEndTime(new Date().getTime())
       };
     }
-  }, [currentGab, alreadySaid, roundOver]);
+  }, [currentGab, alreadySaid, roundOver, setEndTime, isTimeElapsed]);
     
     
     if (!browserSupportsSpeechRecognition) {

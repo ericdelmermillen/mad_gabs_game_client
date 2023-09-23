@@ -43,6 +43,7 @@ const YouWin = ({ currentGab, duration, endTime, handleNext, roundTime, user, se
 
   useEffect(() => {
     const secondsRemaining = msToSeconds((duration) - (endTime - startTime));
+    console.log("useEffect from YouWin")
 
     getPoints(secondsRemaining)
       .then((result) => {
@@ -52,7 +53,7 @@ const YouWin = ({ currentGab, duration, endTime, handleNext, roundTime, user, se
         console.error(error);
           setIsLoading(false);
       });
-  }, [duration, roundTime]);
+  }, [duration, roundTime, endTime, startTime]);
 
 
   return (
