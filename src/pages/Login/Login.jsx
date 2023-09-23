@@ -15,6 +15,7 @@ const Login = ({ setUser }) => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
   const handleGoogleLoginSignUp = () => {
+    // console.log(`${BASE_URL}auth/google`)
     window.open(`${BASE_URL}auth/google`, "_self");
   };
 
@@ -47,7 +48,6 @@ const Login = ({ setUser }) => {
 
     if (email === "" || password === "") {
       toast.error("🙄 All fields are required...");
-      console.log("email or password missing")
       return;
     } 
     

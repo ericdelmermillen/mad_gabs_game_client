@@ -31,7 +31,6 @@ const App = () => {
   const [ showHowToPlay, setShowHowToPlay ] = useState(false);
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  // const BASE_URL = 'http://localhost:5000/';
 
   const handleNavigateHome = () => {
     setIsLoading(true);
@@ -60,6 +59,7 @@ const App = () => {
 
   useEffect(() => {
     const getUser = () => {
+      console.log(BASE_URL)
       axios.get(`${BASE_URL}auth/login/success`, {
         withCredentials: true,
       })
@@ -81,6 +81,7 @@ const App = () => {
         }, 500); 
       })
         .catch((err) => {
+          console.log(BASE_URL)
           setTimeout(() => {
             setIsLoading(false);
           }, 500); 
