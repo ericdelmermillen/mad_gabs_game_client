@@ -82,15 +82,14 @@ const YouWin = ({ currentGab, duration, endTime, handleNext, roundTime, user, se
             height={800} 
             numberOfPieces={1000} />
             
-            :
-            
-              <Confetti 
-                className='confetti--hide'
-                width={800} 
-                height={800} 
-                numberOfPieces={500} />
+          :
+        
+          <Confetti 
+            className='confetti--hide'
+            width={800} 
+            height={800} 
+            numberOfPieces={500} />
         }
-
 
         <p className="youWin__question">
           Gab: "{`${currentGabQuestion.join(' ')}`}"

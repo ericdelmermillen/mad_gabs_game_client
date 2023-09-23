@@ -72,7 +72,7 @@ const Gabs = ({ user, setUser, mgUserId, setLevel }) => {
 
       <div className="gabs__container">
 
-      { !youWin && youGiveUp && 
+      { !youWin && youGiveUp &&
         <YouGiveUp 
           handleNext={handleNext} 
           setLevel={setLevel}/> 
@@ -106,16 +106,25 @@ const Gabs = ({ user, setUser, mgUserId, setLevel }) => {
 
           <div className="timer__countdown">
 
-            {gabIsReady ? 
+            {gabIsReady  && youWin ? 
+
+              '🥳🥳:🥳🥳'
+              
+              : gabIsReady  && youGiveUp? 
+              
+              '🏳️🏳️:🏳️🏳️'
+              
+              : gabIsReady  && !youWin && !youGiveUp && isTimeElapsed ? 
+              
+              '00:00'
+              :              
 
               <Timer 
-                duration={duration} 
-                setIsTimeElapsed={setIsTimeElapsed}
-                className="timer__countdown"
+              duration={duration} 
+              setIsTimeElapsed={setIsTimeElapsed}
+              className="timer__countdown"
               />
 
-              : 
-                '00:00'
             }
 
           </div>
