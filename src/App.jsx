@@ -16,7 +16,7 @@ import Submit from "./pages/Submit/Submit";
 import Welcome from "./pages/Welcome/Welcome";
 
 import { useEffect, useState } from "react";
-import { Navigate, Routes, Route, Link, useLocation } from "react-router-dom";
+import { Navigate, useNavigate, Routes, Route, Link, useLocation } from "react-router-dom";
 import axios from "axios";
 
 const App = () => {
@@ -32,7 +32,7 @@ const App = () => {
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-  const handleNavigateHome = () => {
+  const handleNavigateToHome = () => {
     setIsLoading(true);
     setLevel("");
     setTimeout (() => setIsLoading(false), 500)
@@ -93,7 +93,7 @@ const App = () => {
         });
       };
       getUser();
-  }, []);
+  }, [BASE_URL]);
 
 
   useEffect(() => {
@@ -144,7 +144,7 @@ const App = () => {
         to="/home"
         onClick={location.pathname.includes('home') 
           ? handleAlreadyOnHome
-          : handleNavigateHome
+          : handleNavigateToHome
           }>
           <img src={logo} alt="mobile home logo" />
       </Link>
@@ -199,7 +199,9 @@ const App = () => {
               <Route path="/gabs/:level" element={<Gabs 
                 setUser={setUser}   
                 user={user} 
-                mgUserId={mgUserId}/>} />
+                mgUserId={mgUserId}
+                setLevel={setLevel}
+                />} />
               <Route path="/submit/" element={<Submit />} />
               <Route path="/login" element={<Navigate to="/home" />} />
 

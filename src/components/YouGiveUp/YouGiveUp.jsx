@@ -1,7 +1,7 @@
 import "./YouGiveUp.scss";
 import { Link } from 'react-router-dom';
 
-const YouGiveUp = ({ handleNext }) => {
+const YouGiveUp = ({ handleNext, setLevel }) => {
   return (
     <div className="youGiveUp">
 
@@ -16,7 +16,9 @@ const YouGiveUp = ({ handleNext }) => {
         <div className="youGiveUp__button-container">
 
           <Link className="button--home" 
-            to={"/"} >
+            onClick={() => setLevel("")}
+            to={"/"}
+             >
             Home
           </Link>
 
