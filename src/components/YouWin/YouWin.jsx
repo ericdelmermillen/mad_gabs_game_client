@@ -3,12 +3,16 @@ import './YouWin.scss';
 import axios from 'axios';
 
 import React, { useState, useEffect } from 'react';
+import Confetti from 'react-confetti';
+
 import { Link } from 'react-router-dom';
 
 const YouWin = ({ currentGab, duration, endTime, handleNext, roundTime, user, setUser, mgUserId, startTime , setLevel }) => {
   const [ currentGabQuestion, currentGabAnswer ] = currentGab;
   const [ isLoading, setIsLoading ] = useState(true);
   const [ pointsAreReady, setPointsAreReady ] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(true);
+
   
   const msToSeconds = (ms) => Math.round(ms / 100) / 10;
 
@@ -43,7 +47,6 @@ const YouWin = ({ currentGab, duration, endTime, handleNext, roundTime, user, se
 
   useEffect(() => {
     const secondsRemaining = msToSeconds((duration) - (endTime - startTime));
-    console.log("useEffect from YouWin")
 
     getPoints(secondsRemaining)
       .then((result) => {
@@ -56,12 +59,38 @@ const YouWin = ({ currentGab, duration, endTime, handleNext, roundTime, user, se
   }, [duration, roundTime, endTime, startTime]);
 
 
+  useEffect(() => {
+    const confettiTimeout = setTimeout(() => {
+      console.log("showConfetti: ", showConfetti)
+      setShowConfetti(false);
+    }, 5000); 
+    return () => clearTimeout(confettiTimeout);
+  }, []); 
+  
   return (
     <div className="youWin">
 
       <div className="youWin__container">
 
         <h1 className="youWin__heading">You Win!</h1>
+
+        {showConfetti ?
+        
+          <Confetti 
+            className='confetti--show'
+            width={800} 
+            height={800} 
+            numberOfPieces={1000} />
+            
+            :
+            
+              <Confetti 
+                className='confetti--hide'
+                width={800} 
+                height={800} 
+                numberOfPieces={500} />
+        }
+
 
         <p className="youWin__question">
           Gab: "{`${currentGabQuestion.join(' ')}`}"

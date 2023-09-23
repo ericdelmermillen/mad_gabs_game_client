@@ -56,6 +56,7 @@
     &__container {
       @include doubleButtonContainer;
       margin-top: auto;
+      z-index: 2;
     }
     
     &--home {
@@ -69,5 +70,19 @@
       @include btn;
       pointer-events: none;
     }
+  }
+
+}
+
+.confetti {
+  &--show {
+    opacity: 100%;
+    transition: opacity 5s ease;
+    
+  }
+  
+  &--hide {
+    opacity: 0%;
+    transition: opacity 5s ease;
   }
 }

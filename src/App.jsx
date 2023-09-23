@@ -16,7 +16,7 @@ import Submit from "./pages/Submit/Submit";
 import Welcome from "./pages/Welcome/Welcome";
 
 import { useEffect, useState } from "react";
-import { Navigate, useNavigate, Routes, Route, Link, useLocation } from "react-router-dom";
+import { Navigate, Routes, Route, Link, useLocation } from "react-router-dom";
 import axios from "axios";
 
 const App = () => {

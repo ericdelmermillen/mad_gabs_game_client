@@ -79,7 +79,7 @@ const Gab = ({
 
 
   useEffect(() => {
-    console.log("from useEffect fetchData")
+    console.log("from useEffect fetchData token check")
     const fetchData = async () => {
       try {
         const token = sessionStorage.getItem('token');
