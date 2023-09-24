@@ -59,7 +59,6 @@ const App = () => {
 
   useEffect(() => {
     const getUser = () => {
-      console.log(BASE_URL)
       axios.get(`${BASE_URL}auth/login/success`, {
         withCredentials: true,
       })
@@ -81,7 +80,6 @@ const App = () => {
         }, 500); 
       })
         .catch((err) => {
-          console.log(BASE_URL)
           setTimeout(() => {
             setIsLoading(false);
           }, 500); 
