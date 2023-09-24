@@ -23,7 +23,6 @@
   }
   
   &__answer {
-    background: yellow;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -31,10 +30,6 @@
     justify-content: center;
     margin-bottom: auto;
     width: 100%;
-    
-    @media (min-width: 400px) and (min-height: 600px) {
-      
-    }
   }
 }
 
@@ -70,8 +65,8 @@
 
 .answer-word__container {
   display: flex;
+  height: 3rem;
   justify-content: center;
-  margin-top: 1rem;
   width: 100%;
   
   @media (min-width: 400px) and (min-height: 600px) {
@@ -80,12 +75,10 @@
   
   @media (min-width: 768px) and (min-height: 600px) {
     margin-top: 0rem;
-    border: 4px dotted red;
   }
 }
 
 .alreadySpoken {
-  color: green;
   display: flex;
   font-size: 1rem;
   font-weight: bold;
@@ -105,15 +98,33 @@
 
 .microphone {
   height: 3rem;
-  // margin-top: 0.5rem;
   position: relative;
-  border: 2px dotted #333;
-  
-  @media (min-width: 400px)  and (min-height: 600px) {
-    height: 3.5rem;
-    // margin-top: 0.75rem;
-  }
 }
+
+// .microphone {
+//   height: 3rem;
+//   position: relative;
+  
+//   @media (min-width: 400px)  and (min-height: 600px) {
+//     height: 3rem;
+//   }
+
+//   &__container {
+    
+//     @media (min-width: 400px) {
+//       align-items: center;
+//       display: flex;
+//       flex-direction: row;
+//       gap: 1rem;
+//       justify-content: center;
+//     }
+
+//     @media (min-width: 400px) and (min-height: 600px) {
+//       flex-direction: column;
+//     }
+//   }
+// }
+
 
 @keyframes erraticAnimation {
   0% {
@@ -220,30 +231,48 @@
 
 .microphone__blob {
   content: "";
-  animation: erraticAnimation 3s infinite;
-  border-radius: 5px;
+  border-radius: 50%;
   display: block;
-  height: 10px;
+  height: 25%;
   left: 50%;
   position: absolute;
-  top: 75%;
-  transform: translate(-50%, -100%);
-  width: 8px;
+  top: 50%;
+  transform: translate(calc(-50% - 1px), -80%);
+  width: 20%;
   z-index: -1;
   background: green;
-  
-  @media (min-width: 400px) {
-    top: 85%;
-    height: 14px;
-    width: 10px;
-  }
-  
-  @media (min-width: 768px) {
-    top: 75%;
-    height: 14px;
-    width: 10px;
-  }
+  margin-inline: 0;
+  padding-inline: 0;
+  animation: erraticAnimation 3s infinite;
 }
+
+// .microphone__blob {
+//   content: "";
+//   border-radius: 5px;
+//   display: block;
+//   height: 25%;
+//   left: 50%;
+//   position: absolute;
+//   top: 50%;
+//   transform: translate(-50%, 100%);
+//   // transform: translateX(-50%);
+//   // transform: translateY(-100%);
+//   width: 20%;
+//   z-index: -1;
+//   background: green;
+  
+//   // @media (min-width: 400px) {
+//   //   top: 85%;
+//   //   height: 14px;
+//   //   width: 10px;
+//   // }
+  
+//   // @media (min-width: 768px) {
+//   //   top: 75%;
+//   //   height: 14px;
+//   //   width: 10px;
+//   // }
+// }
 
 
 .skip {

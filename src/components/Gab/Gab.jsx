@@ -77,7 +77,6 @@ const Gab = ({
     }, 750);
   }
 
-
   useEffect(() => {
     console.log("from useEffect fetchData token check")
     const fetchData = async () => {
@@ -172,6 +171,8 @@ const Gab = ({
             }
           
         </div>
+        <div className="microphone__container">
+          
         
           <div className="microphone">
             {isListening &&
@@ -198,6 +199,7 @@ const Gab = ({
           </span>
 
           }
+        </div>
 
       </div>
 

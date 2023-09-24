@@ -40,7 +40,7 @@ const Gabs = ({ user, setUser, mgUserId, setLevel }) => {
   const { level } = useParams();
   const navigate = useNavigate();  
 
-  const duration = 60000;
+  const duration = 600000;
 
   const handleClickedHome = () => {
     setIsLoading(true);
