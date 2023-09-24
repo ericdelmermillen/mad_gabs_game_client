@@ -6,12 +6,12 @@
   justify-content: center;
   padding-block: 0.5rem;
   padding-inline: 0.5rem;
-  border: 2px solid blue;
   
   @media (min-width: 400px) {
   }
   
   @media (min-width: 768px) {
+    border-block: 2px solid blue;
     height: calc(100vh - 7.5rem);
     padding-block: 1rem;
     padding-inline: 1rem;

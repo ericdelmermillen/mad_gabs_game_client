@@ -9,7 +9,13 @@
 body {
   max-height: 100vh;
   overflow: hidden;
-  border: 2px solid red;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  
+  @media (min-width: 768px) {
+    border-block: 2px solid red;
+
+  }
 }
 
 ul,

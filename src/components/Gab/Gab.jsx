@@ -110,6 +110,7 @@ const Gab = ({
       }
     };
     fetchData();
+    // eslint-disable-next-line
   }, [readyForNext]);
 
 
@@ -127,6 +128,7 @@ const Gab = ({
         setEndTime(new Date().getTime())
       };
     }
+    // eslint-disable-next-line
   }, [currentGab, alreadySaid, roundOver, setEndTime, isTimeElapsed]);
     
     

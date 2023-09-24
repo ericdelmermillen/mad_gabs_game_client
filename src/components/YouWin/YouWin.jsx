@@ -56,6 +56,7 @@ const YouWin = ({ currentGab, duration, endTime, handleNext, roundTime, user, se
         console.error(error);
           setIsLoading(false);
       });
+      // eslint-disable-next-line
   }, [duration, roundTime, endTime, startTime]);
 
 
@@ -65,6 +66,7 @@ const YouWin = ({ currentGab, duration, endTime, handleNext, roundTime, user, se
       setShowConfetti(false);
     }, 5000); 
     return () => clearTimeout(confettiTimeout);
+    // eslint-disable-next-line
   }, []); 
   
   return (
