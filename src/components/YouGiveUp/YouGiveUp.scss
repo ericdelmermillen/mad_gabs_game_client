@@ -12,8 +12,7 @@
   }
   
   &__heading {
-    @include pageHeading;
-
+    @include modalHeading;
   }
   
   &__instructions {
