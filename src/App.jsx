@@ -20,6 +20,7 @@ import { Navigate, Routes, Route, Link, useLocation } from "react-router-dom";
 import axios from "axios";
 
 const App = () => {
+
   
   const location = useLocation();
 
@@ -31,6 +32,7 @@ const App = () => {
   const [ showHowToPlay, setShowHowToPlay ] = useState(false);
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;
+  console.log(BASE_URL)
 
   const handleNavigateToHome = () => {
     setIsLoading(true);
